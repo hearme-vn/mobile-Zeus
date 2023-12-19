@@ -1,0 +1,16 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-block p-3">
+          <div class="text-center">
+            <qrcode *ngIf="stringQrCode" [qrdata]="stringQrCode" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+          </div>
+          <div class="text-center">{{'LOGIN_BARCODE_PAGE.BARCODEHINT' | translate}}</div>
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-sm-2"></div>
+  </div>
+</div>

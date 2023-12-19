@@ -1,0 +1,123 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <form class="form-horizontal">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="patient_id" class="col-sm-3 control-label">{{ 'APP.FORM_KEYWORD' | translate }}</label>
+                  <div class="col-sm-9" >
+                    <input type="text" class="form-control" name="keyword" required placeholder="Enter keyword" [(ngModel)]="filtering_form.keyword">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="patient_name" class="col-sm-3 control-label">{{ 'APP.UI_STATUS' | translate }}</label>
+                  <div class="col-sm-9">
+                    <select class="form-control" name="status" [(ngModel)]="filtering_form.status">
+                      <option [ngValue]="null">{{ 'APP.SELECT_ALL' | translate }}</option>
+                      <option *ngFor="let status of status_list" [ngValue]="status.value" ng-reflect-value="1" >{{ status.name_key | translate }}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Hidden input file for selecting survey configuration file for importing -->
+          <input id="survey_configuration_file" type="file" style="display:none" accept=".txt"
+            (change)="readSurveyData($event)">
+
+          <div class="card-footer">
+            <button type="button" class="btn btn-sm btn-primary" (click)="search()">
+              <i class="fa fa-search"></i> {{ 'APP.FORM_SEARCH' | translate }}
+            </button>
+            <button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Reset form</button>
+            <button class="btn btn-sm btn-primary" (click)="creatingSurvey()">
+              <i class="fa fa-file-o"></i> {{ 'APP.FORM_CREATE' | translate }}
+            </button>
+            <button class="btn btn-sm btn-primary" (click)="importButton_handle()">
+              <i class="fa fa-clipboard"></i> {{ 'SURVEY_PAGE.ACTIONS_IMPORT' | translate }}
+            </button>
+            <button class="btn btn-sm btn-primary" (click)="importSurveyTemplate()">
+              <i class="fa fa-files-o"></i> {{ 'SURVEY_PAGE.CHOOSE_TEMPLATE' | translate }}
+            </button>
+
+          </div>
+        </form>
+      </div>
+    </div><!--/.col-->
+  </div><!--/.row-->
+
+
+  <div class="col-12 pd-0 infinite_scroll_container" infinite-scroll
+  [infiniteScrollDistance]="1"
+  [infiniteScrollUpDistance]="2" 
+  [infiniteScrollThrottle]="50"
+  (scrolled)="onScrollDown()">
+    <table class="table table-bordered table-striped table-sm">
+      <thead>
+        <tr>
+          <th class="center_cell">{{ 'APP.UI_IDX_NUMBER' | translate }}</th>
+          <th class="wb-word">{{ 'SURVEY_PAGE.SURVEY_NAME' | translate }}</th>
+          <th class="sm-hide wb-word">{{ 'SURVEY_PAGE.SURVEY_QUESTION' | translate }}</th>
+          <th>{{ 'SURVEY_PAGE.SURVEY_TYPE' | translate }}</th>
+          <th class="xs-hide">{{ 'APP.UI_STATUS' | translate }}</th>
+          <th class="xs-hide">{{ 'APP.UI_CREATED' | translate }}</th>
+          <th class="center_cell">#</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let obj of objects; index as $i">
+          <td class="center_cell">{{ $i + 1 }}</td>
+          <td class="pointer wb-word" (click)="openPageForUpdating(obj.id)">{{ obj.name }}</td>
+          <td class="pointer wb-word sm-hide"  (click)="openPageForUpdating(obj.id)">{{ obj.question }}</td>
+          <td class="pointer" (click)="openPageForUpdating(obj.id)">{{ 'SURVEY_PAGE.TYPES.' + obj.type | translate }}</td>
+          <td class="xs-hide">
+            <span class="badge badge-secondary" *ngIf="obj.status==APPCONSTS.SURVEY_CREATED">{{ 'APP.UI_STATUS_CREATED'  | translate }}</span>
+            <span class="badge badge-success" *ngIf="obj.status==APPCONSTS.SURVEY_ACTIVE">{{ 'APP.UI_STATUS_ACTIVE'  | translate }}</span>
+            <span class="badge badge-warning" *ngIf="obj.status==APPCONSTS.SURVEY_CLOSED">{{ 'APP.UI_STATUS_INACTIVE'  | translate }}</span>
+          </td>
+          <td class="xs-hide">{{ obj.created | date: 'medium' : i18n.tzStr : i18n.lang.local_id }}</td>
+          <td class="center_cell actions">
+            <div class="btn-group" dropdown>
+              <button type="button" class="btn p-0" dropdownToggle>
+                <i class="fa fa-ellipsis-v"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+                <a class="dropdown-item" (click)='deleteObject(obj.id, errorCallBack=null, method="POST")'>
+                  <i class="fa fa-trash-o"></i>
+                  {{ 'SURVEY_PAGE.ACTIONS_DELETE' | translate }}
+                </a>
+                <a class="dropdown-item" (click)='deleteSurvey(obj.id, 1)' >
+                  <i class="fa fa-trash"></i>
+                  {{ 'SURVEY_PAGE.ACTIONS_DELETE_RECURSIVE' | translate }}
+                </a>
+
+                <!-- Activate survey tree -->
+                <a class="dropdown-item" *ngIf="obj.status==APPCONSTS.SURVEY_CREATED || obj.status==APPCONSTS.SURVEY_CLOSED" 
+                  (click)='setSurveyStatus(obj.id, 1, 1)' >
+                  <i class="fa fa-random"></i>
+                  {{ 'SURVEY_PAGE.UPDATE_STATUS_ACTIVE' | translate }}
+                </a>
+                <!-- Close survey tree -->
+                <a class="dropdown-item" *ngIf="obj.status==APPCONSTS.SURVEY_ACTIVE" (click)='setSurveyStatus(obj.id, 2, 1)' >
+                  <i class="fa fa-random"></i>
+                  {{ 'SURVEY_PAGE.UPDATE_STATUS_CLOSE' | translate }}
+                </a>
+
+                <a class="dropdown-item" (click)='downloadSurveyConfiguration(obj.id, obj.name)'>
+                  <i class="fa fa-share-square-o"></i>
+                  {{ 'SURVEY_PAGE.ACTIONS_EXPORT' | translate }}
+                </a>
+                
+              </div>
+            </div>        
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

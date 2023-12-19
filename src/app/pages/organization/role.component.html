@@ -1,0 +1,184 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-sm btn-success" (click)="openDialogForCreating()">
+        <i class="fa fa-file-o"></i> {{ 'APP.BUTTON_CREATE' | translate }}
+      </button>
+    </div>
+  </div>
+
+  <div class="col-12 pd-0">
+    <table class="table table-bordered table-striped table-sm">
+      <thead>
+        <tr>
+          <th class="text-center" width="60">{{ 'APP.UI_IDX_NUMBER' | translate }}</th>
+          <th>{{ 'ROLE_PAGE.ten_nhom_quyen' | translate }}</th>
+          <th>{{ 'APP.UI_STATUS' | translate }}</th>
+          <th class="xs-hide">{{ 'APP.UI_CREATED' | translate }}</th>
+          <th class="text-center" width="80">#</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let obj of objects; index as $i" class="pointer">
+          <td class="text-center" (click)="openDialogForUpdating(obj)">{{ $i + 1 }}</td>
+          <td (click)="openDialogForUpdating(obj)">{{ obj.name }}</td>
+          <td (click)="openDialogForUpdating(obj)">
+            <span *ngIf="obj.status==0" class="badge badge-success">{{ 'APP.UI_STATUS_ACTIVE' | translate }}</span>
+            <span *ngIf="obj.status==1" class="badge badge-danger">{{ 'APP.UI_STATUS_LOCK' | translate }}</span>
+          </td>
+          <td class="xs-hide" (click)="openDialogForUpdating(obj)">{{ obj.created | date: 'dd/MM/yyyy, HH:mm a' }}</td>
+          <td class="text-center">
+            <button type="button" class="btn btn-danger btn-icon-icon btn-sm m-0 mr-1 ng-scope" (click)="deleteObject(obj.id)">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- Dialog for creating or updating Role -->
+<div bsModal #createObjectDialog="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document" *ngIf="object && object.data">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          {{(!object.data.id ? 'APP.DIALOG_CREATE' : 'APP.DIALOG_UPDATE') |translate}}
+          {{'ROLE_PAGE.PAGE_NAME'|translate}}
+        </h4>
+        <button type="button" class="close" (click)="createObjectDialog.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form">
+          <div class="form-group">
+            <label for="name">{{'ROLE_PAGE.ten_nhom_quyen' | translate}} <code>*</code></label>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="object.data.name">
+          </div>
+          <ul class="nav nav-tabs update-suvey-tabs">
+            <li class="active">
+              {{'ROLE_PAGE.nhom_quyen' | translate}}<i class="fa"></i>
+            </li>
+          </ul>
+          <div class="tab-content p-3">
+            <!-- OWNER permission -->
+            <div class="row">
+              <div class="col-md-3 col-sm-6 col-xs-6" *ngIf="object.data.permission_models['owner']">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="owner" [checked]="object.data.permission_models['owner']"disabled> 
+                    Owner
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- ADMIM permission -->
+              <div class="col-6 col-md-3">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="admin" [checked]="object.data.permission_models['admin']" (click)="togglePermission('admin')">
+                    Admin
+                  </label>
+                </div>
+              </div>
+
+              <!-- SERVICE permission -->
+              <div class="col-6 col-md-3">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="service" [checked]="object.data.permission_models['service']" (click)="togglePermission('service')"> 
+                    Service
+                  </label>
+                </div>
+              </div>
+
+              <!-- CONFIG permission -->
+              <div class="col-6 col-md-3">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="config" [checked]="object.data.permission_models['config']" (click)="togglePermission('config')"> 
+                    Config
+                  </label>
+                </div>
+              </div>
+
+              <!-- BASIC permission -->
+              <div class="col-6 col-md-3">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="selectedRoles[]" value="config" [checked]="object.data.permission_models['basic']" (click)="togglePermission('basic')"> Basic
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- OPERATOR permission -->
+            <div class="row">
+              <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="selectedRoles[]" value="operator" [checked]="object.data.permission_models['operator']" (click)="togglePermission('operator')"> 
+                    Operator
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-9 col-sm-12 col-xs-12" *ngIf="object.data.permission_models['operator']">
+                <select class="form-control" id="sur_id" name="sur_id" [(ngModel)]="object.data.permission_models['operator'].resource_id">
+                  <option [ngValue]="org_id"> {{ 'ROLE_PAGE.tat_ca_khao_sat' | translate }}</option>
+                  <option *ngFor="let s of survey_list" [value]="s.id" >{{ s.name | translate }}</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- MONITOR permission -->
+            <div class="row monitor">
+              <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="selectedRoles[]" value="monitor" [checked]="object.data.permission_models['monitor']" (click)="togglePermission('monitor')"> 
+                    Monitor
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-9 col-sm-12 col-xs-12" *ngIf="object.data.permission_models['monitor']">
+                <!-- Select group for monitor -->
+                <select class="form-control col-12" id="group" name="group" [(ngModel)]="object.data.permission_models['monitor'].group_id" (change)="changeGroup(object.data.permission_models['monitor'].group_id)">
+                  <option [ngValue]="undefined" disabled>{{ 'APP.SELECT_GROUP' | translate }}</option>
+                  <option *ngFor="let group of group_list" [value]="group.id" >{{ group.name | translate }}</option>
+                </select>
+                <!-- Select Device for monitor -->
+                <select class="form-control col-12" id="device" name="device" [(ngModel)]="object.data.permission_models['monitor'].device_id">
+                  <option [ngValue]="undefined" >{{ 'APP.CB_ALL_DEVICES' | translate }}</option>
+                  <option *ngFor="let device of device_list" [value]="device.id" >{{ device.name | translate }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mt-2" *ngIf="object.data.id">
+            <label for="inline-radios">{{'APP.UI_STATUS'|translate}}</label>
+            <div class="col-md-12 p-0">
+              <div class="form-check form-check-inline mr-1" id="inline-radios">
+                <input class="form-check-input" id="inlineRadio1" name="inline-radios" type="radio" [value]="0" [(ngModel)]="object.data.status">
+                <label class="form-check-label" for="inlineRadio1">{{'APP.UI_STATUS_ACTIVE'|translate}}</label>
+              </div>
+              <div class="form-check form-check-inline mr-1">
+                <input class="form-check-input" id="inlineRadio2" name="inline-radios" type="radio" [value]="1" [(ngModel)]="object.data.status">
+                <label class="form-check-label" for="inlineRadio2">{{'APP.UI_STATUS_LOCK'|translate}}</label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="createObjectDialog.hide()"><i class="fa fa-close"></i> {{'APP.BUTTON_CLOSE'|translate}}</button>
+        <button *ngIf="!object.data.id" type="button" class="btn btn-success btn-sm" (click)="createObject()"><i class="fa fa-edit"></i> {{'APP.BUTTON_CREATE'|translate}}</button>
+        <button *ngIf="object.data.id" type="button" class="btn btn-success btn-sm" (click)="updateObject()"><i class="fa fa-edit"></i> {{'APP.BUTTON_UPDATE'|translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

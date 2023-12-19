@@ -1,0 +1,33 @@
+label {
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.disabled_item {
+  color: #e4e7ea;
+}
+
+.bi {
+  cursor: pointer;
+  margin-right: 0.3rem;
+}
+
+.row-item {
+  display: flow-root;
+  padding: 5px 0 0 5px;
+}
+
+.row-item input {
+  width: auto;
+  // position: relative;
+  // float: right;
+  margin: 0 10px 0 30px;
+}
+
+.row-item:hover{
+  background-color: #20a8d8 !important;
+}
+
+.row-filter {
+  margin: 10px -15px !important;
+}

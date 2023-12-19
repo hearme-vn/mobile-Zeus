@@ -1,0 +1,35 @@
+{
+  "name": "angular-google-charts",
+  "version": "2.2.0",
+  "description": "A wrapper for the Google Charts library written with Angular",
+  "keywords": [
+    "Angular",
+    "Angular 2",
+    "Charts",
+    "Google",
+    "Chart"
+  ],
+  "homepage": "https://github.com/FERNman/angular-google-charts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FERNman/angular-google-charts"
+  },
+  "bugs": {
+    "url": "https://github.com/FERNman/angular-google-charts",
+    "email": "gabriel.sperrer@gmail.com"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Gabriel Sperrer",
+    "email": "gabriel.sperrer@gmail.com"
+  },
+  "dependencies": {
+    "@types/google.visualization": "^0.0.52",
+    "tslib": "^2.0.0"
+  },
+  "peerDependencies": {
+    "@angular/common": "^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0",
+    "@angular/core": "^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0"
+  },
+  "main": "src/index.ts"
+}

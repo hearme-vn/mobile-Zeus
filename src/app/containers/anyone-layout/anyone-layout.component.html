@@ -1,0 +1,65 @@
+<app-header
+[fixed]="true"
+[sidebarToggler]=false
+[asideMenuToggler]=false
+[mobileAsideMenuToggler]=false
+[mobileSidebarToggler]=false
+[navbarBrandFull]="{src: 'assets/img/brand/hearme-white.png', width: 120, alt: 'hearme feedback system'}"
+[navbarBrandMinimized]="{src: 'assets/img/brand/hearme_mini.png', width: 30, height: 30, alt: 'hearme feedback system'}"
+>
+  <ul class="nav navbar-nav ml-auto">
+    
+    <div class="btn btn-group float-right d-block" dropdown *ngIf="langs">
+      <button type="button" class="btn btn-grey dropdown-toggle p-0" dropdownToggle>
+        <i class="flag-icon {{i18n.lang.flag_icon}} h5"></i>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+        <a class="dropdown-item" href="#" *ngFor="let lang of langs | keyvalue" 
+          (click)="i18n.setLanguage(lang.key)">
+          <i class="flag-icon {{lang.value.flag_icon}} h5"></i> {{ lang.value.name }}
+       </a> 
+      </div>
+    </div>
+
+    <div class="btn btn-group right float-right p-0 d-none d-sm-block">
+      <!-- Login button -->
+      <button type="button" class="btn btn-success mt-0 mr-3" *ngIf="path == 'register'" (click)="goto_signin()">
+        {{ 'SIDEBAR.LOGIN' | translate }}
+      </button>
+      <!-- Register button -->
+
+      <button type="button" class="btn btn-success mt-0 mr-3" *ngIf="path == 'login'" (click)="goto_signup()">
+        {{ 'SIDEBAR.REGISTER' | translate }}
+      </button> 
+   
+
+    </div>
+  </ul>
+</app-header>
+<div class="app-body">
+  <!-- Main content -->
+  <main class="main">    
+    <!-- DISABLE FOR BEING IN LINE WITH APPLE GUIDELINE TO SUBBMIT APP -->
+    <div class="container-fluid d-sm-none d-block">
+      <div class="btn btn-group right float-right p-0 mr-0">
+        <!-- -- Login button -- -->
+        <button type="button" class="btn btn-success mr-0" *ngIf="path == 'register'" (click)="goto_signin()">
+          {{ 'SIDEBAR.LOGIN' | translate }}
+        </button>
+        <!-- Register button -->
+        <button type="button" class="btn btn-success mr-0 login_form" *ngIf="path == 'login'" (click)="goto_signup()">
+          {{ 'SIDEBAR.REGISTER' | translate }}
+        </button>
+      </div>
+    </div>
+
+    <div class="container-fluid">  
+      <router-outlet></router-outlet>
+    </div><!-- /.container-fluid -->
+  </main>
+</div>
+
+<app-footer>
+  <span><a target="_blank" href="https://hearme.vn">hearme</a> &copy; 2020</span>
+  <span class="ml-auto d-none d-md-block">Powered by <a target="_blank" href="http://labsofthings.com">Labsofthings</a></span>
+</app-footer>

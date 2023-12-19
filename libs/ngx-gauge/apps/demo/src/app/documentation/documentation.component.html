@@ -1,0 +1,172 @@
+<div class="container block">
+    <h1>Documentation</h1>
+    <h4>Configuration Options</h4>
+    <p>
+        There are plenty of configurable options available to tune the Gauge as per your needs. Following is the
+        extensive list of
+        configurable options <a href="https://github.com/ashish-chopra/ngx-gauge#configuration-properties"
+            class="hidden-sm-up">here</a>.
+    </p>
+    <p></p>
+    <table class="table table-striped table-bordered hidden-sm-down">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th width="450">Description</th>
+                <th>Required</th>
+                <th>Default value</th>
+                <th>Possible Values</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>size</td>
+                <td>Specifies the size of the canvas in which Gauge will be drawn. It is used as width and height both.
+                </td>
+                <td>No</td>
+                <td>200</td>
+                <td>Positive Integer</td>
+            </tr>
+            <tr>
+                <td>type</td>
+                <td>Specifies the gauge's type.</td>
+                <td>No</td>
+                <td>"full"</td>
+                <td>"full", "semi", "arch"</td>
+            </tr>
+            <tr>
+                <td>min</td>
+                <td>Specifies the minimum numeric value for gauge's scale.</td>
+                <td>No</td>
+                <td>0</td>
+                <td>Any numeric value</td>
+            </tr>
+            <tr>
+                <td>max</td>
+                <td>Specified the maximum numeric value for gauge's scale.</td>
+                <td>No</td>
+                <td>100</td>
+                <td>Any numeric value</td>
+            </tr>
+            <tr>
+                <td>value</td>
+                <td>Specifies the current value of the Gauge in the range specified by min and max. It is a required
+                    attribute.</td>
+                <td>Yes</td>
+                <td>undefined</td>
+                <td>A numeric value</td>
+            </tr>
+            <tr>
+                <td>cap</td>
+                <td>The style of line ending at the gauge's end.</td>
+                <td>No</td>
+                <td>"butt"</td>
+                <td>"round", "butt"</td>
+            </tr>
+            <tr>
+                <td>thick</td>
+                <td>Specified the thickness of the gauge's bar.</td>
+                <td>No</td>
+                <td>6</td>
+                <td>Any Positive Integer</td>
+            </tr>
+            <tr>
+                <td>label</td>
+                <td>Specifies the text to display below the Gauge's reading.</td>
+                <td>No</td>
+                <td>undefined</td>
+                <td>Any string</td>
+            </tr>
+            <tr>
+                <td>foregroundColor</td>
+                <td>Specifies the foreground color of the Gauge's bar./td>
+                <td>No</td>
+                <td>rgba(0, 150, 136, 1)</td>
+                <td>Any color value string</td>
+            </tr>
+            <tr>
+                <td>backgroundColor</td>
+                <td>Specifies the background color of the Gauge's bar.</td>
+                <td>No</td>
+                <td>rgba(0, 0, 0, 0.1)</td>
+                <td>Any color value string</td>
+            </tr>
+            <tr>
+                <td>append</td>
+                <td>Specifies a string appended to the Gauge's reading. For example "%" most commonly used.</td>
+                <td>No</td>
+                <td>undefined</td>
+                <td>Any string</td>
+            </tr>
+            <tr>
+                <td>prepend</td>
+                <td>Specifies a string prepended to the Gauge's reading. For example "$" in case of financial data
+                    displayed
+                    in Gauge.</td>
+                <td>No</td>
+                <td>undefined</td>
+                <td>Any string</td>
+            </tr>
+            <tr>
+                <td>duration</td>
+                <td>Specifies the duration (in milliseconds) of the Gauge's animation</td>
+                <td>No</td>
+                <td>1500</td>
+                <td>A positive integer</td>
+            </tr>
+            <tr>
+                <td>thresholds</td>
+                <td>Specifies an object of threshold values at which the gauge's color changes. Also if you specify a bgOpacity, this color will be applied the opacity value and shown as the background for that range, otherwise the backgroundColor is used.</td>
+                <td>No</td>
+                <td>None</td>
+                <td>A special object of the format 
+                <code>{{ '{ "20": { color: "red", bgOpacity: .2 }  , ... }' }}</code></td>
+            </tr>
+            <tr>
+                <td>markers</td>
+                <td>Specifies an object of marker values at which value to place a marker. Can be a line or triangle and optionally may specify color, size and label. Note if you use labels you should add to margin value to the gauge using the margin option.</td>
+                <td>No</td>
+                <td>None</td>
+                <td>A special object of the format shown. Currently type supports "line" or "triangle" marker.<br> 
+                    <code>{{ '{ "50": { color: "#555", type: "triangle", size: 8, label: "Goal", font: "12px arial" }  , ... }' }}</code>
+                </td>
+            </tr>  
+            <tr>
+                <td>margin</td>
+                <td>Specifies an optional margin for the chart.</td>
+                <td>No</td>
+                <td>0</td>
+                <td>A positive integer. If using markers, you should set at least a 8 margin or more if using labels.</td>
+            </tr>                      
+            <tr>
+                <td>animate</td>
+                <td>toggles the gauge animation</td>
+                <td>No</td>
+                <td>true</td>
+                <td>boolean</td>
+            </tr>
+            <tr>
+                <td>aria-label</td>
+                <td>Specifies the label used by screen readers.</td>
+                <td>No</td>
+                <td>undefined</td>
+                <td>Any string</td>
+            </tr>
+            <tr>
+                <td>aria-labelledby</td>
+                <td>specifies the ID of any external element to be used as label by screen readers.</td>
+                <td>No</td>
+                <td>null</td>
+                <td>Any ID string</td>
+            </tr>
+        </tbody>
+    </table>
+    <h4>Configuring Threshold Colors</h4>
+    <p>
+        You can customize the colors of the gauge based on the current value being shown. In order to show different
+        colors when gauge crosses certain value, use property thresholds. It takes an object with the threshold value as
+        key and an object with color property as value. For example:
+    </p>
+    <pre [highlight]="thresholdColors1"></pre>
+    <pre [highlight]="thresholdColors2"></pre>
+</div>

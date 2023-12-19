@@ -1,0 +1,47 @@
+.checked {
+  color: orange;
+}
+
+.col-type {
+  text-transform: uppercase;
+  margin: 0px;
+  color: #321FDB;
+  font-size: 14px;
+}
+
+.row {
+  border-bottom: solid 1px #e4e4e4;
+  margin: 0px;
+}
+.last-survey-row {
+  border-bottom: none !important;
+}
+
+.col-bullet {
+  padding-top: calc(0.375rem + 1px);
+  padding-bottom: calc(0.375rem + 1px);
+  margin: 0px;
+  text-align: right;
+}
+
+.factor {
+  display: contents;
+  margin-left: 0px;
+}
+
+.col-default {
+  padding: 10px;
+}
+
+.col-default img {
+  width: 100%;
+}
+
+.attachment_items {
+  display: contents;
+}
+
+.survey label {
+  padding-top: 10px;
+}
+

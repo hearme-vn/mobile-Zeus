@@ -1,0 +1,17 @@
+<div class="card p-4 module-block mb-0" *ngIf="data_new">
+  <h4 class="card-title progress-bar-warning">{{ 'CONFIG_PAGE.LB_HOOK_URL' | translate }}</h4>
+
+  <div class="form-group">
+    <input id="hook_status" type="checkbox" class="mr-1" [(ngModel)]="data_new.checked"/>
+    <label for="hook_status">{{'APP.IS_ACTIVE'|translate}}</label>
+  </div>
+  <div class="form-group">
+    <label for="hook_url">{{ 'CONFIG_PAGE.HOOK_URL' | translate }}:</label>
+    <input id="hook_url" class="form-control" type="text" [(ngModel)]="data_new.url"/>
+  </div>
+  <div class="form-group">
+    <label for="hook_authorization">{{ 'CONFIG_PAGE.HOOK_TOKEN' | translate }}:</label>
+    <input id="hook_authorization" class="form-control" type="text" [(ngModel)]="data_new.authorization"/>
+  </div>
+  <label *ngIf="data_new.url">({{'CONFIG_PAGE.HOOK_LOAD_FREQUENCY'|translate}})</label>
+</div>

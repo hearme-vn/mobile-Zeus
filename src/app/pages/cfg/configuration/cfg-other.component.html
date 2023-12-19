@@ -1,0 +1,31 @@
+<div class="card p-4 module-block mb-0">
+  <h4 class="card-title progress-bar-warning">{{ 'CONFIG_PAGE.OTHER' | translate }}</h4>
+
+  <div class="form-group">
+    <label for="timeover" class="float-left col-form-label mr-2 ">{{ 'CONFIG_PAGE.FEEDBACK_TIMEOVER' | translate }}:</label>
+    <input id="timeover" class="form-control w-25 float-left mr-2" type="input" [(ngModel)]="form.feedback_timeover">
+    <label class="col-form-label">({{'CONFIG_PAGE.THANKPAGE_DELAY_TIMEUNIT'|translate}})</label>
+  </div>
+  <div class="form-group">
+    <input id="auto_run" type="checkbox" class="mr-1" [(ngModel)]="form.auto_run_collection">
+    <label for="auto_run">{{'CONFIG_PAGE.AUTO_RUN_COLLECTION'|translate}}</label>
+  </div>
+  <div class="form-group">
+    <input id="contact_fields" type="checkbox" class="mr-1" [(ngModel)]="form.include_contact_fields">
+    <label for="contact_fields">{{'CONFIG_PAGE.INCLUDE_CONTACT_FIELDS'|translate}}</label>
+  </div>
+  <div class="form-group">
+    <input id="required_contact_fields" type="checkbox" class="mr-1" [(ngModel)]="form.required_contact_fields">
+    <label for="required_contact_fields">{{'CONFIG_PAGE.REQUIRED_CONTACT_FIELDS'|translate}}</label>
+  </div>
+  <div class="form-group">
+    <input id="intropage_off" type="checkbox" class="mr-1" [(ngModel)]="form.device_intropage_off">
+    <label for="intropage_off">{{'CONFIG_PAGE.DEVICE_INTROPAGE_OFF'|translate}}</label>
+  </div>
+  <div class="form-group">
+    <label>
+      <input id="main_color" class="mr-1" type="color" [(ngModel)]="form.device_main_color"/>
+      <label for="main_color">{{'CONFIG_PAGE.DEVICE_MAIN_COLOR'|translate}}</label>
+    </label>
+  </div>
+</div>

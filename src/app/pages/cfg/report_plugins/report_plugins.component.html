@@ -1,0 +1,95 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-sm btn-primary ml-0" (click)="openDialogForCreating()">
+        <i class="fa fa-file-o"></i> {{ 'APP.BUTTON_CREATE' | translate }}
+      </button>
+    </div>
+  </div>
+
+  <div class="col-12 pd-0">
+    <div class="infinite_scroll_container" infinite-scroll
+      [infiniteScrollDistance]="1"
+      [infiniteScrollUpDistance]="2" 
+      [infiniteScrollThrottle]="50"
+      (scrolled)="onScrollDown()">
+      <table class="table table-bordered table-striped table-sm">
+        <thead>
+          <tr>
+            <th>{{ 'APP.UI_IDX_NUMBER' | translate }}</th>
+            <th>{{ 'PLUGINS_PAGE.PLUGINS_URL' | translate }}</th>
+            <th>{{ 'APP.NAME' | translate }}</th>
+            <th class="sm-hide">{{ 'APP.UI_STATUS' | translate }}</th>
+            <th class="sm-hide">{{ 'APP.UI_CREATED' | translate }}</th>
+            <th class="center_cell">#</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let obj of objects; index as $i" class="pointer">
+            <td (click)="openDialogForUpdating(obj)">{{ $i + 1 }}</td>
+            <td (click)="openDialogForUpdating(obj)" class="wb-all">{{ obj.url | truncate: 90 : false }}</td>
+            <td (click)="openDialogForUpdating(obj)">{{ obj.name }}</td>
+            <td class="sm-hide" (click)="openDialogForUpdating(obj)">
+              <span *ngIf="obj.status==0" class="badge badge-success">{{ 'APP.UI_STATUS_ACTIVE' | translate }}</span>
+              <span *ngIf="obj.status==1" class="badge badge-danger">{{ 'APP.UI_STATUS_INACTIVE' | translate }}</span>
+            </td>
+            <td class="sm-hide" (click)="openDialogForUpdating(obj)">{{ obj.created }}</td>
+            <td class="center_cell actions">
+              <div class="pointer" (click)="deleteObject(obj.id)">
+                <button type="button" class="btn btn-danger btn-icon-icon btn-sm m-0 mr-1 ng-scope" >
+                    <i class="fa fa-trash"></i>
+                </button>
+                <span class="sm-hide">{{ 'APP.BUTTON_DELETE' | translate }}</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div bsModal #createObjectDialog="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document" *ngIf="object && object.data">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          {{(!object.data.id ? 'APP.DIALOG_CREATE' : 'APP.DIALOG_UPDATE') |translate}}
+          {{'PLUGINS_PAGE.REPORT_PLUGINS'|translate}}
+        </h4>
+        <button type="button" class="close" (click)="createObjectDialog.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label for="description">{{'PLUGINS_PAGE.PLUGINS_URL'|translate}}<code>(*)</code></label>
+            <textarea name="description" id="description" class="form-control" rows="3" [(ngModel)]="object.data.url"></textarea>
+          </div>
+          <div class="form-group col-md-12">
+            <label for="name">{{'APP.NAME'|translate}} <code>(*)</code></label>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="object.data.name">
+          </div>
+          <div class="form-group col-md-12" *ngIf="object.data.id">
+            <label for="sur_id">{{'APP.UI_STATUS'|translate}}: &nbsp;</label>
+            <div class="form-check form-check-inline options">
+              <input class="form-check-input" [value]=0 id="survey_status_active" name="survey_status" type="radio" [(ngModel)]="object.data.status"/>
+              <label class="form-check-label" for="survey_status_active">{{ 'APP.UI_STATUS_ACTIVE' | translate }}</label>
+            </div>                
+            <div class="form-check form-check-inline options">                  
+              <input class="form-check-input" [value]=1 id="survey_status_inactive" name="survey_status" type="radio" [(ngModel)]="object.data.status"/>
+              <label class="form-check-label" for="survey_status_inactive">{{ 'APP.UI_STATUS_INACTIVE' | translate }}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="createObjectDialog.hide()"><i class="fa fa-close"></i> {{'APP.BUTTON_CLOSE'|translate}}</button>
+        <button *ngIf="!object.data.id" type="button" class="btn btn-primary btn-sm" (click)="createObject()"><i class="fa fa-edit"></i> {{'APP.BUTTON_CREATE'|translate}}</button>
+        <button *ngIf="object.data.id" type="button" class="btn btn-primary btn-sm" (click)="updateObject()"><i class="fa fa-edit"></i> {{'APP.BUTTON_UPDATE'|translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

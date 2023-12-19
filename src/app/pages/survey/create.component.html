@@ -1,0 +1,506 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-6">
+      <h5>{{ 'SURVEY_PAGE.SURVEY_FORM_FIELDS' | translate }}</h5>
+    </div>
+    <!-- Top action buttons -->
+    <div class="col-md-6">
+      <div class="btn-group float-right">
+        <button type="button" class="btn btn-sm btn-danger" [routerLink]="'/survey/list'">
+          <i class="fa fa-close"></i>
+          <span>{{ 'APP.UI_CANCEL' | translate }}</span>
+        </button>
+
+        <button type="button" class="btn btn-sm btn-success" *ngIf="(step=='FORM') && !object?.data?.id" (click)="object.create(postCreateSurvey.bind(this))">
+          <i class="fa fa-file-o"></i>
+          <span>{{ 'APP.BUTTON_CREATE' | translate }}</span>
+        </button>
+        <button type="button" class="btn btn-sm btn-success" *ngIf="(step=='FORM') && object?.data?.id" (click)="object.update()">
+          <i class="fa fa-edit"></i>
+          <span>{{ 'APP.BUTTON_UPDATE' | translate }}</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="col-12" *ngIf="object">
+      <div class="card">
+        <form class="form-horizontal">
+          <!-- Creation steps -->
+          <div class="card-header form-header">
+            <div class="config_step" (click)="configure_StepChange('FORM')">
+              <span class="badge badge-pill badge-step" [ngClass]="{' step-active' : step=='FORM'}">
+                <i class="fa fa-file-text-o"></i>
+              </span>
+              <p class="step-description md-hide">{{ 'SURVEY_PAGE.SURVEY_FORM' | translate }}</p>
+            </div>
+
+            <div *ngIf="object.block_factors" class="separator xs-hide"></div>
+            <div *ngIf="object.block_factors" class="config_step" (click)="configure_StepChange('FACTOR')">
+              <span class="badge badge-pill badge-step"  [ngClass]="{' step-active' : step=='FACTOR'}">
+                <i class="fa fa-list"></i>
+              </span>
+              <p class="step-description md-hide">{{ 'SURVEY_PAGE.SURVEY_FACTOR_CONFIGURE' | translate }}</p>
+            </div>
+
+            <div *ngIf="object.block_child_survey" class="separator xs-hide"></div>
+            <div *ngIf="object.block_child_survey" class="config_step" (click)="configure_StepChange('CHILD')">
+              <span class="badge badge-pill badge-step"  [ngClass]="{' step-active' : step=='CHILD'}">
+                <i class="fa fa-indent"></i>
+              </span>
+              <p class="step-description md-hide">{{ 'SURVEY_PAGE.SURVEY_CHILD_CONFIGURE' | translate }}</p>
+            </div>
+
+            <div class="separator xs-hide"></div>
+            <div class="config_step" (click)="configure_StepChange('PREVIEW')">
+              <span class="badge badge-pill badge-step" [ngClass]="{' step-active' : step=='PREVIEW'}">
+                <i class="fa fa-play"></i>
+              </span>
+              <p class="step-description md-hide">{{ 'SURVEY_PAGE.SURVEY_PREVIEW' | translate }}</p>
+            </div>
+          </div> 
+
+          <!-- Survey BASIC form tab -->
+          <div class="card-body" *ngIf="step=='FORM'">
+            <!-- Survey status -->
+            <div class="row survey-section" *ngIf="object.data.id">
+              <div class="col-lg-8">
+                <label class="control-label">{{ 'SURVEY_PAGE.SURVEY_ID' | translate }}:</label>
+                <span  class="pointer" (click)="copyToClipboard(object.data.id)">
+                  <em  class="text-suggestion" id="collection_id">{{ object.data.id }}</em>
+                  &nbsp;<i class="fa fa-files-o"></i>&nbsp;
+                </span>
+                <!-- {{ 'APP.CLIPBOARD_COPY' | translate }}) -->
+              </div>
+
+              <div class="col-lg-4 survey_status">
+                <label class="control-label">{{ 'APP.UI_STATUS' | translate }}:</label>
+                <br class="d-none xs-block"/>
+                <div class="form-check form-check-inline ">
+                  <input class="form-check-input" [value]=1 id="survey_status_active" name="survey_status" type="radio" [(ngModel)]="object.data.status"/>
+                  <label class="form-check-label" for="survey_status_active">{{ 'APP.UI_STATUS_ACTIVE' | translate }}</label>
+                </div>                
+                <div class="form-check form-check-inline">                  
+                  <input class="form-check-input" [value]=2 id="survey_status_inactive" name="survey_status" type="radio" [(ngModel)]="object.data.status"/>
+                  <label class="form-check-label" for="survey_status_inactive">{{ 'APP.UI_STATUS_INACTIVE' | translate }}</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- General fields -->
+            <div class="row survey-section">
+              <!-- Survey name -->
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label class="control-label">{{ 'SURVEY_PAGE.SURVEY_NAME' | translate }} <code>(*)</code></label>
+                  <input class="form-control" required name="name" type="text" [(ngModel)]="object && object.data && object.data.name"/>
+                </div>
+              </div>
+
+              <!-- Select survey type -->
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="control-label">{{ 'SURVEY_PAGE.SURVEY_TYPE' | translate }}</label>
+                  <select class="form-control" [disabled]="object.data.id" name="type" [(ngModel)]="object.data.type" (change)="changeSurveyType()">
+                    <option *ngFor="let type of survey_types" [ngValue]="type"
+                      [hidden]="type==3">
+                      {{ survey_type_names[type] }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Select collection -->
+              <div class="col-md-4" *ngIf="object.block_collection">
+                <div class="form-group">
+                  <label class="control-label">{{ 'COLLECTION_PAGE.COLLECTION' | translate }}</label>
+                  <select class="form-control" name="col_id" [(ngModel)]="object.data.col_id">
+                    <option [ngValue]="undefined" [disabled]="true">{{ 'APP.SELECT_COLLECTION' | translate }}</option>
+                    <option [ngValue]="null"> {{ 'SURVEY_PAGE.DISABLE_COLLECTION' | translate }}</option>
+                    <option *ngFor="let collection of collections" [value]="collection.id">{{ collection.name }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Select theme -->
+              <div class="col-md-4" *ngIf="object.block_theme">
+                <div class="form-group">
+                  <label class="control-label">{{ 'THEME_PAGE.PAGE_NAME' | translate }}</label>
+                  <select class="form-control" name="theme_id" [(ngModel)]="object.data.theme_id">
+                    <option [ngValue]="undefined" [disabled]="true"> {{ 'APP.SELECT_THEME' | translate }}</option>
+                    <option [ngValue]="null"> {{ 'SURVEY_PAGE.DISABLE_THEME' | translate }}</option>
+                    <option *ngFor="let theme of themes" [value]="theme.id">{{ theme.name }}</option>
+                  </select>
+                </div>
+              </div>
+              
+              <!-- Select FLX scale -->
+              <div class="col-md-4" *ngIf="object.block_scale">
+                <div class="form-group">
+                  <label class="control-label">{{ 'SURVEY_PAGE.SCALE' | translate }}</label>
+                  <input type="number" name="scales" id="scales" min="2" max="10" [disabled]="object.data.id"
+                    class="form-control input-height-filter" [(ngModel)]="object.data.scales">
+                </div>
+              </div>
+            </div>
+
+            <!-- For configuring some options with switchers -->
+            <div class="row survey-section" *ngIf="object.block_option_require || object.block_option_noti || object.block_option_inverted_order">
+              <div class="col-12">
+                <label for="patient_name" class="control-label">{{ 'SURVEY_PAGE.OTHER_OPTIONS' | translate }}</label>
+              </div>
+              <div class="col-12 options">
+                <div class="col-sm-6 col-md-4" *ngIf="object.block_option_require">
+                  <label class="switch switch-label switch-pill switch-primary">
+                    <input checked="" class="switch-input" type="checkbox" id="survey_required" name="required" [(ngModel)]="object.data.required">
+                    <span class="switch-slider" data-checked="On" data-unchecked="Off"></span>
+                  </label>
+                  <label for="survey_required" class="control-label">{{ 'APP.UI_FIELD_REQUIRED' | translate }}</label>
+                </div>
+                
+                <div class="col-sm-6 col-md-4" *ngIf="object.block_option_noti">
+                  <label class="switch switch-label switch-pill switch-primary">
+                    <input class="switch-input" type="checkbox" id="survey_notification" name="notification" [(ngModel)]="object.data.notification">
+                    <span class="switch-slider" data-checked="On" data-unchecked="Off"></span>
+                  </label>
+                  <label for="survey_notification" class="control-label">{{ 'SURVEY_PAGE.SEND_NOTIFICATION' | translate }}</label>
+                </div>
+
+                <div class="col-sm-6 col-md-4" *ngIf="object.block_option_inverted_order">
+                  <label class="switch switch-label switch-pill switch-primary">
+                    <input class="switch-input" type="checkbox" id="invevrted_order" name="invevrted_order" [(ngModel)]="object.data.inverted_order">
+                    <span class="switch-slider" data-checked="On" data-unchecked="Off"></span>
+                  </label>
+                  <label for="invevrted_order" class="control-label">{{ 'SURVEY_PAGE.INVERTED_ORDER' | translate }}</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- For configuring questions -->
+            <div class="row survey-section" *ngIf="object.block_question && object.data.question_text_links && device_langs.length">
+              <div class="col-md-12">
+                <div>
+                  <label for="question" class="control-label">{{ 'SURVEY_PAGE.SURVEY_QUESTION' | translate }}</label>
+                </div>
+                <div class="input-group survey_question" *ngFor="let lang of device_langs">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="flag-icon flag-icon-{{lang.flag}}" title="{{lang.flag}}"></i></span>
+                  </div>
+                  <input class="form-control" name="question_text.{{lang.flag}}" 
+                    placeholder="{{ 'SURVEY_PAGE.QUESTION_INPUT' | translate }}" type="text" 
+                    [(ngModel)]="object.data.question_text_links[lang.code].value">
+                  <div class="input-group-append" *ngIf="device_default_language && lang && lang.code==device_default_language.code">
+                    <span class="input-group-text sm-hide">* {{ 'APP_CONFIG_PAGE.DEFAULT_LANG' | translate }}</span>
+                    <span class="input-group-text d-none sm-block">*</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Information - For Infor survey -->
+            <div class="row survey-section" *ngIf="object.block_info && object.data.question_text_links && device_langs.length">
+              <div class="col-md-12">
+                <div>
+                  <label for="question" class="control-label">{{ 'SURVEY_PAGE.SURVEY_INFO' | translate }}</label>
+                </div>
+                <div class="input-group survey_question" *ngFor="let lang of device_langs">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="flag-icon flag-icon-{{lang.flag}}" title="{{lang.flag}}"></i></span>
+                  </div>
+                  <textarea id="{{lang.code}}" name="survey_info_{{lang.code}}" (focus)="activeInfoObject($event)"
+                    class="form-control" rows="2" [(ngModel)]="object.data.question_text_links[lang.code].value">
+                  </textarea>
+                  <div class="input-group-append" *ngIf="device_default_language && lang && lang.code==device_default_language.code">
+                    <span class="input-group-text sm-hide">* {{ 'APP_CONFIG_PAGE.DEFAULT_LANG' | translate }}</span>
+                    <span class="input-group-text d-none sm-block">*</span>
+                  </div>
+                  
+                </div>
+                <div class="info_survey_tags">
+                  <label>{{ 'SURVEY_PAGE.INFO_SURVEY_ADDTAGS' | translate }}: </label>
+                  <a class="pointer" (click)="addTag_Infor_survey('{CUS_NAME}')">&#123; CUS_NAME &#125;</a>,
+                  <a class="pointer" (click)="addTag_Infor_survey('{CUS_PROMOTIONCODE}')">&#123; CUS_PROMOTIONCODE &#125;</a>,
+                  <a class="pointer" (click)="addTag_Infor_survey('\\n')">\n</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- For configure contact fields -->
+            <div class="row survey-section" *ngIf="object.block_contact_fields && object.data.configures">
+              <div class="col-md-12 section_name">
+                <label>{{ 'SURVEY_PAGE.CONTACT_FIELDS' | translate }}</label>
+              </div>
+              <div class="col-12">
+                <table class="table table-bordered table-striped table-sm">
+                  <thead>
+                    <tr>
+                      <th>{{ 'APP.UI_IDX_NUMBER' | translate }}</th>
+                      <th>{{ 'APP.UI_FIELD_NAME' | translate }}</th>
+                      <th>{{ 'APP.UI_FIELD_REQUIRED' | translate }}</th>
+                      <th>{{ 'APP.UI_FIELD_VALIDATE' | translate }}</th>
+                      <th>{{ 'APP.UI_STATUS_ACTIVE' | translate }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let cfg of object.data.configures; index as idx">
+                      <td>{{idx +1}}</td>
+                      <td>{{'CONFIGURES.' + cfg.data.cfg_key | translate }}</td>
+                      <td>
+                        <input type="checkbox" name="cfg_{{idx+1}}_required" [(ngModel)]="cfg.chkRequired"/>
+                      </td>
+                      <td>
+                        <input type="checkbox" name="cfg_{{idx+1}}_validate" [(ngModel)]="cfg.chkValidate"/>
+                      </td>
+                      <td>
+                        <label class="switch switch-label switch-pill switch-primary">
+                          <input class="switch-input" type="checkbox" name="cfg_{{idx+1}}_status" [(ngModel)]="cfg.chkStatus"/>
+                          <span class="switch-slider" data-checked="On" data-unchecked="Off"></span>  
+                        </label>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- For configure description and tags -->
+            <div class="row survey-section">
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label for="patient_name" class="control-label">{{ 'APP.DESCRIPTION' | translate }}</label>
+                  <input class="form-control" name="description" type="text"  [(ngModel)]="object.data.description" />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="patient_name" class="control-label">Tags</label>
+                  <input class="form-control" name="tags" type="text"  [(ngModel)]="object.data.tags"/>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+
+          <!-- Survey factors Tab  -->
+          <div class="card-body" *ngIf="(object.block_factors) && (step=='FACTOR')">            
+            <!-- For configure factors -->
+            <div class="row survey-section">
+              <!-- Factor form -->
+              <div class="col-md-12">
+                <div class="form-group row">
+                  <label class="col-md-2 col-form-label" for="text-input">{{ 'SURVEY_PAGE.FACTOR_LANGUAGE' | translate }}:</label>
+                  <div class="col-md-3">
+                    <devicelanguage-select [(ngModel)]="object.data.lang_id" name="device_language" (change)="changeFactorLanguage($event)"></devicelanguage-select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label class="col-form-label" for="text-input">{{ 'SURVEY_PAGE.FACTOR_NAME' | translate }}:</label>
+                  <div class="input-group survey_question">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="flag-icon flag-icon-{{ selected_lang?.flag }}" title="{{selected_lang?.flag}}"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="factor_question" name="factor_question" 
+                      placeholder="{{ 'SURVEY_PAGE.FACTOR_NAME' | translate }}" [(ngModel)]="factor.data.question_text_links[current_lang_code].value">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-7">
+                <div class="form-group">
+                  <label class="col-form-label" for="text-input">{{ 'APP.DESCRIPTION' | translate }}:</label>
+                  <div class="input-group survey_question">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="flag-icon flag-icon-{{ selected_lang?.flag }}" title="{{selected_lang?.flag}}"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="factor_description" name="factor_description" 
+                      placeholder="{{ 'APP.DESCRIPTION' | translate }}" [(ngModel)]="factor.data.description_text_links[current_lang_code].value">
+                  </div>                  
+                </div>
+              </div>
+
+              <!-- operation buttons -->
+              <div class="col-md-12">
+                <!-- <label>{{ 'SURVEY_PAGE.SURVEY_FACTOR' | translate }}</label> -->
+                <button type="button" class="btn btn-sm btn-success" *ngIf="!factor.data.id" (click)="factor.create(postFactorCreate.bind(this))">
+                  <i class="fa fa-plus"></i> {{ 'APP.BUTTON_ADD' | translate }}
+                </button>
+                <button type="button" class="btn btn-sm btn-success" *ngIf="factor.data.id" (click)="factor.update(postFactorUpdate.bind(this))">
+                  <i class="fa fa-edit"></i> {{ 'APP.BUTTON_UPDATE' | translate }}
+                </button>
+                <button type="button" class="btn btn-sm btn-warning" *ngIf="factor.data.id" (click)="setupEditingFactorForm()">
+                  <i class="fa fa-close"></i> {{ 'APP.UI_CANCEL' | translate }}
+                </button>
+              </div>
+
+              <!-- Factor list -->
+              <div class="col-md-12">
+                <table class="table table-bordered table-striped table-sm">
+                  <thead>
+                    <tr>
+                      <th>{{ 'APP.UI_IDX_NUMBER' | translate }}</th>
+                      <th>{{ 'SURVEY_PAGE.FACTOR_NAME' | translate }}</th>
+                      <th>{{ 'APP.UI_STATUS' | translate }}</th>
+                      <th>#</th>
+                    </tr>
+                  </thead>
+                  <tbody cdkDropList [cdkDropListData]="object.data.subs" (cdkDropListDropped)="changeFactorOrder($event)">
+                    <tr *ngFor="let sub of object.data.subs; let i = index" cdkDrag cdkDragLockAxis="y" [cdkDragData]="sub">
+                      <th>
+                        <div class="drag-handle">
+                          <i class="fa fa-list-ol"></i> &nbsp;
+                          {{ i }}
+                        </div>              
+                      </th>
+                      <td class="pointer" (click)="setupEditingFactorForm(sub)">{{ sub?.question_text_links[current_lang_code]?.value }}</td>
+                      <td >
+                        <label class="switch switch-label switch-pill switch-primary">
+                          <input class="switch-input" type="checkbox" name="sub_{{sub.sub_order}}_status" [(ngModel)]="sub.checked" 
+                            (change)="updateFactor(sub)"/>
+                          <span class="switch-slider" data-checked="On" data-unchecked="Off"></span>  
+                        </label>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteFactor(i)"><i class="fa fa-remove"></i></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Child survey tab -->
+          <div class="card-body" *ngIf="(object.block_child_survey) && (step=='CHILD')">
+            <!-- For Child survey declaration -->
+            <div class="row survey-section">
+              <!-- Select child survey condition -->
+              <div class="col-md-6" *ngIf="object.block_child_options_good_bad || object.block_child_options_scale || object.block_child_options_factor">
+                <label class="control-label">{{ 'SURVEY_PAGE.SWITCH_CONDITION' | translate }}
+                  ( {{ object.CHILD_RULE_DESCRIPTION | translate}} ):
+                </label>
+
+                <!-- Options for good/bad feedback -->
+                <div class="form-group" *ngIf="object.block_child_options_good_bad">
+                  <div class="form-check form-check-inline mr-1" id="inline-radios">
+                    <input class="form-check-input" value="good"  id="child.SCAT.rule.good" name="child.SCAT.rule" type="radio" [(ngModel)]="child_survey_form.rule">
+                    <label class="form-check-label" for="child.SCAT.rule.good">{{ 'SURVEY_PAGE.RULE_GOOD_FEEDBACK' | translate }}</label>
+                  </div>                
+                  <div class="form-check form-check-inline mr-1 switch-rule" id="inline-radios">
+                    <input class="form-check-input" value="bad" id="child.SCAT.rule.bad" name="child.SCAT.rule" type="radio"[(ngModel)]="child_survey_form.rule">
+                    <label class="form-check-label" for="child.SCAT.rule.bad">{{ 'SURVEY_PAGE.RULE_BAD_FEEDBACK' | translate }}</label>
+                  </div>
+                </div>
+
+                <!-- Switch options for FLX -->
+                <div class="form-group" *ngIf="object.block_child_options_scale">
+                  <select class="form-control" name="child.flx.rule" [(ngModel)]="child_survey_form.rule">
+                    <option disabled value="null" >{{ 'APP.SELECT' | translate }}</option>
+                    <option *ngFor="let item of [].constructor(object.data.scales); let i = index" [value]="i+1">{{ i+1 }}</option>
+                  </select>
+                </div>
+
+                <!-- Switch options for Exclusive selection -->
+                <div class="form-group" *ngIf="object.block_child_options_factor">
+                  <select class="form-control" name="child.factor.rule" [(ngModel)]="child_survey_form.rule">
+                    <option value="null" disabled>{{ 'APP.SELECT_FACTOR' | translate }}</option>
+                    <option *ngFor="let sub of object.data.subs; index as idx" [value]="sub.id" [hidden]="sub.status==0 || sub.status==2" >{{ sub.question }}</option>
+                  </select>
+                </div>
+
+              </div>
+
+              <!-- Select child survey -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="patient_id" class="control-label">{{ 'GROUP_PAGE.SELECT_SURVEY' | translate }}</label>
+                  <survey-select (change)="changeChildSurvey($event)" name="child_survey">
+                  </survey-select>
+<!-- 
+                  <select class="form-control" name="child.survey" [(ngModel)]="child_survey_form.index">
+                    <option value="null" >{{ 'GROUP_PAGE.SELECT_SURVEY' | translate }}</option>
+                    <option *ngFor="let survey of survey_list; index as $i" [value]="$i">{{ survey.name }}</option>
+                  </select>
+ -->
+                </div>
+              </div>
+
+              <!-- Add child survey button -->
+              <div class="col-md-12 section_name">
+                <!-- <label>{{ 'SURVEY_PAGE.CHILD_SURVEY' | translate }}</label> -->
+                <button type="button" class="btn btn-sm btn-success" (click)="addChildSurvey()">
+                  <i class="fa fa-plus"></i> {{ 'APP.BUTTON_ADD' | translate }}
+                </button>
+              </div>
+
+              <!-- Child survey list -->
+              <div class="col-md-12">
+                <table class="table table-bordered table-striped table-sm">
+                  <thead>
+                    <tr>
+                      <th>{{ 'APP.UI_IDX_NUMBER' | translate }}</th>
+                      <th>{{ 'SURVEY_PAGE.SURVEY_NAME' | translate }}</th>
+                      <th class="sm-hide">{{ 'SURVEY_PAGE.SURVEY_TYPE' | translate }}</th>
+                      <th>{{ 'SURVEY_PAGE.SWITCH_CONDITION' | translate }}</th>
+                      <th>{{ 'APP.UI_STATUS' | translate }}</th>
+                      <th class="sm-hide">#</th>
+                    </tr>
+                  </thead>
+                  <tbody cdkDropList (cdkDropListDropped)="changeChildrenSurveyOrder($event)">
+                    <tr *ngFor="let child of object.data.children; index as $i" cdkDrag cdkDragLockAxis="y">
+                      <th>
+                        <div class="drag-handle">
+                          <i class="fa fa-list-ol"></i> &nbsp;
+                          {{ child.relation.child_order }}
+                        </div>
+                      </th>
+                      <td>{{ child.name }}</td>
+                      <td>{{ 'SURVEY_PAGE.TYPES.' + child.type | translate }}</td>
+                      <td class="sm-hide">{{ child.relation.name }}</td>
+                      <td>
+                        <label class="switch switch-label switch-pill switch-primary">
+                          <input class="switch-input" type="checkbox" name="child_{{$i}}_status" 
+                            [(ngModel)]="child.relation.checked" (change)="object.updateChildRelation(child.relation)"/>
+                          <span class="switch-slider" data-checked="On" data-unchecked="Off"></span>  
+                        </label>
+                      </td>
+                      <td class="sm-hide">
+                        <button type="button" class="btn btn-danger btn-sm" (click)="object.deleteChildSurvey($i)"><i class="fa fa-remove"></i></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Preview tab -->
+          <div class="card-body" *ngIf="step=='PREVIEW'">
+            <!-- Device direction options -->
+            <div class="row survey-section">
+              <div class="col-12 device_orientation">
+                <div class="form-group pointer" (click)="changeScreenDirection('portrait')">
+                  <i class="fa fa-tablet fa-lg"></i>
+                  {{ 'SURVEY_PAGE.PORTRAIT' | translate }}
+                </div>
+                <div class="form-group pointer" (click)="changeScreenDirection('landscape')">
+                  <i class="fa fa-laptop fa-lg"></i>
+                  {{ 'SURVEY_PAGE.LANDSCAPE' | translate }}
+                </div>
+              </div>
+              <div class="col-12">
+                <!-- simulation area -->
+                <div class="row">
+                  <div class="col-md-12 survey-simulation" [ngClass]="preview_screen">
+                    <iframe [src]="getFeedbackSimulatorURL()"></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div><!--/.col-->
+  </div><!--/.row-->
+  
+</div>

@@ -1,0 +1,10 @@
+<div class="context-menu" [ngStyle]="{'left.px': x, 'top.px': y}">
+  <ul>
+    <li *ngFor="let item of items">
+	    <a (click)="returnEmit(item.id)">
+		    <i [className]="item.iconClass"></i>
+		    <span>{{item.lableMenu | translate}}</span>
+	    </a>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,167 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <form class="form-horizontal">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="patient_id" class="col-sm-3 control-label">{{ 'APP.FORM_KEYWORD' | translate }}</label>
+                  <div class="col-sm-9" >
+                    <input type="text" class="form-control" name="keyword" required placeholder="Enter keyword" [(ngModel)]="filtering_form.keyword">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="patient_name" class="col-sm-3 control-label">{{ 'APP.UI_STATUS' | translate }}</label>
+                  <div class="col-sm-9">
+                    <select class="form-control" name="status" [(ngModel)]="filtering_form.status">
+                      <option *ngFor="let status of status_list" [value]="status.value" ng-reflect-value="1" >{{ status.name_key | translate }}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="button" class="btn btn-sm btn-primary" (click)="search()">
+              <i class="fa fa-search"></i> {{ 'APP.FORM_SEARCH' | translate }}
+            </button>
+<!--             
+            <button class="btn btn-sm btn-primary">
+              <i class="fa fa-save"></i> {{ 'APP.FORM_EXPORT' | translate }}
+            </button>
+-->
+            <button class="btn btn-sm btn-primary" (click)="openDialogForCreating()">
+              <i class="fa fa-file-o"></i> {{ 'APP.FORM_CREATE' | translate }}
+            </button>
+            <button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Reset form</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 pd-0 infinite_scroll_container" infinite-scroll
+  [infiniteScrollDistance]="1"
+  [infiniteScrollUpDistance]="2" 
+  [infiniteScrollThrottle]="50"
+  (scrolled)="onScrollDown()">
+    <table class="table table-bordered table-striped table-sm">
+      <thead>
+        <tr>
+          <th>{{ 'APP.UI_IDX_NUMBER' | translate }}</th>
+          <th>{{ 'CSMANAGEMENT.UI_CUSTOMER_NAME' | translate }}</th>
+          <th class="xs-hide">{{ 'CSMANAGEMENT.UI_CUSTOMER_EMAIL' | translate }}</th>
+          <th class="sm-hide">{{ 'CSMANAGEMENT.UI_CUSTOMER_PHONE' | translate }}</th>
+          <th class="md-hide">{{ 'APP.UI_STATUS' | translate }}</th>
+          <th>{{ 'CSMANAGEMENT.UI_INVITE' | translate }}</th>
+          <th class="md-hide">{{ 'APP.UI_CREATED' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let obj of objects; index as $i">
+          <td>{{ $i+1 }}</td>
+          <td class="pointer" (click)="openDialogForUpdating(obj)">{{ obj.name }}</td>
+          <td class="pointer xs-hide" (click)="openDialogForUpdating(obj)">{{ obj.email }}</td>
+          <td class="pointer sm-hide" (click)="openDialogForUpdating(obj)">{{ obj.phone }}</td>
+          <td class="md-hide">
+            <span class="badge badge-success" *ngIf="obj.status==APPCONSTS.CUSTOMER_STATUS_ACTIVE">
+              {{ 'APP.UI_STATUS_ACTIVE'  | translate }}
+            </span>
+            <span class="badge badge-warning" *ngIf="obj.status==APPCONSTS.CUSTOMER_STATUS_INACTIVE">
+              {{ 'APP.UI_STATUS_INACTIVE'  | translate }}
+            </span>
+          </td>
+          <td class="center_cell actions">
+            <div class="btn-group" dropdown *ngIf="device_list && device_list.length">
+              <button type="button" dropdownToggle class="btn btn-grey dropdown-toggle" aria-haspopup="true" aria-expanded="true">
+                <i class="fa fa-hand-o-left"></i>
+              </button>
+              <ul *dropdownMenu class="dropdown-menu" role="menu">
+                <li role="menuitem" *ngFor="let device of device_list">
+                  <a class="dropdown-item" (click)="inviteSendingFeedback(device, obj)">
+                    {{ 'CSMANAGEMENT.FEEDBACK_AT_DEVICE'  | translate }}
+                    {{ device.name }}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </td>
+          <td class="md-hide">{{ obj.created | date: 'medium' : i18n.tzStr : i18n.lang.local_id }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>  
+</div>
+
+
+<div bsModal #createObjectDialog="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document" *ngIf="object && object.data">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 *ngIf="!object.data.id" class="modal-title">{{'CSMANAGEMENT.CUSTOMER_CREATE'|translate}}</h4>
+        <h4 *ngIf="object.data.id" class="modal-title">{{'CSMANAGEMENT.CUSTOMER_UPDATE'|translate}}</h4>
+        <button type="button" class="close" (click)="createObjectDialog.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="name">{{'CSMANAGEMENT.UI_CUSTOMER_NAME'|translate}}</label>
+            <input type="text" class="form-control" name="name" [(ngModel)]="object.data.name">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="grp_id">{{'APP.UI_STATUS'|translate}}</label>
+            <select class="form-control" name="status" [(ngModel)]="object.data.status">
+              <option *ngFor="let status of status_list" [value]="status.value" ng-reflect-value="1" >{{ status.name_key | translate }}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+              <label for="phone">{{'CSMANAGEMENT.UI_CUSTOMER_PHONE'|translate}}</label>
+              <input type="text" class="form-control" name="phone" [(ngModel)]="object.data.phone">
+          </div>
+          <div class="form-group col-md-6">
+              <label for="email">{{'CSMANAGEMENT.UI_CUSTOMER_EMAIL'|translate}}</label>
+              <input type="email" autocomplete="email" class="form-control" name="email" [(ngModel)]="object.data.email">
+          </div>
+          <div class="form-group col-md-6">
+            <label>{{'CSMANAGEMENT.CUSTOMER_BIRTHDAY'|translate}}</label>
+            <input class="form-control" name="birthday" placeholder="date" type="date" [ngModel]="object.data.birthday | date:'yyyy-MM-dd'" (ngModelChange)="object.data.birthday = $event">
+            <!-- <input class="form-control" name="birthday" placeholder="date" type="date" [(ngModel)]="object.data.birthday" value="{{ object.data.birthday | date:'yyyy-MM-dd' }}"> -->
+          </div>
+          <div class="form-group col-md-6">
+            <label for="url">{{'CSMANAGEMENT.CUSTOMER_URL'|translate}}</label>
+            <input type="text" class="form-control" name="url" [(ngModel)]="object.data.url">
+          </div>
+
+          <div class="form-group col-md-6">
+              <label for="company">{{'CSMANAGEMENT.CUSTOMER_COMPANY'|translate}}</label>
+              <input type="text" class="form-control" name="company" [(ngModel)]="object.data.company">
+          </div>
+          <div class="form-group col-md-6">
+              <label for="externalId">{{'CSMANAGEMENT.CUSTOMER_EXT_ID'|translate}}</label>
+              <input type="text" class="form-control" name="externalId" [(ngModel)]="object.data.ext_id">
+          </div>
+
+          <div class="form-group col-md-12">
+              <label for="address">{{'CSMANAGEMENT.CUSTOMER_ADDRESS'|translate}}</label>
+              <input type="text" class="form-control" id="address" [(ngModel)]="object.data.address">
+          </div>
+          <div class="form-group col-md-12">
+              <label for="notes">{{'CSMANAGEMENT.CUSTOMER_DESCRIPTION'|translate}}</label>
+              <textarea name="notes" id="notes" class="form-control" rows="3" [(ngModel)]="object.data.notes"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="createObjectDialog.hide()"><i class="fa fa-close"></i> {{'APP.BUTTON_CLOSE'|translate}}</button>
+        <button *ngIf="!object.data.id" type="button" class="btn btn-primary btn-sm" (click)="createObject()"><i class="fa fa-edit"></i> {{'APP.BUTTON_CREATE'|translate}}</button>
+        <button *ngIf="object.data.id" type="button" class="btn btn-primary btn-sm" (click)="updateObject()"><i class="fa fa-edit"></i> {{'APP.BUTTON_UPDATE'|translate}}</button>
+      </div>
+  </div>
+  </div>
+</div>

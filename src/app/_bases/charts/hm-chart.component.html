@@ -1,0 +1,22 @@
+
+<div class="chart-wrapper" [style]="containerStyle" *ngIf="datasets && datasets.length">
+  <canvas baseChart class="innerClass"
+    [datasets]="datasets"
+    [labels]="chartLabels"
+    [options]="options"
+    [chartType]="chartType"
+    [plugins]="chartPlugins"
+    (chartHover)="chartHovered($event)"
+    (chartClick)="chartClicked($event)">
+  </canvas>
+</div>
+
+<!-- 
+<hm-horizontalbarchart *ngIf="chartType=='horizontalBar'"
+  [style]="containerStyle"
+  [data]="datasets"
+  [labels]="chartLabels"
+  [options]="options"
+  [chartType]="chartType"
+  [plugins]="chartPlugins">
+</hm-horizontalbarchart> -->

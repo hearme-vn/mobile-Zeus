@@ -1,0 +1,101 @@
+.onboarding-header {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #cecece;
+  display: flex;
+}
+.onboarding-header img {
+  width: 100%;
+}
+/* 
+.onboarding-header .content {
+  margin-top: 30px;
+  margin-left: 20px;
+} */
+
+.onboarding-header .content {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+.onboarding-header .content b {
+  font-size: 24px;
+}
+
+.onboarding-body ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.onboarding-body ul li {
+  border-radius: 7px;
+  line-height: 35px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+.onboarding-body ul li label {
+  font-style: normal;
+  width: 40px;
+  text-align: center;
+  margin-bottom: 0;
+}
+.onboarding-body ul.cfg-main>li {
+  border: 1px solid #19B885;
+  background-color: rgba(4, 191, 116, 0.25);
+  font-weight: bold;
+}
+.onboarding-body ul.cfg-main>li.dropdown::before, .onboarding-body ul.cfg-sub>li.guide_h2::before {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  display: block;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  margin-top: -4px;
+  content: "";
+  background-image: url(../../../assets/img/utils/dropdown.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 0.3s;
+  transform: rotate(-90deg);
+}
+.onboarding-body ul.cfg-main>li.dropdown.show::before {
+  transform: rotate(90deg);
+}
+.onboarding-body ul.cfg-sub.show {
+  display: inherit;
+}
+.onboarding-body ul.cfg-sub.hide {
+  display: none;
+}
+.onboarding-body ul.cfg-sub>li:hover {
+  background-color: #F8F9FB;
+}
+.onboarding-body ul.cfg-sub>li label {
+  font-size: 14px;
+}
+.onboarding-body ul.cfg-sub>li.checked label {
+  color: limegreen;
+}
+.onboarding-body ul.cfg-sub>li.guide_h2 {
+  position: relative;
+}
+.onboarding-body ul.cfg-sub>li.guide_h2::before {
+  transform: rotate(180deg);
+}
+
+.guide_h2 {
+  padding-left: 40px !important;
+  padding-right: 30px !important;
+}
+.guide_h2>span {
+  font-size: smaller;
+  position: absolute;
+  left: 10px;
+  top: 35%;  
+}
+
+.guide_h1 {
+  padding-left: 20px;
+  list-style: decimal;
+  list-style-position: inside;
+}

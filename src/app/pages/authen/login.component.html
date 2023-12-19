@@ -1,0 +1,67 @@
+<!-- Floating button to cancel camera -->
+<div class="camera_opr" *ngIf="start_scan_qr">
+  <button type="button" class="btn btn-lg btn-square btn-block btn-warning" (click)="cancelCamera()">
+    {{ "LOGIN.CANCEL_SCANQR" | translate }}
+  </button>
+</div>
+
+<!-- Main login -->
+<div class="app-body login_form">
+  <main class="main d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-8 col-sm-12 mx-auto p-0">
+          <div class="card-group">
+            <div class="card">
+              <div class="card-body">
+                <form [formGroup]="form">
+                  <h1>{{ "LOGIN.PAGE_TITLE" | translate }}</h1>
+                  <p class="text-muted">{{ "LOGIN.PAGE_DESCRIPTION" | translate }}</p>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" formControlName="username" placeholder="{{ 'LOGIN.UI_USERNAME' | translate }}" autocomplete="username" required>
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-lock"></i></span>
+                    </div>
+                    <input type="password" class="form-control" formControlName="password" placeholder="{{ 'LOGIN.UI_PASSWORD' | translate }}" autocomplete="current-password" required>
+                  </div>
+                  <div class="input-group mb-3" *ngIf="need_verification">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-key"></i></span>
+                    </div>
+                    <input type="code" class="form-control" formControlName="code" placeholder="{{ 'LOGIN.VERIFICATION' | translate }}" required>
+                  </div>
+                </form>
+              </div>
+
+              <div class="card-footer">
+                <div class="row">
+                  <div class="col-6">
+                    <button type="button" class="btn btn-block btn-primary" (click)="doLogin()">
+                      {{ "LOGIN.SUBMIT" | translate }}
+                      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    </button>
+                  </div>
+                  <div class="col-6">
+                    <button type="button" class="btn btn-block btn-success" (click)="loginByQR()">
+                      {{ "LOGIN.SCANQR" | translate }}
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 text-right">
+                    <button type="button" class="btn btn-link px-0" (click)="forgot_password()">{{ "FORGOT.PAGE_TITLE" | translate }}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

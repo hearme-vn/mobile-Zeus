@@ -1,0 +1,16 @@
+<ng-select *ngIf="device_langs && device_langs.length" [items]="device_langs" [multiple]="false" [(ngModel)]="selcetedLanguage" (change)="changeSelectedObject($event)"
+  placeholder="{{ 'APP.SELECT' | translate }}" bindLabel="name"  [disabled]="isDisabled">
+
+  <ng-template ng-label-tmp let-item="item">
+    <i class="flag-icon flag-icon-{{ item?.flag }}" title="{{item?.flag}}"></i> &nbsp;&nbsp;&nbsp;
+    {{ item.name | truncate : 100 : true }}
+  </ng-template>
+
+  <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+    <span class="float-right">
+      <i class="flag-icon flag-icon-{{ item?.flag }}" title="{{item?.flag}}"></i>        
+    </span>
+    {{ item.name | truncate : 100 : true }}
+    {{ (item.code==device_default_language.code)? "(" + ('DEFAULT_LANGUAGE_PAGE.DEFAULT' | translate) + ")": "" }}
+  </ng-template>
+</ng-select>

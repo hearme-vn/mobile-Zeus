@@ -1,0 +1,40 @@
+<div class="app-body">
+  <main class="main d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto p-0">
+          <div class="card-group">
+            <div class="card">
+              <div class="card-body">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                  <h1>{{ "FORGOT.PAGE_TITLE" | translate }}</h1>
+                  <p class="text-muted">{{ "FORGOT.PAGE_DESCRIPTION" | translate }}</p>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-envelope-open"></i></span>
+                    </div>
+                    <input type="text" class="form-control" formControlName="email" placeholder="{{ 'FORGOT.UI_EMAIL' | translate }}" autocomplete="email" required>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <button type="submit" class="btn btn-primary px-4">
+                        {{ "FORGOT.SUBMIT" | translate }}
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                      </button>
+                    </div>
+
+                    <div class="col-6 text-right">
+                      <button type="button" class="btn btn-link px-0" (click)="goto_login()">{{ "FORGOT.BT_BACK_LOGIN" | translate }}</button>
+                    </div>
+
+                  </div>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

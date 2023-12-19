@@ -1,0 +1,167 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-sm btn-primary ml-0" (click)="openDialogForCreating()">
+        <i class="fa fa-file-o"></i> {{ 'APP.BUTTON_CREATE' | translate }}
+      </button>
+      <button class="btn btn-sm btn-primary" (click)="changeOrganization()">
+        <i class="fa fa-sign-out"></i> {{ 'ORGANIZATION_PAGE.CHANGE_ORG' | translate }}
+      </button>
+    </div>
+  </div>
+
+  <div class="col-12 pd-0">
+    <table class="table table-bordered table-striped table-sm">
+      <thead>
+      <tr>
+        <th class="text-center" width="60">{{ 'APP.UI_IDX_NUMBER' | translate }}</th>
+        <th class="text-center" width="60">{{ 'APP.SELECT' | translate }}</th>
+        <th>{{ 'ORGANIZATION_PAGE.NAME' | translate }}</th>
+        <th class="md-hide">{{ 'ORGANIZATION_PAGE.CONTACT' | translate }}</th>
+        <th class="xs-hide">{{ 'ORGANIZATION_PAGE.ROLE_GROUP' | translate }}</th>
+        <th class="xs-hide">{{ 'ORGANIZATION_PAGE.CLASSIFY' | translate }}</th>
+        <th class="text-center sm-hide">{{ 'APP.UI_STATUS' | translate }}</th>
+        <th class="text-center" width="120">#</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let obj of authenticationService.org_roles; index as $i">
+        <td class="text-center">{{ $i + 1 }}</td>
+        <td class="text-center pointer" (click)="selectOrd(obj.organization)">
+          <input class="pointer" type="radio" [id]="'org-' + obj.organization.id" [value]="obj.organization.id" [(ngModel)]="selectedOrgId">
+        </td>
+        <td class="pointer" (click)="selectOrd(obj.organization)">{{ obj.organization.name }}</td>
+        <td class="pointer md-hide" (click)="selectOrd(obj.organization)">{{ obj.organization.phone }}</td>
+        <td class="pointer xs-hide" (click)="selectOrd(obj.organization)">{{ obj.roles }}</td>
+        <td class="pointer xs-hide" (click)="selectOrd(obj.organization)">
+          <span *ngIf="obj.organization.type==0">{{ 'ORGANIZATION_PAGE.PERSONAL' | translate }}</span>
+          <span *ngIf="obj.organization.type==1">{{ 'ORGANIZATION_PAGE.ENTERPRISE' | translate }}</span>
+        </td>
+        <td class="sm-hide">
+          <span *ngIf="obj.organization.status==0" class="badge badge-success">{{ 'APP.UI_STATUS_ACTIVE' | translate }}</span>
+          <span *ngIf="obj.organization.status==1" class="badge badge-danger">{{ 'APP.UI_STATUS_LOCK' | translate }}</span>
+        </td>
+        <td class="text-center">
+          <div class="pointer" (click)="openDialogForUpdating(obj)" 
+            *ngIf="obj.organization.type==0 || checkPermission(obj.permissions)">
+            <button type="button" class="btn btn-success btn-icon-icon btn-sm m-0 mr-1 ng-scope">
+              <i class="fa fa-pencil"></i>
+            </button>
+            <span class="sm-hide">{{ 'APP.BUTTON_UPDATE' | translate }}</span>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div bsModal #createObjectDialog="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document" *ngIf="object && object.data">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          {{(!object.data.id ? 'APP.DIALOG_CREATE' : 'APP.DIALOG_UPDATE') |translate}}
+          {{'ORGANIZATION_PAGE.PAGE_NAME'|translate}}
+        </h4>
+        <button type="button" class="close" (click)="createObjectDialog.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row" *ngIf="object.data.id">
+          <div class="col-md-3">
+            <img class="img-logo" [src]="object.data.logo? app_service.Based_URLs.imgs + object.data.logo : 'assets/img/common/blank_logo.svg'" (click)="openCollection()" />
+          </div>
+          <label class="col-md-5 col-form-label">&nbsp;</label>
+          <div class="col-md-4">
+            <select class="form-control item-align-bottom" [(ngModel)]="current_lang_code" (change)="changeLanguage()">
+              <option *ngFor="let lang of device_langs; index as idx" [value]="lang.code">
+                {{ lang.name }}
+                {{ (lang.code==device_default_language.code)? "(mặc định)" : "" }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label">{{'ORGANIZATION_PAGE.NAME'|translate}}</label>
+          <div class="col-md-10" *ngIf="object.data.id">
+            <input *ngIf="object.data && object.data.lang_text_links && object.data.lang_text_links[current_lang_code]"
+                   type="text" class="form-control" [(ngModel)]="object.data.lang_text_links[current_lang_code].value">
+          </div>
+          <div class="col-md-10" *ngIf="!object.data.id">
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="object.data.name">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label" for="address">{{'ORGANIZATION_PAGE.ADDRESS'|translate}}</label>
+          <div class="col-md-10">
+            <input type="text" class="form-control" id="address" name="address" [(ngModel)]="object.data.address">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label" for="phone">{{'ORGANIZATION_PAGE.PHONE_NUMBER'|translate}}</label>
+          <div class="col-md-10">
+            <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="object.data.phone">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label" for="website">{{'ORGANIZATION_PAGE.WEBSITE'|translate}}</label>
+          <div class="col-md-10">
+            <input type="text" class="form-control" id="website" name="website" [(ngModel)]="object.data.url">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label">{{'ORGANIZATION_PAGE.BUSINESS_FIELD'|translate}}</label>
+          <div class="col-md-10">
+            <select class="form-control" [(ngModel)]="object.data.business_field">
+              <option *ngFor="let b of business_fields" [value]="b.id">{{ b.vn }} / {{ b.en }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group row" *ngIf="object.data.id">
+          <label class="col-md-2 col-form-label" for="inline-radios">{{'APP.UI_STATUS'|translate}}</label>
+          <div class="col-md-10 col-form-label">
+            <div class="form-check form-check-inline mr-1" id="inline-radios">
+              <input class="form-check-input" id="inlineRadio1" name="inline-radios" type="radio" [value]="0" [(ngModel)]="object.data.status">
+              <label class="form-check-label" for="inlineRadio1">{{'APP.UI_STATUS_ACTIVE'|translate}}</label>
+            </div>
+            <div class="form-check form-check-inline mr-1">
+              <input class="form-check-input" id="inlineRadio2" name="inline-radios" type="radio" [value]="1" [(ngModel)]="object.data.status">
+              <label class="form-check-label" for="inlineRadio2">{{'APP.UI_STATUS_LOCK'|translate}}</label>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Organization type -->
+        <div class="form-group row pl-3" *ngIf="object.data.id">
+          <span class="col-md-2 pl-0 sm-hide">{{'ORGANIZATION_PAGE.CLASSIFY'|translate}}</span>
+          <span class="pl-0 d-none sm-block">{{'ORGANIZATION_PAGE.CLASSIFY'|translate}}: &nbsp;</span>
+          <span *ngIf="object.data.type==0">{{ 'ORGANIZATION_PAGE.PERSONAL' | translate }}</span>
+          <span *ngIf="object.data.type==1">{{ 'ORGANIZATION_PAGE.ENTERPRISE' | translate }}</span>
+        </div>
+
+        <!-- Organization role -->
+        <div class="form-group row pl-3" *ngIf="object.data.id && (object.data.type==1)">
+          <span class="col-md-2 pl-0 sm-hide">{{'ORGANIZATION_PAGE.ROLE_GROUP'|translate}}</span>
+          <span class="pl-0 d-none sm-block">{{'ORGANIZATION_PAGE.ROLE_GROUP'|translate}}: &nbsp;</span>
+          <span>{{ selected_org_role.roles }}</span>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="createObjectDialog.hide()"><i class="fa fa-close"></i> {{'APP.BUTTON_CLOSE'|translate}}</button>
+        <button *ngIf="!object.data.id" type="button" class="btn btn-primary btn-sm" (click)="createObject()"><i class="fa fa-edit"></i> {{'APP.BUTTON_CREATE'|translate}}</button>
+        <button *ngIf="object.data.id" type="button" class="btn btn-primary btn-sm" (click)="updateObject()"><i class="fa fa-edit"></i> {{'APP.BUTTON_UPDATE'|translate}}</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+
+<select-image #imgDialog (setImage)="setLogo($event)"></select-image>

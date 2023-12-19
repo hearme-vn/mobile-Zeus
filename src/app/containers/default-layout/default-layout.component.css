@@ -1,0 +1,142 @@
+
+/* Here for header styles */
+app-header {
+  @media (max-width: 767px) {
+    .navbar-brand {
+      display: none !important;
+    }
+  }  
+}
+.navbar-nav .btn {
+  box-shadow: unset;
+}
+.navbar-nav>.btn-group {
+  padding: 0 10px 0 20px;
+  margin: 0;
+  border-radius: unset;
+}
+.navbar-nav>.btn-group.right {
+  border-left: 1px solid #E1E6EB;
+  padding: 0 15px 0 15px;
+}
+.navbar-nav .btn-group i {
+  margin-bottom: 0;
+}
+
+.nav-bell .fa-bell {
+  color: #19B885;
+  font-size: 20px;
+}
+.nav-bell .badge-pill {
+  position: absolute;
+  padding: 0;
+  font-size: 10px;
+  width: 20px;
+  height: 15px;
+  line-height: 12px;
+  background-color: #FF6A68;
+  border: 1px solid #FFF;
+  top: -5px;
+  left: 10px;
+}
+
+.notification tr {
+  border-bottom: 1px #FFF solid;
+  cursor: pointer;
+}
+
+.notify-data {
+  width: 320px;
+  padding: 15px;
+}
+.notify-data .title {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.notify-data tr.unread {
+  background-color: #F3F6FF;
+}
+.notify-data tr.unread i {
+  color: #19B885;
+}
+.notify-data td {
+  border: unset;
+  vertical-align: middle;
+  padding: 0;
+}
+.notify-data td.notify-type, .notify-data td.notify-time {
+  padding: 10px;
+  text-align: center;
+}
+.notify-data td.notify-type {
+  width: 40px;
+  position: relative;
+}
+.notify-data td.notify-type .badge-pill {
+  position: absolute;
+  padding: 0;
+  width: 8px;
+  height: 8px;
+  background-color: #FF6A68;
+  border: 1px solid #FFF;
+  top: 15px;
+  left: 22px;
+}
+.notify-data td.notify-content {
+  font-size: 11px;
+  word-break: break-all;
+}
+.notify-data td.notify-time {
+  width: 60px;
+  font-size: 9px;
+}
+.notify-data .footer {
+  text-align: center;
+  border-top: 1px solid #E1E6EB;
+  padding-top: 10px;
+  cursor: pointer;
+}
+.notify-data .footer span {
+  font-size: 12px;
+  font-weight: 600;
+  color: #19B885;
+}
+
+.org_selection button i {
+  color: #19B885;
+
+}
+
+.org_selection .dropdown-menu {
+  width: 400px;
+}  
+
+.app-header .navbar-brand img {
+  max-height: 95% !important;
+}
+
+.navbar-brand-full {
+  max-height: 95% !important;
+}
+
+.small_dropdown {
+  overflow: hidden;
+}
+
+.long_dropdown {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.dropdown-menu {
+  max-height: 85vh;
+  max-width: 90vw;
+}
+
+/* Super small screen */
+@media (max-width: 370px) {
+  .hide_on_xxs {
+    display: none !important;
+  }
+}  

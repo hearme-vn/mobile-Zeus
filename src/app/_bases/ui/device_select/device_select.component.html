@@ -1,0 +1,15 @@
+<ng-select [items]="objects" [multiple]="false" [(ngModel)]="object" (change)="changeSelectedObject($event)"
+  (scrollToEnd) = "loadMore()"
+  placeholder="{{ 'APP.SELECT_DEVICE' | translate }}" bindLabel="name">
+
+  <ng-template ng-label-tmp let-item="item">
+    {{ item.name | truncate : 70 : true }}
+  </ng-template>
+
+  <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+    {{ item.name | truncate : 55 : true }}
+    <span class="float-right">
+        {{ object_type.LIST_DEVICE_TYPE_NAME[item.type] | translate }}
+    </span>
+  </ng-template>
+</ng-select>

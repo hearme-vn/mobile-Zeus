@@ -1,0 +1,174 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <form class="form-horizontal">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="name" class="col-sm-3 control-label">{{ 'GROUP_PAGE.GROUP_NAME' | translate }}</label>
+                  <div class="col-sm-9" >
+                    <input type="text" class="form-control" name="name" required placeholder="Enter keyword" [(ngModel)]="filtering_form.name">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="button" class="btn btn-sm btn-primary" (click)="search()">
+              <i class="fa fa-search"></i> {{ 'APP.FORM_SEARCH' | translate }}
+            </button>
+            <button class="btn btn-sm btn-primary" (click)="openDialogForCreating()">
+              <i class="fa fa-file-o"></i> {{ 'APP.FORM_CREATE' | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 pd-0 infinite_scroll_container" infinite-scroll
+    [infiniteScrollDistance]="1"
+    [infiniteScrollUpDistance]="2" 
+    [infiniteScrollThrottle]="50"
+    (scrolled)="onScrollDown()">
+    <table class="table table-bordered table-striped table-sm">
+      <thead>
+        <tr>
+          <th>{{ 'APP.UI_IDX_NUMBER' | translate }}</th>
+          <th>{{ 'GROUP_PAGE.GROUP_NAME' | translate }}</th>
+          <th class="xs-hide">{{ 'GROUP_PAGE.DESCRIPTION' | translate }}</th>
+          <th class="center_cell">#</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let obj of objects; index as $i" class="pointer">
+          <td (click)="openDialogForUpdating(obj)">{{ $i + 1 }}</td>
+          <td (click)="openDialogForUpdating(obj)">{{ obj.name }}</td>
+          <td class="xs-hide" (click)="openDialogForUpdating(obj)">{{ obj.description }}</td>
+          <td class="center_cell actions">
+            <div class="btn-group" dropdown>
+              <button type="button" class="btn p-0" dropdownToggle>
+                <i class="fa fa-ellipsis-v"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+                <a class="dropdown-item" (click)="openDialogDeviceList(obj.id)">
+                  <i class="fa fa-television"></i>
+                  {{ 'GROUP_PAGE.LB_QUANLYTHIETBI' | translate }}
+                </a>
+                <a class="dropdown-item" (click)="groupSendEvent(obj.id, 'signout_device', 'MSG.AL_DEVICE_SIGNOUT')">
+                  <i class="fa fa-sign-out"></i>
+                  {{ 'GROUP_PAGE.LB_DEVICE_SIGNOUT' | translate }}
+                </a>
+                <a class="dropdown-item" (click)="groupSendEvent(obj.id, 'close_device', 'MSG.AL_DEVICE_CLOSE')">
+                  <i class="fa fa-times"></i>
+                  {{ 'GROUP_PAGE.LB_DEVICE_CLOSE' | translate }}
+                </a>
+                <a class="dropdown-item" (click)="groupSendEvent(obj.id, 'update_device', 'MSG.AL_DEVICE_SYNCHRONIZE')">
+                  <i class="fa fa-refresh"></i>
+                  {{ 'GROUP_PAGE.BT_SYNCHRONIZE_DATA' | translate }}
+                </a>
+                <a class="dropdown-item" (click)="deleteObject(obj.id)">
+                  <i class="fa fa-trash"></i>
+                  {{ 'APP.BUTTON_DELETE' | translate }}
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>  
+</div>
+
+
+<div bsModal #createObjectDialog="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document" *ngIf="object && object.data">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          {{(!object.data.id ? 'APP.DIALOG_CREATE' : 'APP.DIALOG_UPDATE') |translate}}
+          {{'GROUP_PAGE.PAGE_NAME'|translate}}
+        </h4>
+        <button type="button" class="close" (click)="createObjectDialog.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label for="name">{{'GROUP_PAGE.GROUP_NAME'|translate}} <code>(*)</code></label>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="object.data.name">
+          </div>
+          <div class="form-group col-md-12">
+            <label for="description">{{'GROUP_PAGE.DESCRIPTION'|translate}}</label>
+            <textarea name="description" id="description" class="form-control" rows="3" [(ngModel)]="object.data.description"></textarea>
+          </div>
+          <div class="form-group col-md-12">
+            <label for="sur_id">{{'GROUP_PAGE.SELECT_SURVEY'|translate}}</label>
+            <select class="form-control" id="sur_id" name="sur_id" [(ngModel)]="object.data.sur_id">
+              <option [ngValue]="undefined" [disabled]="true">{{ 'APP.SELECT_SURVEY' | translate }}</option>
+              <option *ngFor="let s of survey_list" [value]="s.id" ng-reflect-value="1" >{{ s.name | translate }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="createObjectDialog.hide()"><i class="fa fa-close"></i> {{'APP.BUTTON_CLOSE'|translate}}</button>
+        <button *ngIf="!object.data.id" type="button" class="btn btn-primary btn-sm" (click)="createObject()"><i class="fa fa-edit"></i> {{'APP.BUTTON_CREATE'|translate}}</button>
+        <button *ngIf="object.data.id" type="button" class="btn btn-primary btn-sm" (click)="updateObject()"><i class="fa fa-edit"></i> {{'APP.BUTTON_UPDATE'|translate}}</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div bsModal #deviceDialog="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{'GROUP_PAGE.DEVICE_LIST' | translate}}</h4>
+        <button type="button" class="close" (click)="deviceDialog.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 text-center" *ngIf="deviceList == null || deviceList.length == 0">
+            <h3 class="m-a-0 text-warning"><span translate="APP.LB_NO_DATA"></span></h3>
+          </div>
+          <div class="col-md-12" *ngIf="deviceList.length != 0">
+            <table class="table table-bordered table-striped table-sm">
+              <thead>
+              <tr>
+                <th class="text-center" style="width: 30px;" translate="APP.UI_IDX_NUMBER"></th>
+                <th translate="DEVICE_PAGE.NAME"></th>
+                <th translate="APP.DESCRIPTION"></th>
+                <th translate="APP.UI_STATUS"></th>
+                <th translate="APP.UI_CREATED"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let obj of deviceList; index as $i">
+                <td class="text-center" style="width: 60px;">{{ $i + 1 }}</td>
+                <td>{{ obj.name }}</td>
+                <td>{{ obj.description }}</td>
+                <td>
+                  <span *ngIf="obj.status==0">{{ 'APP.UI_STATUS_CREATED' | translate }}</span>
+                  <span *ngIf="obj.status==1">{{ 'APP.UI_STATUS_ACTIVE' | translate }}</span>
+                  <span *ngIf="obj.status==2">{{ 'APP.UI_STATUS_LOCK' | translate }}</span>
+                  <span *ngIf="obj.systemlock==3">{{ 'DEVICE_PAGE.TB_HETHONGKHOA' | translate }}</span>
+                </td>
+                <td>{{ obj.created | date: 'dd/MM/yyyy, HH:mm a' }}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="deviceDialog.hide()"><i class="fa fa-close"></i> {{'APP.BUTTON_CLOSE'|translate}}</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,0 +1,15 @@
+<div class="card p-4 module-block mb-0">
+  <h4 class="card-title">{{ 'CONFIG_PAGE.DEVICE_HEADER_IMAGE' | translate }}</h4>
+
+  <div class="form-group">
+    <input id="device_header" type="checkbox" class="mr-1" [(ngModel)]="form.device_header_img_status">
+    <label for="device_header">{{'APP.IS_ACTIVE'|translate}}</label>
+    <br/>
+    <div class="col-md-12 p-0 mt-2 device_header">
+      <img id="bgrImg" [src]="form.device_header_img ? app_service.Based_URLs.imgs + form.device_header_img : 'assets/img/common/header-blank.png'"
+           class="btn p-0 m-0 mw-100 pointer" (click)="openDialogSelectLogo()" />
+    </div>
+  </div>
+</div>
+
+<select-image #dlgSelectLogo (setImage)="setLogo($event)"></select-image>

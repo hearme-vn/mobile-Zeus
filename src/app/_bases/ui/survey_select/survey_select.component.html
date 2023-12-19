@@ -1,0 +1,15 @@
+<ng-select [items]="objects" [multiple]="false" [(ngModel)]="selcetedSurvey" (change)="changeSelectedSurvey($event)"
+    (scrollToEnd) = "loadMore()" [disabled]="isDisabled"
+    placeholder="{{ 'APP.SELECT' | translate }}" bindLabel="name">
+
+    <ng-template ng-label-tmp let-item="item">
+    {{ item.name | truncate : 70 : true }}
+    </ng-template>
+
+    <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+    {{ item.name | truncate : 55 : true }}
+    <span class="float-right">
+        {{ 'SURVEY_PAGE.TYPES.' + item.type | translate }}
+    </span>
+    </ng-template>
+</ng-select>

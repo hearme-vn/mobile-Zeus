@@ -1,0 +1,20 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-sm btn-success ml-0" (click)="proccess()">
+        <i class="fa fa-edit"></i> {{ 'APP.BUTTON_UPDATE' | translate }}
+      </button>
+    </div>
+  </div>
+
+  <div class="row mb-20">
+    <div class="col-md-6 pt-0">
+      <pos-nhanh #cfgPosNhanh></pos-nhanh>
+    </div>
+
+    <div class="col-md-6 pt-0">
+      <get-token></get-token>
+    </div>
+  </div>
+</div>
+

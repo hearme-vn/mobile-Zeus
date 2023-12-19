@@ -1,0 +1,48 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group row">
+        <label for="status" class="search-label ml-3 mb-0">{{ 'APP.UI_STATUS' | translate }}</label>
+        <div class="col-sm-6" >
+          <select class="form-control" id="status" name="status" [(ngModel)]="filtering_form.status" (change)="search()">
+            <option [value]="-1">{{ 'APP.UI_STATUS_ALL' | translate }}</option>
+            <option *ngFor="let status of status_list" [value]="status.value" ng-reflect-value="1" >{{ status.name_key | translate }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 pd-0 infinite_scroll_container" infinite-scroll
+    [infiniteScrollDistance]="1"
+    [infiniteScrollUpDistance]="2"
+    [infiniteScrollThrottle]="50"
+    (scrolled)="onScrollDown()">
+    <table class="table table-bordered table-striped table-sm">
+      <thead>
+        <th class="text-center" translate="APP.UI_IDX_NUMBER"></th>
+        <th translate="QUOTATION_PAGE.QUOTA_USERS"></th>
+        <th translate="QUOTATION_PAGE.QUOTA_DEVICES"></th>
+        <th class="sm-hide" translate="APP.DESCRIPTION"></th>
+        <th translate="QUOTATION_PAGE.DATE_START"></th>
+        <th translate="QUOTATION_PAGE.DATE_END"></th>
+        <th class="xs-hide" translate="APP.UI_STATUS"></th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let obj of objects; index as $i" [className]="checkActiveQuotation(obj)">
+          <td class="text-center">{{ $i + 1 }}</td>
+          <td>{{ obj.users }}</td>
+          <td>{{ obj.devices }}</td>
+          <td class="sm-hide">{{ obj.description }}</td>
+          <td class="wb-all">{{ obj.start_time | date:"EEEE dd/MM/yyyy '-' h:mm:ss a" }}</td>
+          <td class="wb-all">{{ obj.end_time | date:"EEEE dd/MM/yyyy '-' h:mm:ss a"}}</td>
+          <td class="xs-hide">
+            <span class="badge badge-success" *ngIf="obj.status==APPCONSTS.QUOTATION_STATUS_ACTIVE">{{ 'APP.UI_STATUS_ACTIVE'  | translate }}</span>
+            <span class="badge badge-secondary" *ngIf="obj.status==APPCONSTS.QUOTATION_STATUS_CANCEL">{{ 'APP.UI_STATUS_CANCEL'  | translate }}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

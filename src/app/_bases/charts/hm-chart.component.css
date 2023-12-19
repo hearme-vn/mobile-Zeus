@@ -1,0 +1,7 @@
+.chart-wrapper {
+    text-align: -webkit-center;
+}
+
+canvas {
+    width: 100%;
+}

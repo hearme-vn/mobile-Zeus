@@ -1,0 +1,187 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <form class="form-horizontal">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="name" class="col-sm-3 control-label">{{ 'THEME_PAGE.NAME' | translate }}</label>
+                  <div class="col-sm-9" >
+                    <input type="text" class="form-control" name="name" required placeholder="Enter keyword" [(ngModel)]="filtering_form.name">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="status" class="col-sm-3 control-label">{{ 'APP.UI_STATUS' | translate }}</label>
+                  <div class="col-sm-9">
+                    <select class="form-control" id="status" name="status" [(ngModel)]="filtering_form.status">
+                      <option [value]="-1">{{ 'APP.UI_STATUS_ALL' | translate }}</option>
+                      <option *ngFor="let status of status_list" [value]="status.value" ng-reflect-value="1" >{{ status.name_key | translate }}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="button" class="btn btn-sm btn-primary" (click)="search()">
+              <i class="fa fa-search"></i> {{ 'APP.FORM_SEARCH' | translate }}
+            </button>
+            <button class="btn btn-sm btn-primary" (click)="openDialogForCreating()">
+              <i class="fa fa-file-o"></i> {{ 'APP.FORM_CREATE' | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 pd-0 infinite_scroll_container" infinite-scroll
+    [infiniteScrollDistance]="1"
+    [infiniteScrollUpDistance]="2" 
+    [infiniteScrollThrottle]="50"
+    (scrolled)="onScrollDown()">
+    <table class="table table-bordered table-striped table-sm">
+      <thead>
+        <tr>
+          <th>{{ 'APP.UI_IDX_NUMBER' | translate }}</th>
+          <th>{{ 'THEME_PAGE.NAME' | translate }}</th>
+          <th>{{ 'THEME_PAGE.TYPE' | translate }}</th>
+          <th class="sm-hide">{{ 'APP.DESCRIPTION' | translate }}</th>
+          <th class="xs-hide">{{ 'APP.UI_STATUS' | translate }}</th>
+          <th class="center_cell">#</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let obj of objects; index as $i">
+          <td class="pointer" (click)="openDialogForUpdating(obj)">{{ $i + 1 }}</td>
+          <td class="pointer wb-word" (click)="openDialogForUpdating(obj)">{{ obj.name }}</td>
+          <td class="pointer" (click)="openDialogForUpdating(obj)">{{ ("THEME_PAGE.TYPES." + object_type.LIST_THEME_TYPE_NAME[obj.type_id]) | translate}}</td>
+          <td class="pointer sm-hide" (click)="openDialogForUpdating(obj)">{{ obj.description }}</td>
+          <td class="pointer xs-hide" (click)="openDialogForUpdating(obj)">
+            <span class="badge badge-success" *ngIf="obj.status==APPCONSTS.COLLECTION_STATUS_ACTIVE">{{ 'APP.UI_STATUS_ACTIVE'  | translate }}</span>
+            <span class="badge badge-secondary" *ngIf="obj.status==APPCONSTS.COLLECTION_STATUS_LOCK">{{ 'APP.UI_STATUS_INACTIVE'  | translate }}</span>
+          </td>
+          <td class="center_cell actions">
+            <div class="btn-group" dropdown>
+              <button type="button" class="btn p-0" dropdownToggle>
+                <i class="fa fa-ellipsis-v"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+                <a class="dropdown-item" (click)="gotoConfigTheme(obj)">
+                  <i class="fa fa-file-image-o"></i>
+                  {{ 'THEME_PAGE.BT_THEME_CONFIGURE' | translate }}
+                </a>
+                <a class="dropdown-item" (click)="deleteObject(obj.id)">
+                  <i class="fa fa-trash"></i>
+                  {{ 'APP.BUTTON_DELETE' | translate }}
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>  
+</div>
+
+
+<div bsModal #createObjectDialog="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document" *ngIf="object && object.data">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          {{(!object.data.id ? 'APP.DIALOG_CREATE' : 'APP.DIALOG_UPDATE') |translate}}
+          {{'THEME_PAGE.PAGE_NAME'|translate}}
+        </h4>
+        <button type="button" class="close" (click)="createObjectDialog.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label for="name">{{'THEME_PAGE.NAME'|translate}} <code>(*)</code></label>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="object.data.name">
+          </div>
+          <div class="form-group col-md-12">
+            <label for="description">{{'APP.DESCRIPTION'|translate}}</label>
+            <textarea name="description" id="description" class="form-control" rows="3" [(ngModel)]="object.data.description"></textarea>
+          </div>
+          <div class="form-group col-md-12" *ngIf="object.data.id">
+            <label for="name">{{'APP.UI_STATUS'|translate}}</label>
+            <div class="col-md-12 p-0">
+              <div class="form-check form-check-inline mr-1" id="inline-radios">
+                <input class="form-check-input" id="inlineRadio1" name="inline-radios" type="radio" [value]="0" [(ngModel)]="object.data.status">
+                <label class="form-check-label" for="inlineRadio1">{{'APP.UI_STATUS_ACTIVE'|translate}}</label>
+              </div>
+              <div class="form-check form-check-inline mr-1">
+                <input class="form-check-input" id="inlineRadio2" name="inline-radios" type="radio" [value]="1" [(ngModel)]="object.data.status">
+                <label class="form-check-label" for="inlineRadio2">{{'APP.UI_STATUS_INACTIVE'|translate}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="createObjectDialog.hide()"><i class="fa fa-close"></i> {{'APP.BUTTON_CLOSE'|translate}}</button>
+        <button *ngIf="!object.data.id" type="button" class="btn btn-primary btn-sm" (click)="createObject()"><i class="fa fa-edit"></i> {{'APP.BUTTON_CREATE'|translate}}</button>
+        <button *ngIf="object.data.id" type="button" class="btn btn-primary btn-sm" (click)="updateObject()"><i class="fa fa-edit"></i> {{'APP.BUTTON_UPDATE'|translate}}</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div bsModal #themeConfigureDlg="bs-modal" class="modal fade themeConfigureDlg" style="overflow-y: hidden;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document" *ngIf="object && object.data">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div id="theme-basic" class="theme-background div-center"
+             [style]="getImageURL(object.data.background, '')"
+             *ngIf="!object.data || object.data.type_id==0 || object.data.type_id==2">
+          <div class="theme-header" (click)="disableContextMenu()" oncontextmenu="return false;" (contextmenu)="onrightClick(headerMenu, $event)"
+               style="{{getImageURL(object.data.header, 'assets/img/theme/theme_header.png', true)}}">
+            <div *ngIf="headerMenu.status==true">
+              <right-click-menu [x]="headerMenu.x" [y]="headerMenu.y" [items]="headerMenu.items" (eventClick)="actionContextMenu(headerMenu, $event)"></right-click-menu>
+            </div>
+          </div>
+          <div (click)="disableContextMenu()" oncontextmenu="return false;" (contextmenu)="onrightClick(bgMenu, $event)">
+            <div class="theme-body wrapper" *ngIf="!object.data || object.data.type_id==0">
+              <img src="assets/img/theme/theme_basic.png" />
+            </div>
+            <div class="theme-body wrapper" *ngIf="object.data && object.data.type_id==2">
+              <img src="assets/img/theme/theme_public.png" />
+            </div>
+            <div class="theme-footer"><img src="assets/img/theme/theme_footer.png" /></div>
+            <div *ngIf="bgMenu.status==true">
+              <right-click-menu [x]="bgMenu.x" [y]="bgMenu.y" [items]="bgMenu.items" (eventClick)="actionContextMenu(bgMenu, $event)"></right-click-menu>
+            </div>
+          </div>
+        </div>
+        <div id="theme-ecommerce" class="theme-ecommerce div-center" *ngIf="object.data && object.data.type_id==1">
+          <img src="assets/img/theme/ecommerce_theme.png"/>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="row">
+          <div class="col-sm-6 text-left">
+            <span>{{'THEME_PAGE.LB_THEME_TYPE'|translate}}</span>:
+            <select class="form-control filter-select" [(ngModel)]="object.data.type_id">
+              <option *ngFor="let t of type_list" [value]="t.id" ng-reflect-value="1" >{{"THEME_PAGE.TYPES." + t.key_name | translate }}</option>
+            </select>
+          </div>
+          <div class="col-sm-6 text-right">
+            <button type="button" class="btn btn-secondary btn-sm" (click)="themeConfigureDlg.hide()"><i class="fa fa-close"></i> {{'APP.BUTTON_CLOSE'|translate}}</button>
+            <button type="button" class="btn btn-success btn-sm" (click)="processUpdateTheme()"><i class="fa fa-edit"></i> {{'APP.BUTTON_UPDATE'|translate}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<select-image #selectHeaderDialog (setImage)="setImage(headerMenu.type, $event)"></select-image>
+<select-image #selectBgDialog (setImage)="setImage(bgMenu.type, $event)"></select-image>

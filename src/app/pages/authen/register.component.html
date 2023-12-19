@@ -1,0 +1,119 @@
+<div class="app-body">
+  <main class="main d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-8 col-sm-12 mx-auto p-0">
+          <div class="card-group">
+            <div class="card p-4">
+              <div class="card-body">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                  <h1>{{ "REGISTER.PAGE_TITLE" | translate }}</h1>
+                  <p class="text-muted">{{ "REGISTER.PAGE_DESCRIPTION" | translate }}</p>
+                  <div class="row">
+                    <div class="form-group col-md-6 mb-1">
+                      <label for="first_name">{{'PROFILE_PAGE.TB_FIRSTNAME'|translate}} <code>(*)</code></label>
+                      <input type="text" class="form-control" id="first_name" name="first_name" formControlName="first_name">
+                    </div>
+                    <div class="form-group col-md-6 mb-1">
+                      <label for="last_name">{{'PROFILE_PAGE.TB_LASTNAME'|translate}} <code>(*)</code></label>
+                      <input type="text" class="form-control" id="last_name" name="last_name" formControlName="last_name">
+                    </div>
+  
+                    <div class="form-group col-md-12 mb-1">
+                      <label for="industry">{{'PROFILE_PAGE.TB_INDUSTRY'|translate}} <code>(*)</code></label>
+                      <select class="form-control" id="industry" name="industry" formControlName="business_field">
+                        <option [ngValue]="null" default disabled>{{ 'APP.SELECT' | translate }}</option>
+                        <option *ngFor="let b of business_fields" [value]="b.id">{{ b.name | translate }}</option>
+                      </select>
+                    </div>
+  
+                    <div class="form-group col-md-12 mb-1">
+                      <label for="email">{{'PROFILE_PAGE.TB_EMAIL'|translate}} <code>(*)</code></label>
+                      <input type="text" class="form-control" id="email" name="email" formControlName="email">
+                    </div>
+  
+                    <div class="form-group col-md-12 mb-1">
+                      <label for="username">{{'LOGIN.UI_USERNAME'|translate}} <code>(*)</code></label>
+                      <input type="text" class="form-control" id="username" name="username" formControlName="username">
+                    </div>
+  
+                    <div class="form-group col-md-12 mb-1">
+                      <label for="password">{{'LOGIN.UI_PASSWORD'|translate}} <code>(*)</code></label>
+                      <input type="password" class="form-control" id="password" name="password" formControlName="password">
+                    </div>
+  
+                    <div class="form-group col-12 mb-1">
+                      <button class="btn btn-block btn-success" type="submit">
+                        {{ "REGISTER.SUBMIT" | translate }}
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- 
+
+<div class="app-body">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-8 col-sm-12 mx-auto">
+          <div class="card">
+            <div class="card-body p-4">
+              <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <h1>{{ "REGISTER.PAGE_TITLE" | translate }}</h1>
+                <p class="text-muted">{{ "REGISTER.PAGE_DESCRIPTION" | translate }}</p>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-1">
+                    <label for="first_name">{{'PROFILE_PAGE.TB_FIRSTNAME'|translate}} <code>(*)</code></label>
+                    <input type="text" class="form-control" id="first_name" name="first_name" formControlName="first_name">
+                  </div>
+                  <div class="form-group col-md-6 mb-1">
+                    <label for="last_name">{{'PROFILE_PAGE.TB_LASTNAME'|translate}} <code>(*)</code></label>
+                    <input type="text" class="form-control" id="last_name" name="last_name" formControlName="last_name">
+                  </div>
+
+                  <div class="form-group col-md-12 mb-1">
+                    <label for="industry">{{'PROFILE_PAGE.TB_INDUSTRY'|translate}} <code>(*)</code></label>
+                    <select class="form-control" id="industry" name="industry" formControlName="business_field">
+                      <option [ngValue]="null" default disabled>{{ 'APP.SELECT' | translate }}</option>
+                      <option *ngFor="let b of business_fields" [value]="b.id">{{ b.name | translate }}</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-12 mb-1">
+                    <label for="email">{{'PROFILE_PAGE.TB_EMAIL'|translate}} <code>(*)</code></label>
+                    <input type="text" class="form-control" id="email" name="email" formControlName="email">
+                  </div>
+
+                  <div class="form-group col-md-12 mb-1">
+                    <label for="username">{{'LOGIN.UI_USERNAME'|translate}} <code>(*)</code></label>
+                    <input type="text" class="form-control" id="username" name="username" formControlName="username">
+                  </div>
+
+                  <div class="form-group col-md-12 mb-1">
+                    <label for="password">{{'LOGIN.UI_PASSWORD'|translate}} <code>(*)</code></label>
+                    <input type="password" class="form-control" id="password" name="password" formControlName="password">
+                  </div>
+
+                  <div class="form-group col-12 mb-1">
+                    <button class="btn btn-block btn-success" type="submit">
+                      {{ "REGISTER.SUBMIT" | translate }}
+                      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div> -->

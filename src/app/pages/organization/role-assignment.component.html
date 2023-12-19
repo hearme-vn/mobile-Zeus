@@ -1,0 +1,129 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <form class="form-horizontal">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <select class="form-control" id="role" name="role" [(ngModel)]="filtering_form.role_id" (change)="search()">
+                  <option [value]="''">{{ 'ROLE_ASSIGN_PAGE.tat_ca_nhom_quyen' | translate }}</option>
+                  <option *ngFor="let role of role_list" [value]="role.id" ng-reflect-value="1" >{{ role.name }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-sm btn-success" (click)="openDialogForCreating()">
+              <i class="fa fa-file-o"></i> {{ 'APP.BUTTON_CREATE' | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 pd-0">
+    <table class="table table-bordered table-striped table-sm">
+      <thead>
+      <tr>
+        <th class="text-center" width="60">{{ 'APP.UI_IDX_NUMBER' | translate }}</th>
+        <th>{{ 'ROLE_ASSIGN_PAGE.TXT_NAME' | translate }}</th>
+        <th class="xs-hide">{{ 'ROLE_ASSIGN_PAGE.F_USERNAME' | translate }}</th>
+        <th>{{ 'ROLE_PAGE.nhom_quyen' | translate }}</th>
+        <th class="md-hide">{{ 'ROLE_PAGE.SYSTEM_STATUS' | translate }}</th>
+        <th class="md-hide">{{ 'ROLE_PAGE.JOINED_DATE' | translate }}</th>
+        <th class="text-center" width="80">#</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let obj of objects; index as $i">
+        <td class="text-center">{{ $i + 1 }}</td>
+        <td>{{ obj.name }}</td>
+        <td class="xs-hide">{{ obj.username }}</td>
+        <td>{{ obj.role_name }}</td>
+        <td class="md-hide">
+          <span class="badge badge-success" *ngIf="obj.system_status==APPCONSTS.USER_ROLE_ACTIVE">{{ 'APP.UI_STATUS_ACTIVE'  | translate }}</span>
+          <span class="badge badge-warning" *ngIf="obj.system_status==APPCONSTS.USER_ROLE_LOCKED">{{ 'APP.UI_STATUS_INACTIVE'  | translate }}</span>
+        </td>
+        <td class="md-hide">{{ obj.joined_date | date: 'medium' : i18n.tzStr : i18n.lang.local_id }}
+        </td>              
+        <td class="text-center">
+          <button type="button" class="btn btn-danger btn-icon-icon btn-sm m-0 mr-1 ng-scope"
+                  (click)="deleteData(obj)" *ngIf="obj.role_type == 0">
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Dialog for assign user and role -->
+<div bsModal #createObjectDialog="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document" *ngIf="object && object.data">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          {{(!object.data.id ? 'APP.DIALOG_CREATE' : 'APP.DIALOG_UPDATE') |translate}}
+          {{'ROLE_PAGE.PAGE_NAME'|translate}}
+        </h4>
+        <button type="button" class="close" (click)="createObjectDialog.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form">
+          <div class="form-group">
+            <label for="search_text">{{'APP.FORM_SEARCH' | translate}}</label>
+            <div class="input-group m-b">
+              <input type="text" class="form-control" id="search_text" name="search_text" 
+                [(ngModel)]="form_data.search_text" placeholder="Email">
+              <span class="input-group-append">
+                <button class="btn btn-primary btn-role" type="button" (click)="searchUser()">
+                  <i class="fa fa-search"></i>
+                  {{ 'APP.FORM_SEARCH' | translate }}
+                </button>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group div-scroll">
+            <table class="table table-bordered">
+              <thead>
+              <tr>
+                <th class="text-center" width="20">{{ 'APP.UI_IDX_NUMBER' | translate }}</th>
+                <th>{{ 'ROLE_ASSIGN_PAGE.TXT_NAME' | translate }}</th>
+                <th>{{ 'ROLE_ASSIGN_PAGE.F_USERNAME' | translate }}</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of form_data.user_list; index as $i" style="cursor: pointer;"
+                  (click)="clickUser(item.id)" [className]="highlightSelectedUser(item.id)">
+                <td class="text-center">{{$i + 1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.username}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="form-group">
+            <label for="role2"><span translate="ROLE_PAGE.nhom_quyen"></span></label>
+            <select class="form-control" id="role2" name="role2" [(ngModel)]="object.data.role_id">
+              <option [value]="undefined" disabled>{{ 'ROLE_PAGE.chon_nhom_quyen' | translate }}</option>
+              <option *ngFor="let role of role_list" [value]="role.id" ng-reflect-value="1" [hidden]="role.status!=0">
+                {{ role.name }}
+              </option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="createObjectDialog.hide()"><i class="fa fa-close"></i> {{'APP.BUTTON_CLOSE'|translate}}</button>
+        <button type="button" class="btn btn-success btn-sm" (click)="createObject('GET')"><i class="fa fa-edit"></i> {{'APP.BUTTON_CREATE'|translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,135 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row onboarding-header">
+            <div class="col-md-4 col-sm-12"><img src="assets/img/onboarding/onboarding-header.png"></div>
+            <div class="col-md-8 col-sm-12 content pt-3">
+              <div><b>{{ 'ONBOARDING_PAGE.HEADER' | translate }}</b></div>
+              <div>{{ 'ONBOARDING_PAGE.HEAD_CONTENT1' | translate }}<br/>
+                {{ 'ONBOARDING_PAGE.HEAD_CONTENT2' | translate }}</div>
+            </div>
+          </div>
+          <div class="onboarding-body">
+            <ul class="cfg-main">
+              <li class="guide_h1" [ngClass]="isShowConfig['cfg1'] ? 'dropdown show' : 'dropdown'" (click)="showHideConfig('cfg1')">
+                {{ 'ONBOARDING_PAGE.CFG_SYSTEM' | translate }}
+              </li>
+              <ul [ngClass]="isShowConfig['cfg1'] ? 'cfg-sub show' : 'cfg-sub hide'">
+                <li class="guide_h2">
+                  <span class="fa fa-check"></span>
+                  <a href="#/organization/list">
+                    {{ 'ONBOARDING_PAGE.CFG_ORG' | translate }}  
+                  </a>
+                </li>
+                <li class="guide_h2">
+                  <span class="fa fa-check"></span>
+                  <a href="#/cfg/default-language">
+                    {{ 'ONBOARDING_PAGE.CFG_DEVICE_LANG' | translate }}  
+                  </a>
+                </li>
+                <li class="guide_h2">
+                  <span class="fa fa-check"></span>
+                  <a href="#/collection/list">
+                    {{ 'ONBOARDING_PAGE.CFG_MEDIA_COLLECTION' | translate }}  
+                  </a>
+                </li>
+                <li class="guide_h2">
+                  <span class="fa fa-check"></span>
+                  <a href="#/cfg/configuration">
+                    {{ 'ONBOARDING_PAGE.CFG_SYSTEM_CONFIG' | translate }}  
+                  </a>
+                </li>
+                <li class="guide_h2">
+                  <span class="fa fa-check"></span>
+                  <a href="#/survey/list">
+                    {{ 'ONBOARDING_PAGE.CFG_SURVEY' | translate }}
+                  </a>
+                </li>
+                <li class="guide_h2">
+                  <span class="fa fa-check"></span>
+                  <a href="#/group/list">
+                    {{ 'ONBOARDING_PAGE.CFG_TERMINAL_GROUP' | translate }}
+                  </a>
+                </li>
+                <li class="guide_h2">
+                  <span class="fa fa-check"></span>
+                  <a href="#/device/list">
+                    {{ 'ONBOARDING_PAGE.CFG_TERMINAL' | translate }}
+                  </a>
+                </li>
+                <li class="guide_h2">
+                  <span class="fa fa-check"></span>
+                  <a href="#/thanks/list">
+                    {{ 'ONBOARDING_PAGE.CFG_THANKWORDS' | translate }}
+                  </a>
+                </li>
+              </ul>
+
+              <!-- Guide on installing applications -->
+              <li class="guide_h1" [ngClass]="isShowConfig['cfg2'] ? 'dropdown show' : 'dropdown'" (click)="showHideConfig('cfg2')">
+                {{ 'ONBOARDING_PAGE.CFG_APP' | translate }}
+              </li>
+              <ul [ngClass]="isShowConfig['cfg2'] ? 'cfg-sub show' : 'cfg-sub hide'">
+                <li class="guide_h2">
+                  <span class="fa fa-check"></span> 
+                  <a href="https://hearme.vn/help/implementation/#cai-at-ung-dung-quan-ly" target="_blank">
+                    {{ 'ONBOARDING_PAGE.CFG_APP_MNG' | translate }}
+                  </a>
+                </li>
+                <li class="guide_h2">
+                  <span class="fa fa-check"></span> 
+                  <a href="https://hearme.vn/help/implementation/#cai-at-ung-dung-hearme-station" target="_blank">
+                    {{ 'ONBOARDING_PAGE.CFG_APP_SURVEY' | translate }}
+                  </a>
+                </li>
+              </ul>
+              
+              <!-- Guide on running survey -->
+              <li class="guide_h1" [ngClass]="isShowConfig['cfg3'] ? 'dropdown show' : 'dropdown'" (click)="showHideConfig('cfg3')">
+                {{ 'ONBOARDING_PAGE.SURVEY_DISTRIBUTION' | translate }}
+              </li>
+              <ul [ngClass]="isShowConfig['cfg3'] ? 'cfg-sub show' : 'cfg-sub hide'">
+                <li class="guide_h2">
+                  <span class="fa fa-check"></span> 
+                  <a href="#/device/list">
+                    {{ 'ONBOARDING_PAGE.RUN_ON_KIOSK' | translate }}
+                  </a>
+                </li>
+                <li class="guide_h2">
+                  <span class="fa fa-check"></span> 
+                  <a href="#/device/list">
+                    {{ 'ONBOARDING_PAGE.RUN_ON_WEB_CHANNEL' | translate }}
+                  </a>
+                </li>
+                <li class="guide_h2">
+                  <span class="fa fa-check"></span> 
+                  <a href="https://hearme.vn/help/implementation/#chay-khao-sat-tren-kisok" target="_blank">
+                    {{ 'ONBOARDING_PAGE.RUN_ON_EMAIL_CHANNEL' | translate }}
+                  </a>
+                </li>
+              </ul>
+
+              <!-- Data analytics -->
+              <li class="guide_h1">
+                <a href="#/report/survey">
+                  {{ 'ONBOARDING_PAGE.FOLLOW_UP_REPORTS' | translate }}
+                </a>
+              </li>
+
+              <!-- System integration -->
+              <li class="guide_h1">
+                <a href="https://hearme.vn/help/implementation/#tich-hop-he-thong" target="_blank">
+                  {{ 'ONBOARDING_PAGE.SYSTEM_INTEGRATION' | translate }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+</div>

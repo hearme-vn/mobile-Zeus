@@ -1,0 +1,155 @@
+<!-- 
+
+    "TYPES": {
+      "0":  "SCAT",
+      "1":  "NPS",
+      "2":  "CES",
+      "10": "FLX",
+      "3":  "Tiêu chí",
+      "4":  "Chọn nhiều",
+      "5":  "Chọn một",
+      "6":  "5 sao",
+      "7":  "Câu hỏi mở",
+      "9":  "Liên hệ",
+      "12": "Ảnh/file",
+      "13": "Thông tin",
+      "8":  "Tổng hợp",
+      "11": "Biểu mẫu"
+    },
+
+ -->
+<ng-container *ngFor="let msg of message.serializedMSGs; let last = last;">
+  <div class="row survey" [ngClass]="last? 'last-survey-row': '' " *ngIf="msg && msg.survey.data.question">
+    <!-- Survey -->
+    <label class="col-12 pl-0 pr-0">
+      <b class="col-type">{{ 'SURVEY_PAGE.TYPES.' + msg.survey.type | translate }}:</b>
+      {{ msg.survey.data.question }}
+    </label>
+
+     <!-- Response -->
+    <ng-container *ngIf="msg.survey.type==0 || msg.survey.type==2" 
+      [ngTemplateOutlet]="message_00" [ngTemplateOutletContext]="{message:msg}">
+    </ng-container>
+
+    <ng-container *ngIf="msg.survey.type==1" 
+      [ngTemplateOutlet]="message_NPS" [ngTemplateOutletContext]="{message:msg}">
+    </ng-container>
+
+    <ng-container *ngIf="msg.survey.type==10" 
+      [ngTemplateOutlet]="message_01" [ngTemplateOutletContext]="{message:msg}">
+    </ng-container>
+
+    <ng-container *ngIf="msg.survey.type==4 || msg.survey.type==5" [ngTemplateOutlet]="message_4"
+      [ngTemplateOutletContext]="{message:msg}">
+    </ng-container>
+
+    <ng-container *ngIf="msg.survey.type==6" [ngTemplateOutlet]="message_6"
+      [ngTemplateOutletContext]="{message:msg}">
+    </ng-container>
+
+    <ng-container *ngIf="msg.survey.type==7" [ngTemplateOutlet]="message_7"
+      [ngTemplateOutletContext]="{message:msg}">
+    </ng-container>
+
+    <ng-container *ngIf="msg.survey.type==9" [ngTemplateOutlet]="message_9"
+      [ngTemplateOutletContext]="{message:msg}">
+    </ng-container>
+
+    <ng-container *ngIf="msg.survey.type==12" [ngTemplateOutlet]="message_12"
+      [ngTemplateOutletContext]="{message:msg}">
+    </ng-container>
+  </div>
+</ng-container>
+
+<!-- Index surveys: CSAT, CES -->
+<ng-template #message_00 let-message="message">
+  <label class="col-12 pl-0 pr-0"><b>{{ 'FEEDBACK.SURVEY_RESPONSE' | translate }}</b>: &nbsp; {{ message.data.rating }}/{{message.survey.scales}} </label>
+</ng-template>
+
+<!-- Index surveys: NPS -->
+<ng-template #message_NPS let-message="message">
+  <label class="col-12 pl-0 pr-0"><b>{{ 'FEEDBACK.SURVEY_RESPONSE' | translate }}</b>: &nbsp; {{ message.data.rating }}/{{message.survey.scales-1}} </label>
+</ng-template>
+
+<!-- Index surveys: FLX -->
+<ng-template #message_01 let-message="message">
+  <label class="col-12 pl-0 pr-0"><b>{{ 'FEEDBACK.SURVEY_RESPONSE' | translate }}</b>: &nbsp; {{ message.data.rating }}/{{message.survey.data.scales}} </label>
+</ng-template>
+
+<!-- Single selection; Multi selection -->
+<ng-template #message_4 let-message="message">
+  <label class="col-12 pl-0 pr-0"><b>{{ 'FEEDBACK.SURVEY_RESPONSE' | translate }}</b>:</label>
+  <div class="col-12 factor" *ngFor="let factor of message.factor_messages">
+    <label class="col-12 pl-0 pr-0">
+      <i class="fa fa-check"></i> &nbsp;{{ factor.survey.data.question}}
+    </label>
+  </div>
+</ng-template>
+
+<!-- 5 Star rating -->
+<ng-template #message_6 let-message="message">
+  <label class="col-12 pl-0 pr-0"><b>{{ 'FEEDBACK.SURVEY_RESPONSE' | translate }}</b>:</label>
+  <div class="col-12 factor" *ngFor="let factor of message.factor_messages">
+    <label class="col-12 pl-0 pr-0">
+      <i class="fa fa-check"></i> &nbsp;{{ factor.survey.data.question}}
+    </label>
+    <label class="col-12 pl-0 pr-0">
+      &nbsp; &nbsp; &nbsp;
+      <span class="fa fa-star" [ngClass]="{'checked': factor.data.rating >= 1}"></span>
+      <span class="fa fa-star" [ngClass]="{'checked': factor.data.rating >= 2}"></span>
+      <span class="fa fa-star" [ngClass]="{'checked': factor.data.rating >= 3}"></span>
+      <span class="fa fa-star" [ngClass]="{'checked': factor.data.rating >= 4}"></span>
+      <span class="fa fa-star" [ngClass]="{'checked': factor.data.rating >= 5}"></span>
+      <span> {{factor.data.rating}}/5</span>
+    </label>
+  </div>
+</ng-template>
+
+<!-- Open question Survey -->
+<ng-template #message_7 let-message="message">
+  <label class="col-12 pl-0 pr-0"><b>{{ 'FEEDBACK.SURVEY_RESPONSE' | translate }}</b>: &nbsp; {{ message.data.comment }}</label>
+</ng-template>
+
+<!-- Contact -->
+<ng-template #message_9 let-message="message">
+  <label class="col-12 pl-0 pr-0"><b>{{ 'FEEDBACK.SURVEY_RESPONSE' | translate }}</b>:</label>
+  <!-- Name -->
+  <label class="col-12 pl-0 pr-0" *ngIf="message.data.name && message.data.name.length">
+    <i class="fa fa-check"></i> &nbsp;
+    <b>{{ 'CONFIGURES.CONTACT_NAME'| translate }}:</b> &nbsp; {{ message.data.name }}
+  </label>
+  <!-- Phone -->
+  <label class="col-12 pl-0 pr-0" *ngIf="message.data.phone && message.data.phone.length">
+    <i class="fa fa-check"></i> &nbsp;
+    <b>{{ 'CONFIGURES.CONTACT_PHONE'| translate }}:</b> &nbsp; {{ message.data.phone }}
+  </label>
+  <!-- Email -->
+  <label class="col-12 pl-0 pr-0" *ngIf="message.data.email && message.data.email.length">
+    <i class="fa fa-check"></i> &nbsp;
+    <b>{{ 'CONFIGURES.CONTACT_EMAIL'| translate }}:</b> &nbsp; {{ message.data.email }}
+  </label>
+  <!-- Address -->
+  <label class="col-12 pl-0 pr-0" *ngIf="message.data.address && message.data.address.length">
+    <i class="fa fa-check"></i> &nbsp;
+    <b>{{ 'CONFIGURES.CONTACT_ADDRESS'| translate }}:</b> &nbsp; {{ message.data.address }}
+  </label>
+  <!-- Room number -->
+  <label class="col-12 pl-0 pr-0" *ngIf="message.data.roomnumber  && message.data.roomnumber.length">
+    <i class="fa fa-check"></i> &nbsp;
+    <b>{{ 'CONFIGURES.CONTACT_ROOMNUMBER'| translate }}:</b> &nbsp; {{ message.data.roomnumber }}
+  </label>
+</ng-template>
+
+<!-- Attachment file Survey -->
+<ng-template #message_12 let-message="message">
+  <label class="col-12 pl-0 pr-0"><b>{{ 'FEEDBACK.SURVEY_RESPONSE' | translate }}</b>:</label>
+  <div class="col-12 sur_value attachment_items">
+    <div class="col-md-3 col-default" *ngFor="let file of message.attach_files">
+        <a *ngIf="file.type==0" href="{{ file.url }}" target="_blank">
+            <img src="{{ file.url }}"/>
+        </a>
+        <a target="_blank" *ngIf="file.type ==1" href="{{ file.url }}">{{file.description}}</a>
+    </div>
+  </div>
+</ng-template>
+

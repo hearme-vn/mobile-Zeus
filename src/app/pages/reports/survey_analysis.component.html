@@ -1,0 +1,166 @@
+<div class="animated fadeIn">
+  <!-- Filter form for report section -->
+<!--   
+  <div class="row search-area">
+    <div class="col-8 title">
+      {{'SIDEBAR.SURVEY_ANALYSIS' | translate}}
+    </div>
+    <div class="col-4 btn-search">
+      <button type="button" class="btn btn-sm text-blue">
+        <i class="nav-icon icon-chart"></i> {{ 'APP.FORM_SEARCH' | translate }}
+      </button>
+    </div>
+  </div>
+ -->
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <!-- Main survey selection -->
+        <div class="col-md-5">
+          <div class="form-group">
+            <label class="control-label text-blue">{{ 'REPORT.ROOT_SURVEY' | translate }}</label>
+            <survey-select name="mainSurvey"
+              (change)="mainSurveyChange($event)" [(ngModel)]="form_filter.mainSurvey">
+            </survey-select>
+          </div>
+        </div>
+
+        <!-- Child survey selection -->
+        <div class="col-md-7"  *ngIf="child_surveys && child_surveys.length">
+          <div class="form-group">
+            <label class="control-label text-blue">{{ 'REPORT.CHILD_SURVEY' | translate }}</label>
+            <surveytree-select [child_surveys]="child_surveys" [buttonClass]="'btn-outline-primary'"
+              [filter]="allowes_survey_types" (selectedChange)="onSurveyChange($event)">
+            </surveytree-select>
+          </div>
+        </div>
+
+        <div class="hr col-md-12"></div>
+
+        <div class="col-md-12 mb-2">
+          <label class="text-blue">{{ 'REPORT.SEARCH_ADV' | translate }}</label>
+        </div>
+
+        <!-- Time -->
+        <div class="col-md-4">
+          <!-- Time unit -->
+          <div class="form-group">
+            <label class="control-label">{{ 'REPORT.SEARCH_TIME' | translate }}</label>
+            <select class="form-control" name="type" style="width:auto" [(ngModel)]="form_filter.time.time_unit" (change)="timeUnitChange(form_filter.time)">
+              <option *ngFor="let item of SEARCH_TIME" [ngValue]="item.key">
+                {{ item.name | translate }}
+              </option>
+            </select>
+          </div>
+
+          <!-- Time bias, time range -->
+          <div class="form-group">
+            <select class="form-control" [(ngModel)]="form_filter.time.bias" *ngIf="form_filter.time.time_unit == 0 || form_filter.time.time_unit == 1">
+              <option *ngFor="let item of SEARCH_TIME[form_filter.time.time_unit].lstValue" [ngValue]="item.value">
+                {{ item.value }} {{ item.name | translate }}
+              </option>
+            </select>
+            <input class="form-control" type="text" ngxDaterangepickerMd startKey="start" endKey="end"
+                   [locale]="{applyLabel: 'ok', clearLabel: 'Cancel', format: 'YYYY/MM/DD'}"
+                   [(ngModel)]="form_filter.time.time_range" *ngIf="form_filter.time.time_unit == 2"/>
+          </div>
+        </div>
+        
+        <!-- Group, Device -->
+        <div class="col-md-4">
+          <!-- Group -->
+          <div class="form-group">
+            <label class="control-label">{{ 'REPORT.SEARCH_DEVICE' | translate }}</label>
+            <group-select name="device" [pre_objects]="group_list"
+              (change)="groupChange($event)">
+            </group-select>            
+          </div>
+
+          <!-- Device -->
+          <div class="form-group">
+            <device-select name="device" [pre_objects]="device_list"
+              (change)="deviceChange($event)" [(ngModel)]="form_filter.device">
+            </device-select>
+          </div>
+        </div>
+        <!-- Survey state -->
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">{{ 'REPORT.SEARCH_STATE' | translate }}</label>
+            <select class="form-control" [(ngModel)]="form_filter.status">
+              <option [ngValue]="undefined">{{ 'APP.UI_STATUS_ALL' | translate }}</option>
+              <option *ngFor="let item of status_list" [value]="item.value" ng-reflect-value="1" >{{ item.name_key | translate }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <button type="button" class="btn btn-secondary btn-sm btn-search ml-0">
+            <i class="fa fa-close"></i>
+            {{'APP.UI_CANCEL'|translate}}
+          </button>
+          <!-- <button [disabled]="!this.form_filter.sur_id" type="button" class="btn btn-primary btn-sm btn-search" (click)="analysis()">{{'REPORT.BTN_SEARCH'|translate}}</button> -->
+          <button type="button" class="btn btn-sm btn-primary" (click)="analysis()">
+            <i class="fa fa-search"></i> {{ 'REPORT.BTN_SEARCH' | translate }}
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Report section -->
+  <div class="card" *ngIf="!report_filter">
+    <div class="card-body">
+      <div class="row" >
+        {{'REPORT.DESCRIPTION' | translate}}
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Report component -->
+  <div class="row mb-4" *ngIf="report_filter">
+    <!-- Survey types 
+  "0":  "SCAT",
+  "1":  "NPS",
+  "2":  "CES",
+  "10": "FLX",
+  "3":  "Tiêu chí",
+  "4":  "Chọn nhiều",
+  "5":  "Chọn một",
+  "6":  "5 sao",
+  "7":  "Câu hỏi mở",
+  "9":  "Liên hệ",
+  "12": "Ảnh/file",
+  "13": "Thông tin",
+  "8":  "Tổng hợp",
+  "11": "Biểu mẫu"
+    -->
+    <!-- Report for Mixed, open question, file, contact, form-based surveys -->
+    <survey-other-report class="col-12 report" [filter]="report_filter" *ngIf="report_filter.type==7 || report_filter.type==8 || report_filter.type==9 || report_filter.type==11 || report_filter.type==12">
+    </survey-other-report>
+
+    <!-- Report for CSAT survey -->
+    <survey-csat-report class="col-12 report" [filter]="report_filter" *ngIf="report_filter.type==0"></survey-csat-report>
+
+    <!-- Report for CES survey -->
+    <survey-ces-report class="col-12 report" [filter]="report_filter" *ngIf="report_filter.type==2"></survey-ces-report>
+
+    <!-- Report for NPS survey -->
+    <survey-nps-report class="col-12 report" [filter]="report_filter" *ngIf="report_filter.type==1"></survey-nps-report>
+
+    <!-- Report for FLX survey -->
+    <survey-flx-report class="col-12 report" [filter]="report_filter" *ngIf="report_filter.type==10"></survey-flx-report>
+
+    <!-- Report for rating (5 stars) survey -->
+    <survey-rating-report class="col-12 report" [filter]="report_filter" *ngIf="report_filter.type==6"></survey-rating-report>
+
+    <!-- Report for multi_selection survey -->
+    <survey-multi_select-report class="col-12 report" [filter]="report_filter" *ngIf="report_filter.type==4"></survey-multi_select-report>
+
+    <!-- Report for single select survey -->
+    <survey-single_select-report class="col-12 report" [filter]="report_filter" *ngIf="report_filter.type==5"></survey-single_select-report>
+
+  </div>
+
+</div>

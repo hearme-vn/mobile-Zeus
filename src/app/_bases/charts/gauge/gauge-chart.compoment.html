@@ -1,0 +1,46 @@
+<div class="chart-wrapper" [style]="containerStyle">
+  <ng-container *ngIf="!hm_options" [ngTemplateOutlet]="chart_content"></ng-container>
+
+  <div class="card" *ngIf="hm_options">
+    <div class="card-header">
+      <h6 class="card-title mb-2">{{ hm_options.title_text }}</h6>
+      <div class="card-header-actions">
+        <!-- Action button here -->
+      </div>
+    </div>
+
+    <div class="card-body">
+      <ng-container [ngTemplateOutlet]="chart_content"></ng-container>
+    </div>
+  </div>
+</div>
+
+<ng-template #chart_content >
+  <ngx-gauge [type]="chartType" 
+    [value]="data" 
+    [label]="chartLabel"
+    [min] = "gaugeOptions.min"
+    [max] = "gaugeOptions.max"
+    [markers]="gaugeOptions.markers"
+    [thresholds]="gaugeOptions.thresholds"
+    [append]="gaugeOptions.append"
+    [margin]="30"
+    [size]="gaugeOptions.size"
+    [thick]="12">
+  </ngx-gauge>  
+</ng-template>
+
+
+<!-- 
+    [value]="data" 
+    [label]="chartLabel"
+    [min] = "gaugeOptions.min"
+    [max] = "gaugeOptions.max"
+    [markers]="gaugeOptions.markers"
+    [thresholds]="gaugeOptions.thresholds"
+    [append]="gaugeOptions.append"
+    [margin]="30"
+    [size]="gaugeOptions.size"
+    [thick]="12">
+
+ -->

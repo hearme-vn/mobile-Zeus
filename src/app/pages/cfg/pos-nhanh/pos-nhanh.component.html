@@ -1,0 +1,53 @@
+<div class="card p-4 module-block mb-4">
+  <h4 class="card-title progress-bar-warning">{{ 'POS_NHANH_VN.TARGET_SYSTEM' | translate }}</h4>
+
+  <div class="form-group">
+    <span (click)="copyToClipboard(HOOK_URL)">
+      <label class="float-left col-form-label">
+        {{'POS_NHANH_VN.HOOK_URL'|translate}}
+        <em id="hook_url" class="text-suggestion cursor-pointer wb-all">{{HOOK_URL}}</em>
+        <i class="cursor-pointer fa fa-files-o icon-dropdown"></i>
+      </label>
+    </span>
+  </div>
+  <div class="form-group">
+    <label class="float-left col-form-label col-md-4 pl-0">{{'POS_NHANH_VN.CUS_ID_KEY'|translate}}:</label>
+    <input class="form-control col-md-8" type="input" [(ngModel)]="form.customerid_keychain" placeholder="data.customer_id" [maxLength]="_maxlength">
+  </div>
+  <div class="form-group">
+    <label class="float-left col-form-label col-md-4 pl-0">{{'POS_NHANH_VN.CUS_NAME_KEY'|translate}}:</label>
+    <input class="form-control  col-md-8" type="input" [(ngModel)]="form.customername_keychain" placeholder="data.customer_name" [maxLength]="_maxlength">
+  </div>
+  <div class="form-group">
+    <label class="float-left col-form-label col-md-4 pl-0">{{'POS_NHANH_VN.POS_KEY'|translate}}:</label>
+    <input class="form-control col-md-8" type="input" [(ngModel)]="form.pos_keychain" placeholder="data.pos_id" [maxLength]="_maxlength">
+  </div>
+  <div class="form-group">
+    <table class="table table-small table-bordered mb-0">
+      <tr>
+        <th translate="POS_NHANH_VN.POS_ID"></th>
+        <th translate="POS_NHANH_VN.DEVICE_ID"></th>
+        <th class="text-center td-stt">#</th>
+      </tr>
+      <tr *ngFor="let item of form.mapping; let idx = index">
+        <td class="wb-all">{{item.pos_id}}</td>
+        <td class="wb-all">{{item.device_id}}</td>
+        <td class="sweet-alert text-center">
+          <div class="pointer" (click)="delMapping(idx)">
+            <button type="button" class="btn btn-danger btn-icon-icon btn-sm m-0 mr-1 ng-scope" >
+                <i class="fa fa-trash"></i>
+            </button>
+            <span class="sm-hide">{{ 'APP.BUTTON_DELETE' | translate }}</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="form-group mb-1">
+    <input type="input" [(ngModel)]="mappingData.pos_id" [maxLength]="_maxlength" placeholder="{{'POS_NHANH_VN.POS_ID' | translate}}" class="form-control display-unset w-50">
+  </div>
+  <div class="form-group mb-0">
+    <input type="input" [(ngModel)]="mappingData.device_id" [maxLength]="_maxlength" placeholder="{{'POS_NHANH_VN.DEVICE_ID' | translate}}" class="form-control display-unset float-left w-50">
+    <button type="button" class="btn btn-primary float-right" (click)="addMapping()" translate="POS_NHANH_VN.BTN_ADD"></button>
+  </div>
+</div>

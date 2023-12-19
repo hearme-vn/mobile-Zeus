@@ -1,0 +1,15 @@
+.noti_level_0, .noti_level_1 {
+  color: #b5293c;
+}
+
+.noti_level_2, .noti_level_3 {
+  color: #eb9230 !important;
+}
+
+.noti_level_4, .noti_level_5 {
+  color: #23a0cb;
+}
+
+.modal-comment {
+  border-top: 1px;
+}

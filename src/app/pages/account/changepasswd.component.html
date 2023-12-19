@@ -1,0 +1,39 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <div class="card">
+        <form class="form-horizontal">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="current">{{ 'CHANGEPASSWD_PAGE.LB_MATKHAUCU' | translate }}</label>
+                  <input type="password" class="form-control" id="current" name="current" [(ngModel)]="data.current">
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="password">{{ 'CHANGEPASSWD_PAGE.LB_MATKHAUMOI' | translate }}</label>
+                  <input type="password" class="form-control" id="password" name="password" [(ngModel)]="data.password">
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="repassword">{{ 'CHANGEPASSWD_PAGE.LB_NHAPLAIMATKHAU' | translate }}</label>
+                  <input type="password" class="form-control" id="repassword" name="repassword" [(ngModel)]="data.repassword">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-sm btn-success ml-0" (click)="update()">
+              <i class="fa fa-edit"></i> {{ 'CHANGEPASSWD_PAGE.BT_PASSWD' | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div><!--/.col-->
+    <div class="col-sm-2"></div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+// If you want to override variables do it here
+@import "variables";
+
+// Import styles
+@import "~@coreui/coreui/scss/coreui";
+
+// If you want to add something do it here
+@import "custom";
+
+// For Toast library
+// regular style toast 
+@import '~ngx-toastr/toastr';
+
+@import "../../libs/ng-select/src/ng-select/themes/default.theme.scss";

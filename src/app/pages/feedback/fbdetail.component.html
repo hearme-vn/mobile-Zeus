@@ -1,0 +1,106 @@
+<div class="animated fadeIn">
+  <div class="row" *ngIf="!object">
+    {{'MSG.FEEDBACK_ID_MISSING' | translate}}
+  </div>
+
+  <div class="row"  *ngIf="object">
+    <!-- Content block -->
+    <div class="col-md-8">
+      <!-- General information -->
+      <div class="card">
+        <div class="card-header">
+          <strong>{{ 'FEEDBACK.GENERAL_INFORMATION' | translate }}</strong>
+        </div>
+        <div class="card-body">
+          <div class="row feedback_header">
+            <label class="col-12 col-sm-4 col-type">{{ 'APP.UI_CREATED' | translate }}:</label>
+            <label class="col-12 col-sm-8">{{ object.data.created | date: 'medium' : i18n.tzStr : i18n.lang.local_id }}</label>
+          </div>
+          <div class="row feedback_header">
+            <label class="col-12 col-sm-4 col-type">{{ 'DEVICE_PAGE.NAME' | translate }}:</label>
+            <label class="col-12 col-sm-8" *ngIf="!feedback_device">{{ object.data.device_id }}</label>
+            <label class="col-12 col-sm-8" *ngIf="feedback_device">{{ feedback_device.name }}</label>
+          </div>
+          <div class="row feedback_header">
+            <label class="col-12 col-sm-4 col-type">{{ 'GROUP_PAGE.GROUP_NAME' | translate }}:</label>
+            <label class="col-12 col-sm-8" *ngIf="!feedback_group">{{ object.data.grp_id }}</label>
+            <label class="col-12 col-sm-8" *ngIf="feedback_group">{{ feedback_group.name }}</label>
+          </div>
+        </div>
+      </div>
+      <!-- Feedback content -->
+      <div class="card">
+        <div class="card-header">
+          <strong>{{ 'FEEDBACK.DETAILS' | translate }}</strong>
+        </div>
+        <div class="card-body">
+          <div class="row feedback_content">
+            <feedback-content [message]="object" [survey]="active_survey"></feedback-content>
+          </div>
+          <div class="row feedback_actions">
+          </div>
+        </div>
+      </div>
+          
+    </div>
+
+    <!-- Processing block -->
+    <div class="col-md-4">
+      <!-- Feedback status and notes -->
+      <div class="card">
+        <div class="card-header">
+          <strong>{{ 'FEEDBACK.FEEDBACK_STATUS' | translate }}</strong>
+        </div>
+
+        <div class="card-body">
+          <div class="form-group row">
+            <label class="col-md-12 col-form-label"><b>{{ 'APP.UI_STATUS' | translate }}:</b></label>
+            <div class="col-md-12 col-form-label">
+              <div class="form-check" *ngFor="let status of FEEDBACK_STATUS_LIST">
+                <input class="form-check-input" id="{{status}}" name="feedback_status" type="radio" [value]="status" [(ngModel)]="object.data.status">
+                <label class="form-check-label" for="{{status}}">
+                  {{ 'FEEDBACK.STATUS.' + status | translate }}
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-12 col-form-label" for="textarea-input"><b>{{ 'FEEDBACK.NOTES' | translate }}:</b></label>
+            <div class="col-12">
+              <textarea class="form-control" placeholder="{{ 'FEEDBACK.NOTES' | translate }}.." rows="5" [(ngModel)]="object.data.notes"></textarea>
+            </div>
+          </div>
+          <!-- <hr> -->
+          <button *ngIf="object.data.id" type="button" class="btn btn-primary btn-sm" (click)="object.update()"><i class="fa fa-edit"></i> {{'APP.BUTTON_UPDATE'|translate}}</button>
+        </div>
+      </div>
+      
+      <!-- Actions -->
+      <div class="card">
+        <div class="card-header">
+          <strong>{{ 'FEEDBACK.ACTIONS' | translate }}</strong>
+        </div>
+
+        <div class="card-body">
+          <div class="input-group">
+            <input autocomplete="email" class="form-control" id="email" name="email" placeholder="Email" type="email"  [(ngModel)]="email_address">
+            <span class="input-group-append">
+              <button class="btn btn-primary" type="button" (click)="sendEmail()">
+                <i class="fa fa-send-o"></i> 
+                <span class="sm-hide">{{'FEEDBACK.SEND_EMAIL'|translate}}</span>
+              </button>
+            </span>
+          </div>
+          <hr *ngIf="feedback_plugins && feedback_plugins.length" />
+          <ng-container *ngIf="feedback_plugins && feedback_plugins.length">
+            <button class="btn btn-primary" type="button" *ngFor="let plugin of feedback_plugins; let i = index" (click)="callPlugin(i)">
+              {{ plugin.name}}
+            </button>
+          </ng-container >
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

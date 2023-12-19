@@ -1,0 +1,803 @@
+{
+  "APP": {
+    "UI_OK": "Chấp nhận",
+    "UI_CANCEL": "Hủy bỏ",
+    "BUTTON_CLOSE": "Đóng",
+    "BUTTON_CREATE": "Tạo mới",
+    "BUTTON_UPDATE": "Cập nhật",
+    "BUTTON_DELETE": "Xóa",
+    "BUTTON_NEXT": "Tiếp theo",
+    "BUTTON_BACK": "Quay lại",
+    "BUTTON_ADD": "Thêm",
+    "BUTTON_DELETE_ALL": "Xóa toàn bộ",
+    "UI_STATUS": "Trạng thái",
+    "UI_SYSTEM_STATUS": "Trạng thái hệ thống",
+    "UI_CREATED": "Ngày tạo",
+    "UI_STATUS_CREATED": "Mới tạo",
+    "UI_STATUS_ACTIVE": "Kích hoạt",
+    "IS_ACTIVE": "Hoạt động",
+    "UI_STATUS_INACTIVE": "Khóa",
+    "UI_STATUS_LOCK": "Đóng",
+    "UI_STATUS_CANCEL": "Hủy",
+    "UI_SYSTEM_STATUS_LOCK": "Hệ thống khóa",
+    "UI_STATUS_ALL": "Tất cả",
+    "UI_TITLE": "Tiêu đề",
+    "SL_SELECT": "Chọn trong danh sách",
+    "SELECT_COLLECTION": "Chọn bộ sưu tập",
+    "SELECT": "Chọn",
+    "FILTER": "Lọc",
+    "REMOVE_SELECTION": "Bỏ chọn",
+    "SELECT_ALL": "Chọn tất cả",
+    "SELECT_THEME": "Chọn theme",
+    "SELECT_GROUP": "Chọn nhóm thiết bị",
+    "SELECT_DEVICE": "Chọn thiết bị",
+    "SELECT_FACTOR": "Chọn tiêu chí",
+    "SELECT_SURVEY": "Chọn khảo sát",
+    "SELECT_REPORT_PLUGINS": "Chọn báo cáo",
+
+    "LB_NO_DATA": "Không có dữ liệu",
+
+    "UI_IDX_NUMBER": "STT",
+    "UI_FIELD_USED": "Có sử dụng",
+    "UI_FIELD_REQUIRED": "Bắt buộc trả lời",
+    "UI_FIELD_VALIDATE": "Kiểm tra hợp lệ",
+    "UI_FIELD_NAME": "Tên trường",
+
+    "FORM_KEYWORD": "Từ khóa",
+    "FORM_SEARCH": "Tìm kiếm",
+    "FORM_CREATE": "Tạo mới",
+    "FORM_EXPORT": "Xuất dữ liệu",
+
+    "DIALOG_CREATE": "Thêm",
+    "DIALOG_UPDATE": "Cập nhật",
+    "DIALOG_VIEW": "Detail",
+
+    "NAME": "Tên",
+    "DESCRIPTION": "Mô tả",
+    "ID": "ID",
+    "UPLOAD_IMAGE": "Tải lên ảnh",
+    "TB_NOTIFY": "Thông báo",
+    "URL": "URL",
+    "BT_SHORT_URL": "Địa chỉ rút gọn",
+
+    "NT_SUCCESS": "Tiến trình thực hiện thành công!",
+
+    "CB_ALL_GROUP": "Tất cả các nhóm",
+    "CB_ALL_DEVICES": "Tất cả các thiết bị",
+
+    "BUSINESS_FIELD": "Lĩnh vực kinh doanh",
+    "CLIPBOARD_COPY": "Click tại đây để chép vào bộ nhớ",
+
+    "BAD_FEEDBACK": "Tin phản hồi thấp",
+    "FEEDBACK_MSG": "Bạn nhận được phản hồi với mức đánh giá",
+    "COMMENT": "Ý kiến",
+    "SUCCESS_CASE": "Chúc mừng",
+    "WARNING_CASE": "Cảnh báo"
+  },
+  "SUCCESS": {
+    "DSS01": "Đã gửi yêu cầu thành công",
+    "DSS02": "Mất kết nối với thiết bị. Yêu cầu của bạn đã được đưa vào danh sách chờ xử lý"
+  },
+  "MENU": {
+    "ACCOUNT": "Tài khoản",
+    "ACCOUNT_ORG": "Tổ chức",
+    "ACCOUNT_LOGOUT": "Đăng xuất",
+    "NOTIFY_TITLE": "Tin nhắn",
+    "NOTIFY_CONTENT": "Bạn nhận phản hồi với đánh giá",
+    "NOTIFY_SHOW_ALL": "Tất cả",
+    "PERSONAL_ORG": "Tổ chức cá nhân"
+  },
+  "SIDEBAR": {
+    "HOME": "Trang chủ",
+    "DASHBOARD": "Phân tích hệ thống",
+    "SURVEY_ANALYSIS": "Phân tích khảo sát",
+    "CORRELATION_ANALYSIS": "Phân tích tương quan",
+    "PLUGINS_ANALYSIS": "Phân tích mở rộng",
+    "FEEDBACK_LIST": "Danh sách phản hồi",
+    "ONBOARDING": "Chào mừng tham gia giải pháp hearme",
+    "ONBOARDING_NEW": "Thiết lập cho người mới",
+
+    "MANAGEMENT": "Tính năng hearme",
+    "SURVEY": "Quản lý khảo sát",
+    "SURVEY_LIST": "Danh sách khảo sát",
+    "SURVEY_CREATE": "Tạo khảo sát",
+    "SURVEY_EDIT": "Cập nhật khảo sát",
+    "SURVEY_IMPORT": "Nhập khảo sát mẫu",
+
+    "CS_MANAGEMENT": "Quản lý khách hàng",
+    "CS_CUSTOMERLIST": "Danh sách khách hàng",
+    "CS_INVITECUSTOMER": "Mời đánh giá",
+
+    "REGISTER": "Đăng ký",
+    "LOGIN": "Đăng nhập",
+    "OLDVERSION": "Phiên bản cũ",
+
+    "NOTIFICATION": "Tin nhắn",
+
+    "CONFIGURE": "Cấu hình hệ thống",
+
+    "GROUP_DEVICE": "Quản lý nhóm thiết bị",
+    "DEVICE": "Quản lý thiết bị",
+    "COLLECTION": "Quản lý bộ sưu tập",
+    "IMAGE": "Quản lý ảnh",
+    "APPLICATION": "Quản lý ứng dụng",
+    "THEME": "Quản lý theme",
+    "TARGET": "Đối tượng phản hồi",
+
+    "SYSTEM_CONFIGURATION": "Cấu hình hệ thống",
+    "DEVICE_LANGUAGE": "Ngôn ngữ thiết bị",
+    "GENERAL_CONFIGURATION": "Cấu hình chung",
+    "PLUGIN_MANAGEMENT": "Feedback plugins",
+    "REPORT_PLUGINS": "Báo cáo mở rộng",
+    "FEEDBACK_PLUGINS": "Plugins phản hồi",
+    "POS_NHANH_PAGE": "Tích hợp hệ thống",
+    "PUBLIC_PAGE": "Trang cộng đồng",
+
+    "ORGANIZATION_MNG": "Quản lý tổ chức",
+    "ORGANIZATION_LIST": "Danh sách tổ chức",
+    "ROLES": "Quản lý nhóm quyền",
+    "ROLE_ASSIGNMENT": "Phân quyền",
+
+    "UI_ACCOUNT": "Tài khoản",
+    "PROFILE": "Cập nhật tài khoản",
+    "CHANGEPASSWORD": "Đổi mật khẩu",
+    "LOGINBARCODE": "Sinh mã đăng nhập",
+
+    "QUOTATION": "Quản lý hạn mức",
+    "THANKS_PAGE": "Lời cảm ơn"
+  },
+  "MSG": {
+    "GENERAL_ERROR": "Có lỗi bất thường đã xảy ra. Vui lòng thực hiện lại sau hoặc liên hệ bộ phận hỗ trợ của chúng tôi",
+
+    "SENT_EMAIL_VALIDATION": "Chúng tôi đã gửi yêu cầu xác thực tới email của tài khoản quý khách. Vui lòng làm theo hướng dẫn trong nội dung email",
+
+    "ERR_LOSTINTERNET": "Không có kết nối mạng",
+    "ERR_MISSINGRESOURCE": "Lỗi tài nguyên đã yêu cầu không tồn tại",
+    "PERMISSION_DENIED": "Bạn không có quyền truy cập chức năng này. Yêu cầu bị từ chối",
+    "SESSION_EXPIRED": "Phiên làm việc của bạn đã hết. Vui lòng đăng nhập lại tiếp tục sử dụng ứng dụng",
+    "GENERAL_API_ERROR": "Có lỗi liên quan đến dịch vụ trung tâm. Vui lòng thực hiện lại sau hoặc kết nối tới bộ phận dịch vụ của chúng tôi",
+
+    "CREATED_OBJECT": "Thêm mới đối tượng thành công",
+    "UPDATE_OBJECT": "Cập nhật đối tượng thành công",
+    "DELETE_OBJECT": "Xóa đối tượng thành công",
+
+    "FORM_REQUIRED_FIELDS": "Chưa điền đầy đủ các trường bắt buộc. Thao tác không thành công",
+
+    "SURVEY_SAVING": "Thực hiện cập nhật khảo sát trước khi thực hiện thao tác này.",
+    "SURVEY_MISSING_CHILD": "Chưa chọn khảo sát. Thao tác không thành công",
+    "SURVEY_IMPORT_SUCCESS": "Đã đọc và ghi cấu hình khảo sát thành công",
+    "SURVEY_CHOOSE_TEMPLATE": "Cần chọn mẫu khảo sát trước khi chọn chức năng này",
+
+    "CLIPBOARD_COPIED": "Đã sao chép vào bộ nhớ",
+
+    "AL_LAYMATHIETBITHANHCONG": "Lấy lại mã khóa bí mật thiết bị thành công!",
+    "AL_LAYMATHIETBILOI": "Lỗi lấy lại mã khóa bí mật thiết bị, vui lòng thực hiện lại!",
+    "AL_DEVICE_SIGNOUT": "Đăng xuất thiết bị thành công",
+    "AL_DEVICE_CLOSE": "Đóng thiết bị thành công",
+    "AL_DEVICE_SYNCHRONIZE": "Đồng bộ dữ liệu thành công",
+    "AL_SURVEY_SERVER_SUCCESS": "Lấy địa chỉ khảo sát thành công!",
+    "AL_SURVEY_SERVER_FAILURE": "Lỗi lấy địa chỉ khảo sát, vui lòng thực hiện lại!",
+
+    "DATA_EMPTY": "Không có dữ liệu để hiển thị",
+
+    "SEND_EMAIL_SUCCESS": "Gửi email thành công",
+    "FEEDBACK_ID_MISSING": "Chưa có dữ liệu phản hồi",
+    "EXPORT_FEEDBACK_SUCCESS": "Xuất dữ liệu đánh giá thành công",
+
+    "ROLE_NAME_EMPTY": "Tên nhóm quyền không để trống.",
+    "ROLE_PERMISSION_EMPTY": "Chưa có quyền nào được chọn trong nhóm quyền này",
+    "ROLE_PERMISSION_INVALID": "Thông tin quyền operator hoặc monitor chưa hợp lệ"
+  },
+  "API_ERR": {
+    "ATH01": "Thiếu thông tin quyền truy cập. Giao dịch bị tưg chối",
+    "ATH02": "Token không hợp lệ. Giao dịch bị tưg chối",
+    "ATH03": "Phiên làm việc đã hết hạn. Giao dịch bị tưg chối",
+    "ATH04": "Thông tin quyền truy cập không hợp lệ. Giao dịch bị từ chối",
+
+    "SU00": "Lỗi không có dũ liệu. Giao dịch bị từ chối",
+    "SU01": "Tên đăng nhập không hợp lệ. Giao dịch bị từ chối",
+    "SU02": "Trường tên không được để trống. Giao dịch bị từ chối",
+    "SU03": "Mật khẩu không hợp lệ. Giao dịch bị từ chối",
+    "SU04": "Địa chỉ email không hợp lệ. Giao dịch bị từ chối",
+    "SU05": "Tên đăng nhập hoặc email đã được sử dụng. Giao dịch bị từ chối",
+    "SU06": "Tên đăng nhập không hợp lệ. Chỉ bao gồm ký tự số, chữ, dấu chấm và gạch dưới. Giao dịch bị từ chối",
+    
+    "IAM01": "A problem to send email",
+    "AUT01": "Bạn không có quyền hạn sử dụng chức năng này",
+
+    "API02": "Bạn không có quyền hạn sử dụng dữ liệu này",
+    "API04": "Mã đối tượng không tồn tại",
+    "API09": "Dữ liệu không hợp lệ hoặc sử dụng các ký tự đặc biệt. Thao tác không thành công",
+
+    "LGF01": "Thiếu thông tin tên đăng nhập hoặc mật khẩu",
+    "LGF02": "Sai tên đăng nhập, mật khẩu hoặc mã xác thực. Thao tác không thành công",
+    "LGF03": "Sai tên đăng nhập hoặc mật khẩu. Thao tác không thành công",
+
+    "SDL00": "Mã khảo sát không tồn tại. Giao dịch bị từ chối",
+    "SDL01": "Sảo sát đã được kích hoạt và không được phép xóa. Giao dịch bị từ chối",
+    "SDL02": "Khảo sát được cấu hình cho nhóm thiết bị và không được phép xóa. Giao dịch bị từ chối",
+    "SCR00": "Thông tin của khảo sát không hợp lệ. Giao dịch bị từ chối",
+    "SVD02": "Khảo sát cha đã được kích hoạt, không thể xóa khảo sát này. Giao dịch bị từ chối",
+    "DSR02": "Có khảo sát thành phần đã được kích hoạt, không thể xóa hoàn toàn khảo sát này.",
+    "SUC01": "Dữ liệu khảo sát không hợp lệ. Giao dịch bị từ chối",
+    "CSV05": "Khảo sát này đã tồn tại. Yêu cầu bị từ chối",
+    "CSV06": "Loại khảo sát này không hợp lệ. Yêu cầu bị từ chối",
+    "CSV07": "Không thể tạo vòng lặp trong cây khảo sát. Yêu cầu bị từ chối",
+    "IST01": "Định dạng cậy khảo sát không đúng. Yêu cầu bị từ chối",
+    "SUS03": "Không thể đặt lại trạng thái của khảo sát.",
+
+    "DVC01": "Không có đủ hạn mức sử dụng để kích hoạt thiết bị mới. Yêu cầu bị từ chối",
+    "DVC02": "Tên thiết bị không được để trống. Yêu cầu bị từ chối",
+
+    "DVL01": "Thiếu thông tin bắt buộc. Thao tác bị từ chối",
+    "DSE03": "Không được phép thực hiện trên thiết bị này. Yêu cầu bị từ chối",
+    "DDL01": "Không thể xóa thiết bị này. Yêu cầu bị từ chối",
+    "DUD01": "Bạn không có đủ hạn mức sử dụng. Yêu cầu bị từ chối",
+    
+    "CLC01": "Thông tin bộ sưu tập không hợp lệ. Yêu cầu bị từ chối",
+    "GDL01": "Nhóm thiết bị này không thể bị xóa. Thao tác bị từ chối",
+
+    "ORG01": "Bạn không có quyền truy cập tới thông tin tổ chức này. Giao dịch bị từ chối",
+    "ORG02": "Không có tổ chức cá nhân cho tài khoản của bạn",
+    "ORG03": "Tổ chức enterprise này không tồn tại",
+    "UFC01": "Có lỗi khi cập nhật số lượng đánh giá. Giao dịch không thành công",
+
+    "RLT01": "Lỗi không thể lấy được thông tin quyền và nhóm quyền. Giao dịch bị hủy bỏ",
+    "ROL04": "Không đủ hạn mức để thêm người dùng. Giao dịch bị hủy bỏ",
+    "ROL05": "Có lỗi khi gán quyền. Giao dịch bị hủy bỏ",
+
+    "CUS01": "Các trường bắt buộc không được để trống. Yêu cầu bị từ chối",
+    "CUS02": "Dữ liệu khách hàng chưa chính xác. Yêu cầu bị từ chối",
+    "CUS03": "Khách hàng đã tồn tại trong danh sách. Yêu cầu bị từ chối",
+
+    "SOB02": "Lỗi trong quá trình gửi thông tin",
+
+    "LBC01": "Có lỗi khi tạo cập nhật nội dung cho ngôn ngữ. Yêu cầu bị từ chối",
+
+    "COR01": "Vui lòng chọn kiểu tương quan dữ liệu",
+    "COR03": "Không thể tính được mối tương quan dữ liệu",
+    "COR06": "Không có dữ liệu đánh giá để phân tích mối tương quan của tiêu chí"
+  },
+  "INDUSTRY": {
+    "OTHERS": "Lĩnh vực khác",
+    "MEDIA": "Truyền thông",
+    "TRANSPORTATION": "Giao thông",
+    "INSURANCE": "Bảo hiểm",
+    "IT_SERVICE": "Công nghệ thông tin",
+    "CONSTRUCTION": "Xây dựng",
+    "FINANCIAL_SERVICE": "Tài chính",
+    "TELECOMMUNICATIONS": "Viễn thông",
+    "HEALTHCARE": "Chăm sóc sức khỏe",
+    "BANKING": "Ngân hàng",
+    "CONSUMER_SERVICE": "Dịch vụ khách hàng",
+    "MANUFACTURING": "Sản xuất",
+    "RETAIL": "Bán lẻ",
+    "HOSPITALITY": "Nhà hàng, khách sạn, du lịch",
+    "PUBLIC_SERVICES": "Dịch vụ hành chính công",
+    "EDUCATION": "Giáo dục"
+  },
+  "LOGIN": {
+    "PAGE_TITLE": "Đăng nhập",
+    "PAGE_DESCRIPTION": "Đăng nhập tài khoản của quý khách",
+    "UI_USERNAME": "Tên đăng nhập",
+    "UI_PASSWORD": "Mật khẩu",
+    "SUBMIT": "Thực hiện",
+    "SCANQR": "Quét mã QR",
+    "SCAN_ERROR": "Không thể đọc thông tin đăng nhập từ mã QR này",
+    "CANCEL_SCANQR": "Hủy bỏ quét mã QR",
+    "VERIFICATION": "Mã xác thực (đã gửi qua email)"
+  },
+  "FORGOT": {
+    "PAGE_TITLE": "Quên mật khẩu?",
+    "PAGE_DESCRIPTION": "Đặt lại mật khẩu của quý khách",
+    "UI_EMAIL": "Email",
+    "SUBMIT": "Đặt lại mật khẩu",
+    "BT_BACK_LOGIN": "Quay lại trang đăng nhập",
+    "AL_EMAIL": "Email không để trống!"
+  },
+  "RESET_PASS": {
+    "PAGE_TITLE": "Đặt lại mật khẩu",
+    "PAGE_DESCRIPTION": "Đặt lại mật khẩu của quý khách",
+    "LB_MATKHAUMOI": "Mật khẩu mới",
+    "LB_NHAPLAIMATKHAU": "Nhập lại mật khẩu mới",
+    "AL_PASS_REQUIRED": "Mật khẩu mới không để trống!",
+    "AL_PASS_LENGTH": "Mật khẩu mới phải có ít nhất 5 ký tự!",
+    "AL_NHAPLAIMATKHAU": "Hai mật khẩu mới không trùng nhau!",
+    "EMAIL_SENT": "Chúng tôi đã gửi email tới hòm thư quý khách. Vui lòng kiểm tra thư và làm theo hướng dẫn!",
+    "RESET_PASSWORD_SUCCESS": "Bạn đã thay đổi mật khẩu thành công. Vui lòng quay lại trang đăng nhập để xác thực tài khoản"
+  },
+  "VALIDATE_EMAIL": {
+    "PAGE_TITLE": "Xác thực địa chỉ email",
+    "ASK_FOR_VALIDATION": "Địa chỉ email của tài khoản chưa được xác thực. Quý khách cần xác thực địa chỉ email để bảo vệ tài khoản của quý khách.",
+    "VALIDATE_SUCCESS": "Bạn đã xác thực địa chỉ email thành công",
+    "VALIDATE_UNSUCCESS": "Xác thực địa chỉ email không thành công",
+    "GOTO_HOMEPAGE": "Đến ứng dụng hearme Zeus"
+  },
+  "REGISTER": {
+    "PAGE_TITLE": "Đăng ký",
+    "PAGE_DESCRIPTION": "Đăng ký tài khoản mới",
+    "SUBMIT": "Tạo tài khoản",
+    "AL_PASS": "Mật khẩu không để trống!"
+  },
+  "COLLECTION_PAGE": {
+    "COLLECTION": "Bộ sưu tập",
+    "SELECT_IMAGE": "Chọn ảnh",
+    "SI_COLLECTION": "Chọn bộ sưu tập",
+    "EMPTY": "Không có ảnh nào trong bộ sưu tập"
+  },
+  "SURVEY_PAGE": {
+    "SURVEY_FORM_FIELDS": "Nội dung thông tin khảo sát",
+    "SURVEY_ID": "Mã khảo sát",
+    "SURVEY_NAME": "Tên khảo sát",
+    "SURVEY_QUESTION": "Câu hỏi",
+    "SURVEY_TAGS": "Tags",
+    "SURVEY_TYPE": "Loại khảo sát",
+    "TYPES": {
+      "0":  "CSAT",
+      "1":  "NPS",
+      "2":  "CES",
+      "10": "FLX",
+      "3":  "Tiêu chí",
+      "4":  "Chọn nhiều",
+      "5":  "Chọn một",
+      "6":  "5 sao",
+      "7":  "Câu hỏi mở",
+      "9":  "Liên hệ",
+      "12": "Ảnh/file",
+      "13": "Thông tin",
+      "8":  "Tổng hợp",
+      "11": "Biểu mẫu"
+    },
+    "SURVEY_FORM": "Biểu mẫu",
+    "SURVEY_PREVIEW": "Xem trước",
+    "SURVEY_FACTOR_CONFIGURE": "Tiêu chí khảo sát",
+    "SURVEY_CHILD_CONFIGURE": "Khảo sát thành phần",
+    "SCALE": "Số mức đánh giá",
+    "OTHER_OPTIONS": "Tùy chọn khác",
+    "SEND_NOTIFICATION": "Gửi tin nhắn cảnh báo",
+    "INVERTED_ORDER": "Thứ tự đánh giá giảm",
+    "CHILD_SURVEY": "Khảo sát thành phần",
+    "SWITCH_CONDITION": "Điều kiện rẽ nhánh",
+    "RULE_GOOD_FEEDBACK": "Đánh giá tốt",
+    "RULE_BAD_FEEDBACK": "Đánh giá xấu",
+    "CONTACT_FIELDS": "Các trường thông tin",
+    "SELECTED_LEVEL": "Đánh giá đã chọn",
+    "SURVEY_FACTOR": "Tiêu chí khảo sát",
+    "FACTOR_NAME": "Tên tiêu chí",
+    "SURVEY_INFO": "Nội dung thông tin",
+    "PORTRAIT": "Màn hình dọc",
+    "LANDSCAPE": "Màn hình ngang",
+    "RULE_DESCRIPTION_BAD_GOOD": "Đánh giá tốt, xấu",
+    "RULE_DESCRIPTION_FLX": "Mức đánh giá",
+    "RULE_DESCRIPTION_EXCLUSIVE_SELECTION": "Tiêu chí đã chọn",
+    "DISABLE_COLLECTION": "Loại bỏ bộ sưu tập",
+    "DISABLE_THEME": "Loại bỏ theme",
+    "QUESTION_INPUT": "Nhập câu hỏi",
+    "FACTOR_LANGUAGE": "Ngôn ngữ khảo sát",
+    "INFO_SURVEY_ADDTAGS": "Chèn tags thông tin",
+    "ACTIONS_DELETE": "Xóa khảo sát đơn",
+    "ACTIONS_DELETE_RECURSIVE": "Xóa cây khảo sát",
+    "ACTIONS_EXPORT": "Xuất thông tin",
+    "ACTIONS_IMPORT": "Nhập khảo sát",
+    "CHOOSE_TEMPLATE": "Chọn khảo sát mẫu",
+    "UPDATE_STATUS_ACTIVE": "Kích hoạt cây khảo sát",
+    "UPDATE_STATUS_CLOSE": "Khóa cây khảo sát"
+  },
+  "KIOSKINVITE": {
+    "UI_CUSTOMER_ID": "Mã khách hàng",
+    "UI_CUSTOMER_NAME": "Tên khách hàng",
+    "UI_KIOSKS": "Kiosks phản hồi",
+    "UI_KIOSK": "Kiosk",
+    "UI_DATE_SENDING": "Ngày gửi",
+    "UI_INVITE": "Mời đánh giá",
+    "UI_RESET_FEEDBACK": "Huỷ lời mời",
+    "UI_RESET_FORM": "Xoá form",
+    "HISTORY": "Lịch sử mời đánh giá",
+    "STATUS_SENT": "Đã gửi",
+    "STATUS_CANCELED": "Huỷ"
+  },
+  "CSMANAGEMENT": {
+    "UI_CUSTOMER_LIST": "Danh sách khách hàng",
+    "UI_CUSTOMER_NAME": "Tên khách hàng",
+    "UI_CUSTOMER_EMAIL": "Email",
+    "UI_CUSTOMER_PHONE": "Số điện thoại",
+    "UI_INVITE": "Mời đánh giá",
+    "FEEDBACK_AT_DEVICE": "Tại thiết bị: ",
+
+    "CUSTOMER_BIRTHDAY": "Ngày sinh (Tháng/Ngày/Năm)",
+    "CUSTOMER_URL": "Website",
+    "CUSTOMER_COMPANY": "Công ty",
+    "CUSTOMER_EXT_ID": "Mã khách hàng",
+    "CUSTOMER_ADDRESS": "Địa chỉ",
+    "CUSTOMER_DESCRIPTION": "Mô tả",
+
+    "CUSTOMER_CREATE": "Thêm khách hàng",
+    "CUSTOMER_UPDATE": "Thông tin khách hàng"
+  },
+  "DASHBOARD": {
+    "HELLO": "Xin chào",
+    "CONTENT": "Thống kê hiệu suất gần đây nhất trong khảo sát của bạn",
+    "SEARCH_WEEK": "Tuần",
+    "SEARCH_MONTH": "Tháng",
+    "SEARCH_YEAR": "Năm",
+    "MAIN_CHART_TITLE": "Số lượng đánh giá theo gần nhất, theo thời gian",
+    "MAIN_CHART_TOTAL_FB": "Tổng số đánh giá",
+    "MAIN_CHART_POSITIVE_FB": "Số đánh giá tốt",
+    "MAIN_CHART_NEGATIVE_FB": "Số đánh giá kém",
+    "GENERATE_CHART_TITLE": "Thống kê chung",
+    "GENERATE_CHART_VALID": "Số đánh giá hợp lệ",
+    "GENERATE_CHART_NEW": "Số đánh giá mới",
+    "GENERATE_CHART_PROCESSING": "Số lượng đánh giá đang xử lý",
+    "GENERATE_CHART_PROCESSED": "Số đánh giá đã xử lý",
+    "GENERATE_CHART_UNFINISHED": "Số đánh giá chưa hoàn thành",
+    "GENERATE_CHART_INVALID": "Số đánh giá không hợp lệ",
+    "EMAIL_CHART_TITLE": "Số lượng email mời đánh giá đã gửi",
+    "CUSTOMER_CHART_TITLE": "Số lượng khách hàng",
+    "EMAIL_CHART_FB": "Email",
+    "CUSTOMER_CHART_FB": "Khách hàng",
+    "DEVICE_CHART_TITLE": "Số lượng thiết bị",
+    "SURVEY_CHART_TITLE": "Số lượng khảo sát",
+    "FEEDBACKS_BY_SURVEY_CHART_TITLE": "Số lượng đánh giá theo khảo sát",
+    "FEEDBACKS_BY_GORUP_CHART_TITLE": "Số lượng đánh giá theo nhóm thiết bị",
+    "FEEDBACKS_BY_DEVICE_CHART_TITLE": "Số lượng đánh giá theo thiết bị"
+  },
+  "REPORT": {
+    "DESCRIPTION": "Phân tích kết quả khảo sát qua hệ thống biểu đồ",
+    "ROOT_SURVEY": "Khảo sát chính",
+    "CHILD_SURVEY":"Khảo sát thành phần",
+    "SEARCH_ADV":"Tìm kiếm nâng cao",
+    "SEARCH_TIME": "Thời gian",
+    "SEARCH_DEVICE": "Nhóm thiết bị / thiết bị",
+    "SEARCH_STATE": "Trạng thái khảo sát",
+
+    "CB_BY_DAY": "Theo ngày",
+    "CB_BY_MONTH": "Theo tháng",
+    "CB_CUSTOM": "Tùy chọn",
+    "LB_DAY": "ngày",
+    "LB_MONTH": "tháng",
+
+    "BTN_SEARCH": "Tìm kiếm",
+    "FBCOUNT_BY_TIME": "Số lượng đánh giá theo thời gian",
+    "SCORE_BY_TIME": "Chỉ số hài lòng theo thời gian",
+    "SATISFACTION_SCORE": "Chỉ số hài lòng",
+    "RATING_DETAILS": "Chi tiết đánh giá",
+    "RATING_PROPORTIONS": "Tỷ lệ các mức đánh giá",
+    "FACTOR_SCORE": "Điểm tiêu chí",
+    "FEEDBACK_COUNT": "Tổng số đánh giá",
+    "LEVEL": "Mức",
+
+    "FACTOR_LIST": "Danh sách tiêu chí"
+  },
+  "FEEDBACK": {
+    "LIST": "Danh sách phản hồi",
+    "STATUS_VALID": "Hợp lệ",
+    "STATUS": {
+      "0": "Mới tạo",
+      "1": "Đang xử lý",
+      "2": "Đã xử lý",
+      "3": "Không hợp lệ",
+      "4": "Chưa hoàn thành"
+    },
+    "FEEDBACK_LIST_DESCRIPTION": "Chức năng này giúp quản lý danh sách các đánh giá và chi tiết nội dung của từng đánh giá mà khách hàng đã gửi",
+    "CONTENT": "Nội dung phản hồi",
+    "NOTES": "Ghi chú",
+    "SEND_EMAIL": "Gửi email",
+    "EXPORT": "Xuất dữ liệu",
+    "SURVEY_RESPONSE": "Nội dung phản hồi",
+    "GENERAL_INFORMATION": "Thông tin chung",
+    "DETAILS": "Chi tiết phản hồi",
+    "ACTIONS": "Hành động",
+    "FEEDBACK_STATUS": "Trạng thái phản hồi"
+  },
+  "CORRELATION_ANALYSIS": {
+    "DESCRIPTION": "Chức năng phân tích tương quan sẽ giúp bạn biết mối quan hệ giữa chỉ số hài lòng với các tiêu chí và mức độ ảnh hưởng của chúng đến chỉ số hài lòng. Bạn sẽ nhận biết được đâu là yếu tố quan trọng và không quan trọng",
+    "STEP_1": "Bước 1/3: Chọn khảo sát chính",
+    "STEP_2": "Bước 2/3: Chọn chỉ số hài lòng",
+    "STEP_3": "Bước 3/3: Chọn khảo sát tiêu chí",
+    "TIME": "Chọn thời gian",
+    "ANALYSIS": "Phân tích dữ liệu"
+  },
+  "ONBOARDING_PAGE": {
+    "HEADER": "Các bước thiết lập và cấu hình hệ thống",
+    "HEAD_CONTENT1": "Để trải nghiệm nhanh chóng và dễ dàng cho khách hàng mới,",
+    "HEAD_CONTENT2": "Bạn có thể thiết lập cấu hình theo các bước phía dưới đây.",
+
+    "CFG_SYSTEM": "Cấu hình hệ thống",
+    "CFG_ORG": "Thiết lập và lựa chọn tổ chức",
+    "CFG_DEVICE_LANG": "Cấu hình ngôn ngữ trên kênh khảo sát",
+    "CFG_MEDIA_COLLECTION": "Tạo và cập nhật bộ ảnh thương hiệu: Logo, banner màn hình khảo sát",
+    "CFG_SYSTEM_CONFIG": "Cấu hình chung hệ thống: Trang cảm ơn, thời gian chờ phản hồi, màu thương hiệu...",
+    "CFG_SURVEY": "Thiết lập với trang cấu hình câu hỏi khảo sát",
+    "CFG_TERMINAL_GROUP": "Thiết lập nhóm thiết bị",
+    "CFG_TERMINAL": "Thiết lập thiết bị logic - để nhận phản hồi của khách hàng",
+    "CFG_THANKWORDS": "Lời cảm ơn, xin lỗi",
+
+    "CFG_APP": "Cài đặt ứng dụng",
+    "CFG_APP_MNG": "Cài đặt ứng dụng quản trị",
+    "CFG_APP_SURVEY": "Cài đặt ứng dụng khảo sát",
+
+    "SURVEY_DISTRIBUTION": "Phân phối khảo sát trên đa kênh",
+    "RUN_ON_KIOSK": "Lấy mã thiết bị kênh Kiosk, chạy khảo sát trên kênh Kiosk",
+    "RUN_ON_WEB_CHANNEL": "Lấy địa chỉ URL, QR code kênh Web, chạy khảo sát trên kênh Web, QR code, Mobile application",
+    "RUN_ON_EMAIL_CHANNEL": "Lấy địa chỉ khảo sát kênh email, chạy khảo sát trên kênh Email",
+    
+    "FOLLOW_UP_REPORTS": "Theo dõi báo cáo",
+    "SYSTEM_INTEGRATION": "Tích hợp hệ thống"
+  },
+  "REPORT_PLUGIN_PAGE": {
+    "SELECT_GUIDE": "Chọn báo cáo mở rộng trong danh sách ở trên",
+    "REPORT_LIST": "Báo cáo",
+    "PRESENTATION_MODE": "Chế độ trình diễn tràn màn hình"
+  },
+  "NOTIFY_PAGE": {
+    "TYPE": "Loại",
+    "TITLE": "Tiêu đề",
+    "BAD_FB": "Xem chi tiết tại đây"
+  },
+  "GROUP_PAGE": {
+    "PAGE_NAME": "Nhóm thiết bị",
+    "GROUP_NAME": "Tên nhóm thiết bị",
+    "DESCRIPTION": "Mô tả",
+    "SELECT_SURVEY": "Chọn khảo sát",
+    "DEVICE_LIST": "Danh sách thiết bị",
+
+    "LB_QUANLYTHIETBI": "Danh sách thiết bị",
+    "LB_DEVICE_SIGNOUT": "Đăng xuất thiết bị",
+    "LB_DEVICE_CLOSE": "Đóng thiết bị",
+    "BT_SYNCHRONIZE_DATA": "Đồng bộ dữ liệu",
+
+    "AL_TENNHOMTHIETBI": "Tên nhóm thiết bị không để trống!"
+  },
+  "DEVICE_PAGE": {
+    "PAGE_NAME": "Thiết bị",
+    "ID": "Mã thiết bị",
+    "NAME": "Tên thiết bị",
+    "CONNECTION": "Kết nối",
+    "CHANNEL": "Kênh khảo sát",
+    "GROUP": "Nhóm",
+    "TARGET": "Đối tượng đánh giá",
+    "LB_NO_FEEDBACK_OBJECT": "Không chọn đối tượng đánh giá",
+    "SECRET": "Mã bảo mật thiết bị",
+    "LB_SURVEY_SERVER": "Địa chỉ khảo sát",
+
+    "CB_DEVICE_TYPE": "Kênh khảo sát",
+    "CB_DEVICE_TYPE_KIOSK": "Kiosk",
+    "CB_DEVICE_TYPE_WEB": "Web",
+    "CB_DEVICE_TYPE_EMAIL": "Email",
+    "TB_SYSTEM_LOCKED": "Hệ thống khóa",
+
+    "LB_CONNECTION": "Đã kết nối",
+    "LB_DISCONNECTION": "Không kết nối",
+    "LB_WAITFORSYNC": "Chờ đồng bộ",
+    "TB_RESETMATKHAUTHIETBI": "Lấy lại mã bí mật thiết bị",
+
+    "AL_TENTHIETBI": "Tên thiết bị không để trống!",
+    "LOGIN_DATE": "Ngày đăng nhập",
+    "LINKED_DATE": "Ngày kết nối"
+  },
+  "COLLECTION": {
+    "PAGE_NAME": "Bộ sưu tập",
+    "ID": "Mã bộ sưu tập",
+    "NAME": "Tên bộ sưu tập",
+
+    "AL_TENBOSUUTAP": "Tên bộ sưu tập không để trống!"
+  },
+  "IMAGE_PAGE": {
+    "PAGE_NAME": "Ảnh",
+    "NAME": "Tên ảnh",
+    "TITLE": "Quản lý ảnh",
+
+    "AL_IMAGE_BLANK": "Bạn chưa chọn hình ảnh",
+    "DRAG_HINT": "Kéo và thả ảnh của bạn ở đây"
+  },
+  "THEME_PAGE": {
+    "TYPES": {
+      "THEME_BASIC": "Kiosk - Cơ bản",
+      "THEME_ECOMMERCE": "Thương mại điện tử",
+      "THEME_PUBLIC": "Đánh giá đối tượng"
+    },
+    "PAGE_NAME": "Theme",
+    "NAME": "Tên theme",
+    "TYPE": "Loại theme",
+    "BT_THEME_CONFIGURE": "Cấu hình theme",
+    "LB_THEME_TYPE": "Loại theme",
+    "LB_THEME_MENU_CHANGE_BANNER": "Đặt ảnh tiêu đề",
+    "LB_THEME_MENU_DEL_BANNER": "Xóa ảnh tiêu đề",
+    "LB_THEME_MENU_CHANGE_BG": "Đặt ảnh nền",
+    "LB_THEME_MENU_DEL_BG": "Xóa ảnh nền",
+
+    "AL_THEME_NAME_EMPTY": "Tên theme không để trống!"
+  },
+  "TARGET_PAGE": {
+    "PAGE_NAME": "Đối tượng đánh giá",
+    "NAME": "Tên đối tượng",
+    "DIVISION": "Bộ phận",
+    "FACE": "Hình ảnh",
+
+    "AL_TARGET_NAME_EMPTY": "Tên đối tượng không để trống!"
+  },
+  "CONFIGURES": {
+    "CONTACT_NAME": "Tên",
+    "CONTACT_PHONE": "Số điện thoại",
+    "CONTACT_EMAIL": "Email",
+    "CONTACT_ADDRESS": "Địa chỉ",
+    "CONTACT_ROOMNUMBER": "Số phòng"
+  },
+  "APP_CONFIG_PAGE": {
+    "DEFAULT_LANG": "Ngôn ngữ mặc định"
+  },
+  "MODULE_PAGE": {
+    "LB_MODULE_FEEDBACK": "Tính năng phản hồi",
+    "LB_MODULE_COLLECTION": "Tính năng bộ sưu tập",
+    "LB_COLLECTION_PARAM": "Mã bộ sưu tập hoặc youtube url",
+    "CB_ACTIVE_COLLECTION": "Hiển thị bộ sưu tập"
+  },
+  "DEFAULT_LANGUAGE_PAGE": {
+    "NAME": "Ngôn ngữ",
+    "DEFAULT": "Mặc định",
+    "AL_LOCK_DEFAULT_LANGUAGE": "Bạn không thể khoá ngôn ngữ mặc định."
+  },
+  "CONFIG_PAGE": {
+    "THANKS_PAGE": "Trang cảm ơn",
+    "DEVICE_HEADER_IMAGE": "Hình ảnh tiêu đề thiết bị",
+    "DEVICE_BACKGROUND_IMAGE": "Ảnh nền",
+    "DISPLAY_THANK_PAGE": "Hiển thị trang cảm ơn",
+    "STYLE": "Dạng hiển thị",
+    "THANKPAGE_DELAY": "Thời gian dừng",
+    "THANKPAGE_DELAY_TIMEUNIT": "giây, < 3600",
+    "DEVICE": "Thiết bị",
+    "OTHER": "Cấu hình khác",
+    "FEEDBACK_TIMEOVER": "Thời gian chờ phản hồi",
+    "AUTO_RUN_COLLECTION": "Tự động chạy bộ sưu tập",
+    "INCLUDE_CONTACT_FIELDS": "Có trường liên hệ (Tên và số điện thoại)",
+    "REQUIRED_CONTACT_FIELDS": "Bắt buộc nhập trường liên hệ",
+    "DEVICE_INTROPAGE_OFF": "Tắt màn hình giới thiệu kênh online",
+    "DEVICE_MAIN_COLOR": "Màu chủ đạo",
+    "FEEDBACK_PLUGINS_URL": "URL:",
+    "SEND_NOTIFICATION_FOR_RATING_TABLE": "Gửi tin nhắn cảnh báo cho khảo sát 5 sao",
+    "LB_HOOK_URL": "Hook",
+    "HOOK_URL": "URL",
+    "HOOK_TOKEN": "Token",
+    "HOOK_LOAD_FREQUENCY": "Cấu hình hook sẽ được kích hoạt 3 phút 1 lần"
+  },
+  "CHANGEPASSWD_PAGE": {
+    "LB_MATKHAUCU": "Mật khẩu cũ",
+    "LB_MATKHAUMOI": "Mật khẩu mới",
+    "LB_NHAPLAIMATKHAU": "Nhập lại mật khẩu mới",
+    "BT_PASSWD": "Đổi mật khẩu",
+
+    "AL_MATKHAUMOI": "Mật khẩu mới không để trống!",
+    "AL_MATKHAUMOI5": "Mật khẩu mới ít nhất 5 ký tự!",
+    "AL_NHAPLAIMATKHAU": "Nhập lại mật khẩu không giống mật khẩu mới!",
+    "AL_CHANGE_PASSWORD_SUCCESS": "Đổi mật khẩu đã hoàn tất",
+    "AL_CHANGE_PASSWORD_NODATA": "Không có dữ liệu để đổi mật khẩu",
+    "AL_CHANGE_PASSWORD_INCORRECT": "Mật khẩu mới của bạn không hợp lệ. Thao tác bị từ chối",
+    "AL_CHANGE_PASSWORD_UNAUTHORIZED": "Người dùng hoặc mật khẩu hiện tại không hợp lệ. Thao tác bị từ chối"
+  },
+  "LOGIN_BARCODE_PAGE": {
+    "BARCODEHINT": "Quét mã barcode này bằng ứng dụng hearme trên điện thoại để đăng nhập hệ thống"
+  },
+  "CSAT": {
+    "1": "Rất không hài lòng",
+    "2": "Không hài lòng",
+    "3": "Bình thường",
+    "4": "Hài lòng",
+    "5": "Rất hài lòng"
+  },
+  "CES": {
+    "1": "Rất khó",
+    "2": "Khó",
+    "3": "Hơi khó",
+    "4": "Bình thường",
+    "5": "Hơi dễ",
+    "6": "Dễ",
+    "7": "Rất dễ"
+  },
+  "5STARS": {
+    "1": "1 sao",
+    "2": "2 sao",
+    "3": "3 sao",
+    "4": "4 sao",
+    "5": "5 sao"
+  },
+  "ORGANIZATION_PAGE": {
+    "PAGE_NAME": "Tổ chức",
+    "CHANGE_ORG": "Chuyển sang tổ chức đã chọn",
+    "NAME": "Tên tổ chức",
+    "ADDRESS": "Địa chỉ",
+    "PHONE_NUMBER": "Điện thoại",
+    "WEBSITE": "Website",
+    "CONTACT": "Liên hệ",
+    "BUSINESS_FIELD": "Lĩnh vực chính",
+    "ROLE_GROUP": "Nhóm quyền",
+    "CLASSIFY": "Phân loại",
+    "PERSONAL": "Cá nhân",
+    "ENTERPRISE": "Doanh nghiệp"
+  },
+  "ROLE_PAGE": {
+    "PAGE_NAME": "Nhóm quyền",
+    "ten_nhom_quyen": "Tên nhóm quyền",
+    "ma_quyen": "Mã quyền",
+    "quyen": "Quyền",
+    "resource_type": "Loại tài nguyên",
+    "nhom_quyen": "Nhóm quyền",
+    "xoa_nhom_quyen": "Bạn có muốn xóa nhóm quyền này?",
+    "chon_nhom_quyen": "Chọn nhóm quyền",
+    "chua_chon_user": "Chưa chọn người dùng",
+    "xoa_nguoi_dung": "Bạn có muốn xóa người dùng này?",
+    "tat_ca_khao_sat": "Tất cả các khảo sát",
+    "SYSTEM_STATUS": "Trạng thái hệ thống",
+    "JOINED_DATE": "Ngày tham gia"
+  },
+  "ROLE_ASSIGN_PAGE": {
+    "PAGE_NAME": "Quyền",
+    "tat_ca_nhom_quyen": "Tất cả nhóm quyền",
+    "TXT_NAME": "Người dùng",
+    "F_USERNAME": "Tên truy cập"
+  },
+  "PROFILE_PAGE": {
+    "TB_USERNAME": "Tên truy cập",
+    "TB_INDUSTRY": "Ngành nghề",
+    "TB_FIRSTNAME": "Họ",
+    "TB_LASTNAME": "Tên",
+    "TB_PHONE": "Số điện thoại",
+    "TB_BIRTHDAY": "Ngày sinh",
+    "TB_EMAIL": "Email",
+    "PACKS_NAME": "Gói dịch vụ",
+    "CB_STATUS_NEW": "Tài khoản mới",
+    "CB_STATUS_ACTIVE": "Kích hoạt",
+    "CB_STATUS_TEMPORARYLOCKED": "Temporary locked",
+    "CB_STATUS_LOCKED": "Khóa",
+
+    "AL_TENTRUYCAP": "Tên truy cập không để trống!",
+    "AL_INDUSTRY": "Ngành nghề không để trống!",
+    "AL_HO": "Họ không để trống!",
+    "AL_TEN": "Tên không để trống!",
+    "AL_NAME": "Định danh không để trống!",
+    "AL_EMAIL": "Email không để trống!",
+    "VALIDATE_EMAIL": "Xác thực email"
+  },
+  "QUOTATION_PAGE": {
+    "QUOTA_USERS": "Số người dùng",
+    "QUOTA_DEVICES": "Số thiết bị",
+    "DATE_START": "Ngày bắt đầu",
+    "DATE_END": "Ngày kết thúc"
+  },
+  "POS_NHANH_VN": {
+    "TARGET_SYSTEM": "Hệ thống bán hàng nhanh.vn",
+    "HOOK_URL": "HOOK URL:",
+    "CUS_ID_KEY": "Key mã khách hàng",
+    "CUS_NAME_KEY": "Key tên khách hàng",
+    "POS_KEY": "Key trạm POS",
+    "POS_ID": "Mã trạm POS",
+    "DEVICE_ID": "Mã thiết bị hearme",
+    "BTN_ADD": "+ Thêm",
+    "BTN_DELETE_TOKEN": "Xóa token",
+    "BTN_CREATE_TOKEN": "Lấy mã token",
+    "TOKEN_ID": "Token id",
+    "TOKEN": "Token",
+    "LIST_DATA": "Danh sách mã thiết bị",
+    "NOTES": "Lưu lại token để phục vụ tích hợp với các hệ thống khác nhau",
+    "DELETE_TOKEN_CONFIRM": "Bạn có chắc chắn muốn xóa token này không",
+    "CLICK_2_COPY": "Ấn vào đây để sao chép token",
+    "AL_POS_ID_NOT_BLANK": "Mã trạm POS không để trống!",
+    "AL_DEVICE_ID_NOT_BLANK": "Mã thiết bị hearme không để trống!"
+  },
+  "THANKS_PAGE": {
+    "TYPES": {
+      "0": "Lời cảm ơn",
+      "1": "Lời xin lỗi",
+      "3": "Mời phản hồi",
+      "4": "Khảo sát hết hạn"
+    },
+    "FIELD_CONTENT": "Nội dung",
+    "FIELD_AUTHOR": "Tác giả",
+    "FIELD_TYPE": "Phân loại"
+  },
+  "PLUGINS_PAGE": {
+    "PLUGINS_URL": "URL",
+    "FEEDBACK_PLUGINS": "Plugins phản hồi",
+    "REPORT_PLUGINS": "Báo cáo mở rộng"
+  }
+
+}

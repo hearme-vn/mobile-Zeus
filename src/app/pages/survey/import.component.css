@@ -1,0 +1,113 @@
+.form-header {
+  text-align: center;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 32px;    
+}
+
+.badge-step {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 25px;
+  top: 216px;
+
+  border: 1px solid;
+  border-radius: 100px;
+  width: 36px;
+  height: 36px;
+  margin: 0 16px;
+}
+
+.step-active {
+  color: white;   
+  background: #321FDB;
+  border-color:#321FDB;
+}
+
+.step-inactive {
+  color: #8A93A2;
+}
+
+.separator {
+  display: inline-block;
+  width: 40px;
+  border: solid #E1E6EB 1px;
+  width: 36px;
+  height: 2px;
+  margin-left: 16px;
+  background-color: #E1E6EB;
+}
+
+.config_step {
+  display: inline;
+  cursor: pointer;
+}
+
+/* .options {
+  display: inline-block;
+  margin: 0px 10px;
+}
+
+.options label {
+  margin-bottom: -0.5rem;
+} */
+
+.switch-primary .switch-input:checked + .switch-slider {
+  background-color: #321FDB;
+  border-color: #321FDB;    
+}
+
+/* .survey-section {
+  margin: 10px 0px;
+} */
+
+.section_name {
+  color: #321FDB;
+  font-weight: 600;
+}
+
+.switch-rule {
+  margin: 0 20px;
+}
+
+.survey-simulation {
+  text-align: center;
+}
+
+.survey-simulation iframe{
+  border: 2px solid #E1E6EB;
+}
+
+.landscape iframe {
+  width: 600px;
+  height: 400px;
+}
+
+.portrait iframe {
+  width: 320px;
+  height: 568px;
+}
+  
+.col-xs {
+width: 2%;
+}
+
+.device_orientation {
+  display: block;
+}
+
+.tooltip_container {
+  white-space: pre-wrap;
+  text-align: left;
+}
+
+.template-tooltip-class .tooltip-inner {
+  max-width: 500px !important;
+  padding: 0.25rem 0.5rem;
+  color: #fff;
+  text-align: center;
+  background-color: #321FDB !important;
+  border-radius: 0.25rem;
+}

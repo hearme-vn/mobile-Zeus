@@ -1,0 +1,13 @@
+.module-block {
+  height: 300px;
+  margin-bottom: 0px;
+}
+.module-block .card-title {
+  font-weight: normal;
+  border-bottom: 2px solid #6164C1;
+  padding-bottom: .75rem;
+  margin-bottom: 1rem;
+}
+.module-block .card-title.progress-bar-warning {
+  border-bottom: 2px solid #F2B776;
+}

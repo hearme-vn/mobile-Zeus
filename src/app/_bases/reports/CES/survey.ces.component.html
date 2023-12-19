@@ -1,0 +1,64 @@
+<div class="row">
+  <!-- Chart for Number of feedbacks -->
+  <div class="col-md-6" *ngIf="report_data">
+    <hm-numberchart
+      [data]="report_data.total_feedbacks"
+      [label]="'REPORT.FEEDBACK_COUNT' | translate"
+      [options]="numberChartOptions">
+    </hm-numberchart>
+  </div>
+
+  <!-- Chart type -->
+  <div class="col-md-6" *ngIf="report_data">
+    <hm-numberchart
+      label="{{ 'SURVEY_PAGE.SURVEY_TYPE' | translate }}: {{'SURVEY_PAGE.TYPES.' + report_survey.type | translate }}"
+      [options]="numberChartOptions">
+    </hm-numberchart>
+  </div>
+
+  <!-- Gauge chart for Satisfaction index -->
+  <div class="col-md-6">
+    <hm-googlecharts *ngIf="report_data && report_data.total_feedbacks"
+      [data]="[['CES', report_data.score]]"
+      [options]="cesGaugeChartOptions"
+      [hm_options]="hmoptions_satisfaction_score">
+    </hm-googlecharts>
+
+    <hm-googlecharts  *ngIf="!report_data || !report_data.total_feedbacks"
+      [options]="cesGaugeChartOptions"
+      [hm_options]="hmoptions_satisfaction_score">
+    </hm-googlecharts>
+  </div>
+
+  <!-- Pie chart for scale rating proportions -->
+  <div class="col-md-6" *ngIf="rating_data">
+    <hm-piechart 
+      [data]="rating_data.data"
+      [cutoff]="false"
+      [labels]="rating_data.labels"
+      [hm_options]="hmoptions_rating_proportions">
+    </hm-piechart>
+  </div>
+
+  <!-- Chart counting feedback by time line -->
+  <div class="col-md-6">
+    <hm-linechart 
+      [data]="count_by_time_datasets"
+      [labels]="time_labels"
+      [options]="lineChartOptions"
+      [hm_options]="hmoptions_feedbackcount_bytime">
+    </hm-linechart>
+  </div>
+
+  <!-- Chart for satisfaction score by time line -->
+  <div class="col-md-6">
+    <hm-linechart 
+      [data]="score_by_time_datasets"
+      [labels]="time_labels"
+      [options]="lineChartOptions"
+      [hm_options]="hmoptions_score_bytime">
+    </hm-linechart>
+  </div>  
+
+</div>
+

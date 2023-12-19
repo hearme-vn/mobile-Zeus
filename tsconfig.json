@@ -1,0 +1,37 @@
+/**
+* Config this json for editor get pre-config values
+*/ 
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "importHelpers": true,
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@env/*": ["src/environments/*"],
+      // "@coreui/angular": [ "libs/@coreui/angular/coreui-angular" ],    // built library
+      "@coreui/angular": [ "libs/@coreui-angular/src/public-api" ],       // Source code library
+      "@ngx-treeview": [ "libs/ngx-treeview/src/public-api" ],
+      "@ng-select/src":  [ "libs/ng-select/src" ],
+      "@ng-select/ng-select":  [ "libs/ng-select/src/ng-select/public-api" ],
+      "@ng-select/ng-option-highlight":  [ "libs/ng-select/src/ng-option-highlight/public-api" ],
+      "ngx-gauge":  [ "libs/ngx-gauge/projects/ngx-gauge/src/public_api" ],
+      "angular-google-charts": [ "libs/angular-google-charts/src/index.ts" ]
+    }    
+  }
+}

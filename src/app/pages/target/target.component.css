@@ -1,0 +1,23 @@
+.tb-object-feedback {
+  height: 50px;
+}
+.modal-body img {
+  max-height: 120px;
+  max-width: 100%;
+  cursor: pointer;
+}
+#FaceImages div {
+  padding: 5px;
+  text-align: center;
+}
+#FaceImages .item {
+  position: relative;
+  display: block;
+}
+.modal-body #FaceImages img {
+   max-height: 50vh;
+ }
+.img-thumbnail-list {
+  width: 100%;
+  height: 100%;
+}

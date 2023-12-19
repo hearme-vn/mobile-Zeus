@@ -1,0 +1,124 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-12 col-md-3">
+      <button type="button" class="btn btn-sm btn-secondary ml-0" [routerLink]="'/collection/list'">
+        <i class="fa fa-close"></i> {{ 'APP.BUTTON_BACK' | translate }}
+      </button>
+      <button class="btn btn-sm btn-primary" (click)="openDialogForCreating()">
+        <i class="fa fa-file-o"></i> {{ 'APP.FORM_CREATE' | translate }}
+      </button>
+    </div>
+    <div class="col-12 col-md-9 collection_id">
+      <span (click)="copyToClipboard(collection_id)">
+        <label class="xs-hide">{{'COLLECTION.ID' | translate}}:</label>
+        <em id="collection_id" class="text-suggestion cursor-pointer">{{collection_id}}</em>
+        &nbsp;<i class="cursor-pointer fa fa-files-o icon-dropdown"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body" *ngIf="!objects || !objects.length">
+          {{'COLLECTION_PAGE.EMPTY' | translate}}
+        </div>
+        <div class="row" #dropListContainer class="object-container" cdkDropListGroup *ngIf="objects && objects.length">
+          <div class="col-6 col-md-3 col-lg-2" *ngFor="let obj of objects; let i = index" cdkDropList [cdkDropListData]="i">
+            <div *ngIf="obj.fileName"
+              cdkDrag
+              [cdkDragData]="i"
+              (cdkDragEntered)="dragEntered($event)"
+              (cdkDragMoved)="dragMoved($event)"
+              (cdkDragDropped)="dragDropped($event)"
+              class="object-box" [ngClass]="{'disabled': obj.status==1}">
+              <div>
+                <img class="img-thumbnail-list" title="{{obj.content}}"
+                [src]="obj.fileName? app_service.Based_URLs.imgs + obj.fileName : ''"
+                (click)="openDialogForUpdating(obj)"/>
+              </div>
+              <em>{{ obj.content }}</em>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>
+
+<div bsModal #createObjectDialog="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document" *ngIf="object && object.data">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          {{(!object.data.id ? 'APP.DIALOG_CREATE' : 'APP.DIALOG_UPDATE') |translate}}
+          {{'IMAGE_PAGE.PAGE_NAME'|translate}}
+        </h4>
+        <button type="button" class="close" (click)="createObjectDialog.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="form-group col-md-12" *ngIf="object.data.id">
+            <div class="imageMap">
+              <img id="detectedImg" [src]="app_service.Based_URLs.imgs + object.data.fileName">
+            </div>
+          </div>
+          <div class="form-group col-md-12" *ngIf="object && object.data && object.data.id">
+            <label>{{'APP.UI_STATUS'|translate}}</label>
+            <div class="col-md-12 p-0">
+              <div class="form-check form-check-inline mr-1" id="inline-radios">
+                <input class="form-check-input" id="inlineRadio1" name="inline-radios" type="radio" [value]="0" [(ngModel)]="object.data.status">
+                <label class="form-check-label" for="inlineRadio1">{{'APP.UI_STATUS_ACTIVE'|translate}}</label>
+              </div>
+              <div class="form-check form-check-inline mr-1">
+                <input class="form-check-input" id="inlineRadio2" name="inline-radios" type="radio" [value]="1" [(ngModel)]="object.data.status">
+                <label class="form-check-label" for="inlineRadio2">{{'APP.UI_STATUS_INACTIVE'|translate}}</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-12">
+            <div class="row">
+              <label class="col-md-8 col-form-label">{{ 'APP.UI_TITLE' | translate }}:</label>
+              <div class="col-md-4">
+                <devicelanguage-select name="device_language" (change)="changeFactorLanguage($event)"></devicelanguage-select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-12">
+            <div class="form-group">
+              <div class="input-group survey_question">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="flag-icon flag-icon-{{ selected_lang?.flag }}" title="{{selected_lang?.flag}}"></i></span>
+                </div>
+                <input *ngIf="current_lang_code && object.data.title_text_links[current_lang_code]" type="text" class="form-control" [(ngModel)]="object.data.title_text_links[current_lang_code].value">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-12" *ngIf="!object || !object.data || !object.data.id">
+            <input type="file" id="postFile" name="postFile" (change)="setFile($event.target.files[0])" accept="image/*" style="display:none" />
+            <div *ngIf="!previewImage" class="col-12 rmpm dropzone" appDrag (files)="filesDropped($event)" (click)="chooseImage()">
+              <div class="text-wrapper">
+                <div class="centered">{{'IMAGE_PAGE.DRAG_HINT'|translate}}</div>
+              </div>
+            </div>
+            <div class="imageMap">
+              <img (click)="chooseImage()" *ngIf="previewImage" [src]="previewImage" class="pointer">
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="createObjectDialog.hide()"><i class="fa fa-close"></i> {{'APP.BUTTON_CLOSE'|translate}}</button>
+        <button *ngIf="!object || !object.data || !object.data.id" type="button" class="btn btn-primary btn-sm" (click)="createObject()"><i class="fa fa-edit"></i> {{'APP.BUTTON_CREATE'|translate}}</button>
+        <button *ngIf="object && object.data && object.data.id" type="button" class="btn btn-danger btn-sm" (click)="deleteObject(object.data.id)"><i class="fa fa-trash"></i> {{'APP.BUTTON_DELETE'|translate}}</button>
+        <button *ngIf="object && object.data && object.data.id" type="button" class="btn btn-primary btn-sm" (click)="updateObject()"><i class="fa fa-edit"></i> {{'APP.BUTTON_UPDATE'|translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+/* .tb-object-feedback {
+  height: 50px;
+} */
+.modal-body img {
+  /* max-height: 120px;
+  max-width: 100%; */
+  cursor: pointer;
+}
+/* .imageItem {
+  margin: 5px;  
+} */
+.item {
+  padding: 5px;
+  border: solid 1px #ccc;
+  text-align: center;
+}
+/* .modal-body #FaceImages img {
+   max-height: 50vh;
+ } */
+.img-thumbnail-list {
+  width: 100%;
+  height: 100%;
+}

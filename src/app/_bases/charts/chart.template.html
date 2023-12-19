@@ -1,0 +1,34 @@
+<div class="chart-wrapper" [style]="containerStyle">
+  <ng-container *ngIf="!hm_options" [ngTemplateOutlet]="chart_content"></ng-container>
+
+  <div class="card" *ngIf="hm_options" style="height: 100%; display: block;">
+    
+    <div class="card-header">
+      <h6 class="card-title mb-2">{{ hm_options.title_text }}</h6>
+      <div class="card-header-actions">
+        <!-- Action button here -->
+      </div>
+    </div>
+
+    <div class="card-body" style="height: 100%">
+      <ng-container [ngTemplateOutlet]="chart_content"></ng-container>
+    </div>
+  </div>
+</div>
+
+<ng-template #chart_content >
+  <ng-container  *ngIf="(!datasets || !datasets.length) && (!data || !data.length)">
+    {{'MSG.DATA_EMPTY' | translate}}
+  </ng-container>
+
+  <canvas baseChart class="chart" style="height: 100%; width: 100%;" *ngIf="(datasets && datasets.length) || (data && data.length)"
+    [data]="data"
+    [datasets]="datasets"
+    [labels]="chartLabels"
+    [chartType]="chartType"
+    [options]="chartOptions"
+    [plugins]="chartPlugins"
+    (chartHover)="chartHovered($event)"
+    (chartClick)="chartClicked($event)">
+  </canvas>
+</ng-template>

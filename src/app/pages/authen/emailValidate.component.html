@@ -1,0 +1,25 @@
+<div class="app-body">
+  <main class="main d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+              <div class="card-body">
+                <div class="alert alert-success" *ngIf="validate_success===true">
+                  <strong>{{ "APP.SUCCESS_CASE" | translate }}!</strong> 
+                  {{ "VALIDATE_EMAIL.VALIDATE_SUCCESS" | translate }}.
+                </div>
+
+                <div class="alert alert-danger" *ngIf="validate_success===false">
+                  <strong>{{ "APP.WARNING_CASE" | translate }}!</strong> 
+                  {{ "VALIDATE_EMAIL.VALIDATE_UNSUCCESS" | translate }}.
+                </div>
+
+                <button type="button" class="btn btn-primary px-4" (click)="goto_page('/')">
+                  {{ "VALIDATE_EMAIL.GOTO_HOMEPAGE" | translate }}
+                </button>
+              </div>
+            </div>
+      </div>
+    </div>
+  </main>
+</div>

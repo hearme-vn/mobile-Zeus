@@ -1,0 +1,106 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+<!-- 
+        <div class="card-header">
+          <strong>Sending patient information</strong>
+        </div>
+ -->        
+        <form [formGroup]="invitationForm" class="form-horizontal">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="patient_id" class="col-sm-3 control-label">{{ 'KIOSKINVITE.UI_CUSTOMER_ID' | translate }} <code>(*)</code></label>
+                  <div class="col-sm-9" >
+                    <input type="text" class="form-control" id="patient_id" formControlName="patient_id" required autofocus placeholder="">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="patient_name" class="col-sm-3 control-label">{{ 'KIOSKINVITE.UI_CUSTOMER_NAME' | translate }}</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="patient_name" formControlName="patient_name" placeholder="">
+                  </div>
+                </div>
+              </div>
+            </div><!--/.row-->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="device" class="col-sm-3 control-label">{{ 'KIOSKINVITE.UI_KIOSKS' | translate }} <code>(*)</code></label>
+                  <div class="col-sm-9">
+                    <select class="form-control" id="device" formControlName="device_index">
+                      <option value="-1" ng-reflect-value="-1">{{ 'APP.SELECT_DEVICE' | translate }}</option>
+                      <option *ngFor="let device of device_list; index as i" [value]="i" ng-reflect-value="1" >{{ device.name }}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div><!--/.row-->
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-sm btn-primary" (click)="sendInvitation()"><i class="fa fa-hand-o-left"></i> {{ 'KIOSKINVITE.UI_INVITE' | translate }} </button>
+            <button class="btn btn-sm btn-danger" (click)="reset_feedback()"><i class="fa fa-television"></i> {{ 'KIOSKINVITE.UI_RESET_FEEDBACK' | translate }} </button>
+            <button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> {{ 'KIOSKINVITE.UI_RESET_FORM' | translate }} </button>
+          </div>
+        </form>
+      </div>
+    </div><!--/.col-->
+  </div><!--/.row-->
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> {{ 'KIOSKINVITE.HISTORY' | translate }}
+        </div>
+        <div class="card-body sm-hide">
+          <table class="table table-bordered">
+            <ng-container [ngTemplateOutlet]="Invitation_history"></ng-container>
+          </table>            
+        </div>
+        <div class="d-none sm-block">
+          <table class="table table-sm">
+            <ng-container [ngTemplateOutlet]="Invitation_history"></ng-container>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>
+
+<ng-template #Invitation_history>
+  <thead>
+    <tr>
+      <th>{{ 'KIOSKINVITE.UI_CUSTOMER_NAME' | translate }}</th>
+      <th class="xs-hide">{{ 'KIOSKINVITE.UI_KIOSK' | translate }}</th>
+      <th>{{ 'KIOSKINVITE.UI_DATE_SENDING' | translate }}</th>
+      <th>{{ 'APP.UI_STATUS' | translate }}</th>
+      <th>#</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let inv of invitation_list" [ngClass]="{'row_canceled': inv.status==APPCONSTS.INVITATION_STATUS_CANCELED}">
+      <td>
+        {{ inv.customer.name }}
+        <span class="d-none xs-block"> <br/> {{ inv.device.name }}</span>
+      </td>
+      <td class="xs-hide">{{ inv.device.name }}</td>
+      <td>{{ inv.created | date: 'medium' : i18n.tzStr : i18n.lang.local_id }}</td>
+      <td>
+        <span *ngIf="inv.status==APPCONSTS.INVITATION_STATUS_SENT" class="badge badge-success">{{ 'KIOSKINVITE.STATUS_SENT' | translate}}</span>
+        <span *ngIf="inv.status==APPCONSTS.INVITATION_STATUS_CANCELED" class="badge badge-danger">{{ 'KIOSKINVITE.STATUS_CANCELED' | translate}}</span>
+      </td>
+      <td>
+        <button class="btn btn-sm btn-danger" 
+          *ngIf="inv.cancelable" type="button" (click)="reset_customer(inv)">
+          <i class="icon-close"></i>
+          <span class="sm-hide">{{ 'APP.UI_CANCEL' | translate }}</span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</ng-template>

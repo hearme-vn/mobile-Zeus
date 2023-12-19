@@ -1,0 +1,24 @@
+.feedback_header {
+  background-color: #8c8f8c49;
+  margin: 0px 0px 1px 0px;
+}
+
+.feedback_header label {
+  padding-top: 10px;
+}
+
+.feedback_actions {
+  margin: 10px 0;
+}
+
+.feedback_content {
+  margin: 0px;
+}
+
+feedback-content {
+  width: 100%;
+}
+
+.col-type {
+  color: #321FDB;
+}

@@ -1,0 +1,802 @@
+{
+  "APP": {
+    "UI_OK": "Ok",
+    "UI_CANCEL": "Cancel",
+    "BUTTON_CLOSE": "Close",
+    "BUTTON_CREATE": "Create",
+    "BUTTON_UPDATE": "Update",
+    "BUTTON_DELETE": "Delete",
+    "BUTTON_NEXT": "Next",
+    "BUTTON_BACK": "Back",
+    "BUTTON_ADD": "Add",
+    "BUTTON_DELETE_ALL": "Delete all",
+    "UI_STATUS": "Status",
+    "UI_SYSTEM_STATUS": "System Status",
+    "UI_CREATED": "Created date",
+    "UI_STATUS_CREATED": "Just created",
+    "UI_STATUS_ACTIVE": "Active",
+    "IS_ACTIVE": "Active",
+    "UI_STATUS_INACTIVE": "Inactive",
+    "UI_STATUS_LOCK": "Lock",
+    "UI_STATUS_CANCEL": "Canceled",
+    "UI_SYSTEM_STATUS_LOCK": "System lock",
+    "UI_STATUS_ALL": "All",
+    "UI_TITLE": "Title",
+    "SL_SELECT": "Select in the list",
+    "SELECT_COLLECTION": "Select collection",
+    "SELECT": "Select",
+    "FILTER": "Filter",
+    "REMOVE_SELECTION": "Remove selection",
+    "SELECT_ALL": "Select all",
+    "SELECT_THEME": "Select theme",
+    "SELECT_GROUP": "Select device group",
+    "SELECT_DEVICE": "Select device",
+    "SELECT_FACTOR": "Select factor",
+    "SELECT_SURVEY": "Choose survey",
+    "SELECT_REPORT_PLUGINS": "Choose report plugin",
+
+    "LB_NO_DATA": "No data",
+
+    "UI_IDX_NUMBER": "No.",
+    "UI_FIELD_USED": "Used",
+    "UI_FIELD_REQUIRED": "Required",
+    "UI_FIELD_VALIDATE": "Check Validity",
+    "UI_FIELD_NAME": "Field name",
+
+    "FORM_KEYWORD": "Keyworks",
+    "FORM_SEARCH": "Search",
+    "FORM_CREATE": "Create",
+    "FORM_EXPORT": "Export",
+
+    "DIALOG_CREATE": "Create ",
+    "DIALOG_UPDATE": "Update ",
+    "DIALOG_VIEW": "Detail",
+
+    "NAME": "Name",
+    "DESCRIPTION": "Description",
+    "ID": "ID",
+    "UPLOAD_IMAGE": "Upload image",
+    "TB_NOTIFY": "Notification",
+    "URL": "URL",
+    "BT_SHORT_URL": "Short url",
+
+    "NT_SUCCESS": "Process successful!",
+
+    "CB_ALL_GROUP": "All group",
+    "CB_ALL_DEVICES": "All devices",
+
+    "BUSINESS_FIELD": "Business field",
+    "CLIPBOARD_COPY": "Click to copy into clipboard",
+
+    "BAD_FEEDBACK": "Bad feedback notification",
+    "FEEDBACK_MSG": "You just have got a negavtive feedback with",
+    "COMMENT": "Comment",
+    "SUCCESS_CASE": "Well done",
+    "WARNING_CASE": "Warning"
+  },
+  "SUCCESS": {
+    "DSS01": "Operation is success",
+    "DSS02": "Device is not connected to server. Operation is inserted in waiting list"
+  },
+  "MENU": {
+    "ACCOUNT": "Account",
+    "ACCOUNT_ORG": "Organization",
+    "ACCOUNT_LOGOUT": "Logout",
+    "NOTIFY_TITLE": "Notifications",
+    "NOTIFY_CONTENT": "You got a feedback with",
+    "NOTIFY_SHOW_ALL": "Show all",
+    "PERSONAL_ORG": "Personal organization"
+  },
+  "SIDEBAR": {
+    "HOME": "Home",
+    "DASHBOARD": "Dashboard",
+    "SURVEY_ANALYSIS": "Survey analysis",
+    "CORRELATION_ANALYSIS": "Correlation analysis",
+    "PLUGINS_ANALYSIS": "Analysis plugins",
+    "FEEDBACK_LIST": "Feedback list",
+    "ONBOARDING": "Welcome administrator",
+    "ONBOARDING_NEW": "Onboarding",
+
+    "MANAGEMENT": "hearme feature",
+    "SURVEY": "Survey management",
+    "SURVEY_LIST": "Survey list",
+    "SURVEY_CREATE": "Create survey",
+    "SURVEY_EDIT": "Survey update",
+    "SURVEY_IMPORT": "Import survey template",
+
+    "CS_MANAGEMENT": "Customer service",
+    "CS_CUSTOMERLIST": "Customer list",
+    "CS_INVITECUSTOMER": "Invite customer",
+
+    "REGISTER": "Register",
+    "LOGIN": "Login",
+    "OLDVERSION": "Old version",
+
+    "NOTIFICATION": "Notification list",
+    
+    "CONFIGURE": "System configuration",
+
+    "GROUP_DEVICE": "Group management",
+    "DEVICE": "Device management",
+    "COLLECTION": "Media management",
+    "IMAGE": "Image management",
+    "APPLICATION": "Application modules",
+    "THEME": "Theme management",
+    "TARGET": "Feedback object",
+
+    "SYSTEM_CONFIGURATION": "System setting",
+    "DEVICE_LANGUAGE": "Device languages",
+    "GENERAL_CONFIGURATION": "General configuration",
+    "PLUGIN_MANAGEMENT": "Feedback plugins",
+    "REPORT_PLUGINS": "Report plugins",
+    "FEEDBACK_PLUGINS": "Feedback plugins",
+    "POS_NHANH_PAGE": "System integration",
+    "PUBLIC_PAGE": "Public page",
+
+    "ORGANIZATION_MNG": "Org. management",
+    "ORGANIZATION_LIST": "Organizations",
+    "ROLES": "Permission group management",
+    "ROLE_ASSIGNMENT": "Role assignment",
+
+    "UI_ACCOUNT": "Account",
+    "PROFILE": "Update account",
+    "CHANGEPASSWORD": "Change password",
+    "LOGINBARCODE": "Generate login barcode",
+
+    "QUOTATION": "Quota management",
+    "THANKS_PAGE": "Thank words"
+  },
+  "MSG": {
+    "GENERAL_ERROR": "Unusual error occurred. Please do it again later or connect to our support service",
+
+    "SENT_EMAIL_VALIDATION": "We've just sent an a validation request to email in your account. Please follow your instruction in this email.",
+
+    "ERR_LOSTINTERNET": "Lost internet connection",
+    "ERR_MISSINGRESOURCE": "Error on missing the requested resource",
+    "PERMISSION_DENIED": "You don't have permission to access this feature. Access is dinied",
+    "SESSION_EXPIRED": "Your session was expired. Please log in again",
+    "GENERAL_API_ERROR": "Error in calling to central service. Please do it again later or connect to our support team",
+
+    "CREATED_OBJECT": "Create object successfully",
+    "UPDATE_OBJECT": "Update object successfully",
+    "DELETE_OBJECT": "Delete object successfully",
+
+    "FORM_REQUIRED_FIELDS": "You have not filled in all required fields",
+
+    "SURVEY_SAVING": "Save your survey before moving to this function.",
+    "SURVEY_MISSING_CHILD": "You have not selected child survey. Operation is rejected",
+    "SURVEY_IMPORT_SUCCESS": "Successfully read and configure survey tree",
+    "SURVEY_CHOOSE_TEMPLATE": "You have to choose survey template before choosing this function",
+
+    "CLIPBOARD_COPIED": "Copied into clipboard",
+
+    "AL_LAYMATHIETBITHANHCONG": "Retrieve the device secret key successfully!",
+    "AL_LAYMATHIETBILOI": "Error retrieving secret device secret code, please try again!",
+    "AL_DEVICE_SIGNOUT": "Signout device success.",
+    "AL_DEVICE_CLOSE": "Close device success.",
+    "AL_DEVICE_SYNCHRONIZE": "Synchronize data success.",
+    "AL_SURVEY_SERVER_SUCCESS": "Get Survey server successful!",
+    "AL_SURVEY_SERVER_FAILURE": "Get Survey server failure, please try again!",
+
+    "DATA_EMPTY": "There is not data for displaying",
+
+    "SEND_EMAIL_SUCCESS": "Send email successfully",
+    "FEEDBACK_ID_MISSING": "There has not been feedback data",
+    "EXPORT_FEEDBACK_SUCCESS": "Export feedbacks successfully",
+
+    "ROLE_NAME_EMPTY": "Role name must be not empty",
+    "ROLE_PERMISSION_EMPTY": "There is not any permission in this role",
+    "ROLE_PERMISSION_INVALID": "Information on operator or monitor permission is invalid"
+  },
+  "API_ERR": {
+    "ATH01": "Missing authorization header. Request is rejected",
+    "ATH02": "Token is invalid. Request is rejected",
+    "ATH03": "Token has expired. Request is rejected",
+    "ATH04": "Invalid authorization data. Request is rejected",
+
+    "SU00": "There is no data for signing up. Operation is rejected",
+    "SU01": "This username is invalid. Operation is rejected",
+    "SU02": "Field name cannot be null. Operation is rejected",
+    "SU03": "Your password is incorrect. Operation is rejected",
+    "SU04": "This email is invalid format. Operation is rejected",
+    "SU05": "This username or email is already used. Operation is rejected",
+    "SU06": "The username is invalid. It must contain only numbers, charaters, hyphen and dot. Operation is rejected",
+
+    "IAM01": "A problem to send email",
+    "AUT01": "Forbidden operation",
+
+    "API02": "Forbidden operation",
+    "API04": "No object with specified id",
+    "API09": "Data is invalid or use invalid character. Operation is rejected",
+
+    "LGF01": "Missing username or password",
+    "LGF02": "Wrong username, password or verification code. Input login information again",
+    "LGF03": "Wrong username or password. Input login information again",
+
+    "SDL00": "Survey id is invalid. Operation is rejected",
+    "SDL01": "Survey is in used and can not be deleted. Operation is rejected",
+    "SDL02": "This survey is belong to a group, can not be deleted. Operation is rejected",
+    "SCR00": "Survey information is invalid. Operation is rejected",
+    "SVD02": "Parent survey is activated, cannot remove children. Rejected",
+    "DSR02": "A member survey was active or closed. This survey could not be deleted compeletedly",
+    "SUC01": "Survey data is incorrect. Operation is rejected",
+    "CSV05": "This child survey is existed. Rejected",
+    "CSV06": "Type of child survey is not allowed. Rejected",
+    "CSV07": "Error: cannot make loop in survey tree. Rejected",
+    "IST01": "Survey tree does not match the format.",
+    "SUS03": "Cannot set survey's status to inactive.",    
+    
+    "DVC01": "You do not have quota to create devices. Operation is rejected",
+    "DVC02": "Device name cannot be null. Operation is rejected",
+
+    "DVL01": "Missing parameter. Operation is rejected",
+    "DSE03": "Device is not allow to do this action. Operation is rejected",
+    "DDL01": "You cannot delete this device. Operation is rejected",
+    "DUD01": "You do not have enough quota. Operation is rejected",
+
+    "CLC01": "Collection information is invalid. Operation is rejected",    
+    "GDL01": "This group cannot be deleted. Operation is rejected",
+
+    "ORG01": "You do not have permission to access this information. Aborted",
+    "ORG02": "There is not personal organization for this user",
+    "ORG03": "This enterprise organization is not existed",
+    "UFC01": "Error in updating feedback count for organization. Aborted",
+
+    "RLT01": "Error in getting user roles and permissions. Aborted.",
+    "ROL04": "Not enough quota to add more user. Operation is rejected",
+    "ROL05": "Error in assign role to user",
+
+    "CUS01": "Required fields must not be empty. Operation is rejected",
+    "CUS02": "Customer data is incorrect. Operation is rejected",
+    "CUS03": "Customer is existed in your list. Operation is rejected",
+
+    "SOB02": "Error in sending event to object",
+
+    "LBC01": "Error in inserting new text field. Operation is rejected",
+
+    "COR01": "Please choose a correlation coefficient type.",
+    "COR03": "Cannot calculate the correlation coefficient.",
+    "COR06": "There is no data for analysis."    
+  },
+  "INDUSTRY": {
+    "OTHERS": "Others",
+    "MEDIA": "Media",
+    "TRANSPORTATION": "Transportation",
+    "INSURANCE": "Insurance",
+    "IT_SERVICE": "IT service",
+    "CONSTRUCTION": "Construction",
+    "FINANCIAL_SERVICE": "Financial Service",
+    "TELECOMMUNICATIONS": "Telecommunications",
+    "HEALTHCARE": "Healthcare",
+    "BANKING": "Banking",
+    "CONSUMER_SERVICE": "Consumer Service",
+    "MANUFACTURING": "Manufacturing",
+    "RETAIL": "Retail",
+    "HOSPITALITY": "Hospitality, Travel, Restaurant",
+    "PUBLIC_SERVICES": "Public services",
+    "EDUCATION": "Education"
+  },
+  "LOGIN": {
+    "PAGE_TITLE": "Log in",
+    "PAGE_DESCRIPTION": "Sign In to your account",
+    "UI_USERNAME": "Username",
+    "UI_PASSWORD": "Password",
+    "SUBMIT": "Submit",
+    "SCANQR": "Scan QR code",
+    "SCAN_ERROR": "Can not read login information in this QR code",
+    "CANCEL_SCANQR": "Cancel scan QR code",
+    "VERIFICATION": "Verification code (sent to you through email)"
+  },
+  "FORGOT": {
+    "PAGE_TITLE": "Forgot password?",
+    "PAGE_DESCRIPTION": "Reset your account password",
+    "UI_EMAIL": "Email",
+    "SUBMIT": "Reset password",
+    "BT_BACK_LOGIN": "Back to login",
+    "AL_EMAIL": "Email is not empty!"
+  },
+  "RESET_PASS": {
+    "PAGE_TITLE": "Reset password",
+    "PAGE_DESCRIPTION": "Reset your account password",
+    "LB_MATKHAUMOI": "New password",
+    "LB_NHAPLAIMATKHAU": "Re-type new password",
+    "AL_PASS_REQUIRED": "New password is not empty!",
+    "AL_PASS_LENGTH": "There must be at least 5 characters in your password!",
+    "AL_NHAPLAIMATKHAU": "Your new passwords are not identical!",
+    "EMAIL_SENT": "We've sent an email to you. Please check it and following the instruction in this email!",
+    "RESET_PASSWORD_SUCCESS": "You updated account password successfully. Please go to log in page to authenticate your account"
+  },
+  "VALIDATE_EMAIL": {
+    "PAGE_TITLE": "Validate email address",
+    "ASK_FOR_VALIDATION": "Email address registered in your account is not validated. Please validate it to protect your account later.",
+    "VALIDATE_SUCCESS": "You validated your email address successfully",
+    "VALIDATE_UNSUCCESS": "Validated your email address UNSUCCESSFULLY",
+    "GOTO_HOMEPAGE": "Go to hearme Zeus"
+  },
+  "REGISTER": {
+    "PAGE_TITLE": "Register",
+    "PAGE_DESCRIPTION": "Register new account",
+    "SUBMIT": "Create account",
+    "AL_PASS": "Password is not empty!"
+  },
+  "COLLECTION_PAGE": {
+    "COLLECTION": "Collection",
+    "SELECT_IMAGE": "Select logo image",
+    "SI_COLLECTION": "Choose collection",
+    "EMPTY": "There is not any image in this collection"
+  },
+  "SURVEY_PAGE": {
+    "SURVEY_FORM_FIELDS": "Survey fields",
+    "SURVEY_ID": "Survey id",
+    "SURVEY_NAME": "Name",
+    "SURVEY_QUESTION": "Question",
+    "SURVEY_TAGS": "Tags",
+    "SURVEY_TYPE": "Type",
+    "TYPES": {
+      "0": "CSAT",
+      "1": "NPS",
+      "2": "CES",
+      "10": "FLX",
+      "3": "Factor",
+      "4": "Multi selection",
+      "5": "Single selection",
+      "6": "5-star rating",
+      "7": "Open question",
+      "9": "Contact",
+      "12": "Attachment",
+      "13": "Information",
+      "8": "Mixed survey",
+      "11": "Form survey"
+    },
+    "SURVEY_FORM": "Survey form",
+    "SURVEY_PREVIEW": "Preview",
+    "SURVEY_FACTOR_CONFIGURE": "Survey factors",
+    "SURVEY_CHILD_CONFIGURE": "Child surveys",
+    "SCALE": "Scale",
+    "OTHER_OPTIONS": "Other options",
+    "SEND_NOTIFICATION": "Send notification",
+    "INVERTED_ORDER": "Reversed order",
+    "CHILD_SURVEY": "Child survey",
+    "SWITCH_CONDITION": "Switch rule",
+    "RULE_GOOD_FEEDBACK": "Good feedback",
+    "RULE_BAD_FEEDBACK": "Bad feedback",
+    "CONTACT_FIELDS": "Contact fields",
+    "SELECTED_LEVEL": "Selected rating",
+    "SURVEY_FACTOR": "Survey factors",
+    "FACTOR_NAME": "Factor name",
+    "SURVEY_INFO": "Introduction content",
+    "PORTRAIT": "Portrait",
+    "LANDSCAPE": "Landscape",
+    "RULE_DESCRIPTION_BAD_GOOD": "Good, bad feedback",
+    "RULE_DESCRIPTION_FLX": "Feedback level",
+    "RULE_DESCRIPTION_EXCLUSIVE_SELECTION": "Selected factor",
+    "DISABLE_COLLECTION": "Disable collection",
+    "DISABLE_THEME": "Disable theme",
+    "QUESTION_INPUT": "Input your question",
+    "FACTOR_LANGUAGE": "Languages for factor",
+    "INFO_SURVEY_ADDTAGS": "Insert information tags",
+    "ACTIONS_DELETE": "Delete survey",
+    "ACTIONS_DELETE_RECURSIVE": "Delete survey tree",
+    "ACTIONS_EXPORT": "Export survey",
+    "ACTIONS_IMPORT": "Import survey",
+    "CHOOSE_TEMPLATE": "Survey template",
+    "UPDATE_STATUS_ACTIVE": "Activate survey tree",
+    "UPDATE_STATUS_CLOSE": "Close survey tree"
+  },
+  "KIOSKINVITE": {
+    "UI_CUSTOMER_ID": "Customer id",
+    "UI_CUSTOMER_NAME": "Customer name",
+    "UI_KIOSKS": "Feedback kiosks",
+    "UI_KIOSK": "Kiosk",
+    "UI_DATE_SENDING": "Date sending",
+    "UI_INVITE": "Invite feedback",
+    "UI_RESET_FEEDBACK": "Reset feedback",
+    "UI_RESET_FORM": "Reset form",
+    "HISTORY": "History of feedback invitation",
+    "STATUS_SENT": "Sent",
+    "STATUS_CANCELED": "Canceled"
+  },
+  "CSMANAGEMENT": {
+    "UI_CUSTOMER_LIST": "Customer list",
+    "UI_CUSTOMER_NAME": "Customer name",
+    "UI_CUSTOMER_EMAIL": "Email",
+    "UI_CUSTOMER_PHONE": "Phone",
+    "UI_INVITE": "Invite to feedback",
+    "FEEDBACK_AT_DEVICE": "At device: ",
+
+    "CUSTOMER_BIRTHDAY": "Birthday (mm/dd/yyyy)",
+    "CUSTOMER_URL": "Website",
+    "CUSTOMER_COMPANY": "Company",
+    "CUSTOMER_EXT_ID": "External id",
+    "CUSTOMER_ADDRESS": "Customer address",
+    "CUSTOMER_DESCRIPTION": "Description",
+
+    "CUSTOMER_CREATE": "Create new customer",
+    "CUSTOMER_UPDATE": "Update customer information"
+  },
+  "DASHBOARD": {
+    "HELLO": "Hello",
+    "CONTENT": "Your survey performance recently",
+    "SEARCH_WEEK": "Week",
+    "SEARCH_MONTH": "Month",
+    "SEARCH_YEAR": "Year",
+    "MAIN_CHART_TITLE": "Number of recently feedbacks by time",
+    "MAIN_CHART_TOTAL_FB": "Total feedbacks",
+    "MAIN_CHART_POSITIVE_FB": "Good feedbacks",
+    "MAIN_CHART_NEGATIVE_FB": "Bad feedbacks",
+    "GENERATE_CHART_TITLE": "General statistics",
+    "GENERATE_CHART_VALID": "Valid feedbacks",
+    "GENERATE_CHART_NEW": "New feedbacks",
+    "GENERATE_CHART_PROCESSING": "Processing feedbacks",
+    "GENERATE_CHART_PROCESSED": "Feedbacks processed",
+    "GENERATE_CHART_UNFINISHED": "Un-finished feedbacks",
+    "GENERATE_CHART_INVALID": "In-valid feedbacks",
+    "EMAIL_CHART_TITLE": "Number of feedback invitation in email channel",
+    "CUSTOMER_CHART_TITLE": "Number of customers",
+    "EMAIL_CHART_FB": "Email",
+    "CUSTOMER_CHART_FB": "Customer",
+    "DEVICE_CHART_TITLE": "Number of devices",
+    "SURVEY_CHART_TITLE": "Number of surveys",
+    "FEEDBACKS_BY_SURVEY_CHART_TITLE": "Number of feedbacks by surveys",
+    "FEEDBACKS_BY_GORUP_CHART_TITLE": "Number of feedbacks by groups",
+    "FEEDBACKS_BY_DEVICE_CHART_TITLE": "Number of feedbacks by devices"
+  },
+  "REPORT": {
+    "DESCRIPTION": "Survey analysis through charts",
+    "ROOT_SURVEY": "Main survey",
+    "CHILD_SURVEY": "Child survey",
+    "SEARCH_ADV": "Other conditions",
+    "SEARCH_TIME": "Time limit",
+    "SEARCH_DEVICE": "Group / Device",
+    "SEARCH_STATE": "Feedback status",
+
+    "CB_BY_DAY": "By days",
+    "CB_BY_MONTH": "By months",
+    "CB_CUSTOM": "Custom",
+    "LB_DAY": "days",
+    "LB_MONTH": "months",
+
+    "BTN_SEARCH": "Search",
+    "FBCOUNT_BY_TIME": "Feedback count by times",
+    "SCORE_BY_TIME": "Satisfaction index by times",
+    "SATISFACTION_SCORE": "Satisfaction score",
+    "RATING_DETAILS": "Rating detail",
+    "RATING_PROPORTIONS": "Proportions of rating levels",
+    "FEEDBACK_COUNT": "Number of feedbacks",
+    "FACTOR_SCORE": "Factor rating",
+    "LEVEL": "Level",
+
+    "FACTOR_LIST": "Factor list"
+  },
+  "FEEDBACK": {
+    "LIST": "Feedback list",
+    "STATUS_VALID": "Valid",
+    "STATUS": {
+      "0": "New",
+      "1": "Processing",
+      "2": "Processed",
+      "3": "Invalid",
+      "4": "Not finished"
+    },
+    "FEEDBACK_LIST_DESCRIPTION": "This feature helps you go through feedback list and manage feedback content in detail",
+    "CONTENT": "Feedback content",
+    "NOTES": "Notes",
+    "SEND_EMAIL": "Send email",
+    "EXPORT": "Export data",
+    "SURVEY_RESPONSE": "Survey response",
+    "GENERAL_INFORMATION": "General information",
+    "DETAILS": "Feedback details",
+    "ACTIONS": "Actions",
+    "FEEDBACK_STATUS": "Feedback status"
+  },
+  "CORRELATION_ANALYSIS": {
+    "DESCRIPTION": "Relationship analysis allow user understand how factors affect to customer satisfaction. You'll know which factors are important or not important to make customer more satisfied to your service/product.",
+    "STEP_1": "Step 1/3: Select main survey",
+    "STEP_2": "Step 2/3: Select satisfaction index",
+    "STEP_3": "Step 3/3: Select factor survey",
+    "TIME": "Time limit",
+    "ANALYSIS": "Data analysis"
+  },
+  "ONBOARDING_PAGE": {
+    "HEADER": "Steps of configurations",
+    "HEAD_CONTENT1": "For new user to understand system quickly and easily,",
+    "HEAD_CONTENT2": "You can configure system with following steps.",
+
+    "CFG_SYSTEM": "System configuration",
+    "CFG_ORG": "Setup and choose an working organization",
+    "CFG_DEVICE_LANG": "Choose languages for feedback channels",
+    "CFG_MEDIA_COLLECTION": "Create collection and update essential images: logo, banner",
+    "CFG_SYSTEM_CONFIG": "General system configuration: Thank page, waiting time for feedback, branding color, etc.",
+    "CFG_SURVEY": "Setup surveys",
+    "CFG_TERMINAL_GROUP": "Setup device group",
+    "CFG_TERMINAL": "Setup survey device - for survey distribution",
+    "CFG_THANKWORDS": "Thank message and Apology message",
+
+    "CFG_APP": "Install applications",
+    "CFG_APP_MNG": "Install administration application: hearme",
+    "CFG_APP_SURVEY": "Install survey application: hearme station",
+
+    "SURVEY_DISTRIBUTION": "Distribute survey on multi-feedback channels",
+    "RUN_ON_KIOSK": "Run hearme station, get QR code of kiosk channel and collect feedbacks",
+    "RUN_ON_WEB_CHANNEL": "Get URL of Web channel, then collect feedback through Web, QR code, Mobile application",
+    "RUN_ON_EMAIL_CHANNEL": "Get URL of Email channel, and collect feedback through email",
+
+    "FOLLOW_UP_REPORTS": "Feedback analytics",
+    "SYSTEM_INTEGRATION": "System integration"
+  },
+  "REPORT_PLUGIN_PAGE": {
+    "SELECT_GUIDE": "Select your report plugin in dropdown above",
+    "REPORT_LIST": "Reports",
+    "PRESENTATION_MODE": "Presentation mode"
+  },
+  "NOTIFY_PAGE": {
+    "TYPE": "Type",
+    "TITLE": "Title",
+    "BAD_FB": "Detail information here"
+  },
+  "GROUP_PAGE": {
+    "PAGE_NAME": "Device group",
+    "GROUP_NAME": "Group name",
+    "DESCRIPTION": "Description",
+    "SELECT_SURVEY": "Choose survey",
+    "DEVICE_LIST": "Device list",
+
+    "LB_QUANLYTHIETBI": "List device",
+    "LB_DEVICE_SIGNOUT": "Signout device",
+    "LB_DEVICE_CLOSE": "Close device",
+    "BT_SYNCHRONIZE_DATA": "Synchronize data",
+
+    "AL_TENNHOMTHIETBI": "Group device name is not empty!"
+  },
+  "DEVICE_PAGE": {
+    "PAGE_NAME": "Device",
+    "ID": "Device ID",
+    "NAME": "Device name",
+    "CONNECTION": "Connection",
+    "CHANNEL": "Channel",
+    "GROUP": "Group",
+    "TARGET": "Feedback object",
+    "LB_NO_FEEDBACK_OBJECT": "No feedback object",
+    "SECRET": "Device secret",
+    "LB_SURVEY_SERVER": "Online survey URL",
+
+    "CB_DEVICE_TYPE": "Channel",
+    "CB_DEVICE_TYPE_KIOSK": "Kiosk",
+    "CB_DEVICE_TYPE_WEB": "Web",
+    "CB_DEVICE_TYPE_EMAIL": "Email",
+    "TB_SYSTEM_LOCKED": "System locked",
+
+    "LB_CONNECTION": "Connected",
+    "LB_DISCONNECTION": "Disconnected",
+    "LB_WAITFORSYNC": "Wait for synchronization",
+    "TB_RESETMATKHAUTHIETBI": "Reset secret",
+
+    "AL_TENTHIETBI": "Device name is not empty!",
+    "LOGIN_DATE": "Login time",
+    "LINKED_DATE": "Connected time"
+  },
+  "COLLECTION": {
+    "PAGE_NAME": "Collection",
+    "ID": "Collection id",
+    "NAME": "Collection name",
+
+    "AL_TENBOSUUTAP": "Collection name is not empty!"
+  },
+  "IMAGE_PAGE": {
+    "PAGE_NAME": "Image",
+    "NAME": "Image name",
+    "TITLE": "Image management",
+
+    "AL_IMAGE_BLANK": "You have not choose a photo",
+    "DRAG_HINT": "Drag and drop your image here"
+  },
+  "THEME_PAGE": {
+    "TYPES": {
+      "THEME_BASIC": "Basic Kiosk",
+      "THEME_ECOMMERCE": "E-commerce",
+      "THEME_PUBLIC": "Feedback for object"
+    },
+    "PAGE_NAME": "Theme",
+    "NAME": "Theme name",
+    "TYPE": "Theme type",
+    "BT_THEME_CONFIGURE": "Theme configure",
+    "LB_THEME_TYPE": "Loại theme",
+    "LB_THEME_MENU_CHANGE_BANNER": "Change banner",
+    "LB_THEME_MENU_DEL_BANNER": "Delete banner",
+    "LB_THEME_MENU_CHANGE_BG": "Change backgroud",
+    "LB_THEME_MENU_DEL_BG": "Delete background",
+
+    "AL_THEME_NAME_EMPTY": "Theme name is not empty!"
+  },
+  "TARGET_PAGE": {
+    "PAGE_NAME": "Feedback object",
+    "NAME": "Object name",
+    "DIVISION": "Division",
+    "FACE": "Face",
+
+    "AL_TARGET_NAME_EMPTY": "Object name is not empty!"
+  },
+  "CONFIGURES": {
+    "CONTACT_NAME": "Name",
+    "CONTACT_PHONE": "Phone number",
+    "CONTACT_EMAIL": "Email",
+    "CONTACT_ADDRESS": "Address",
+    "CONTACT_ROOMNUMBER": "Room number"
+  },
+  "APP_CONFIG_PAGE": {
+    "DEFAULT_LANG": "Default language"
+  },
+  "MODULE_PAGE": {
+    "LB_MODULE_FEEDBACK": "Module feedback",
+    "LB_MODULE_COLLECTION": "Module media collection",
+    "LB_COLLECTION_PARAM": "Collection id or youtube url",
+    "CB_ACTIVE_COLLECTION": "Show media collection"
+  },
+  "DEFAULT_LANGUAGE_PAGE": {
+    "NAME": "Language",
+    "DEFAULT": "Default",
+    "AL_LOCK_DEFAULT_LANGUAGE": "You cannot lock the default language."
+  },
+  "CONFIG_PAGE": {
+    "THANKS_PAGE": "Thank page",
+    "DEVICE_HEADER_IMAGE": "Device header image",
+    "DEVICE_BACKGROUND_IMAGE": "Background image",
+    "DISPLAY_THANK_PAGE": "Display thank page",
+    "STYLE": "Style",
+    "THANKPAGE_DELAY": "Delay time",
+    "THANKPAGE_DELAY_TIMEUNIT": "seconds, < 3600",
+    "DEVICE": "Device",
+    "OTHER": "Other configuration",
+    "FEEDBACK_TIMEOVER": "Feedback timeover",
+    "AUTO_RUN_COLLECTION": "Auto run collection page",
+    "INCLUDE_CONTACT_FIELDS": "Include contact fields (Name and phone number)",
+    "REQUIRED_CONTACT_FIELDS": "Contact fields required",
+    "DEVICE_INTROPAGE_OFF": "Turn off welcome page in online channels",
+    "DEVICE_MAIN_COLOR": "Main color",
+    "FEEDBACK_PLUGINS_URL": "URL:",
+    "SEND_NOTIFICATION_FOR_RATING_TABLE": "Send notification messages for rating table survey",
+    "LB_HOOK_URL": "Hook",
+    "HOOK_URL": "URL",
+    "HOOK_TOKEN": "Token",
+    "HOOK_LOAD_FREQUENCY": "Your hook configuration will be loaded in every 3 minutes"
+  },
+  "CHANGEPASSWD_PAGE": {
+    "LB_MATKHAUCU": "Current password",
+    "LB_MATKHAUMOI": "New password",
+    "LB_NHAPLAIMATKHAU": "Repassword",
+    "BT_PASSWD": "Change password",
+
+    "AL_MATKHAUMOI": "New password is not empty!",
+    "AL_MATKHAUMOI5": "New password of at least 5 characters!",
+    "AL_NHAPLAIMATKHAU": "Retype your password unlike a new one!",
+    "AL_CHANGE_PASSWORD_SUCCESS": "Change password operation is completed",
+    "AL_CHANGE_PASSWORD_NODATA": "There is no data for changing password",
+    "AL_CHANGE_PASSWORD_INCORRECT": "Your new password is incorrect. Operation is rejected",
+    "AL_CHANGE_PASSWORD_UNAUTHORIZED": "Invalid user or current password. Operation is rejected"
+  },
+  "LOGIN_BARCODE_PAGE": {
+    "BARCODEHINT": "Scan this QRcode by hearme mobile application for logging in"
+  },
+  "CSAT": {
+    "1": "Very unsatisfied",
+    "2": "Unsatisfied",
+    "3": "Neutral",
+    "4": "Satisfied",
+    "5": "Very satisfied"
+  },
+  "CES": {
+    "1": "Extremely difficult",
+    "2": "Very difficult",
+    "3": "Fairly difficult",
+    "4": "Neither",
+    "5": "Fairly easy",
+    "6": "Very easy",
+    "7": "Extremely easy"
+  },
+  "5STARS": {
+    "1": "1 star",
+    "2": "2 stars",
+    "3": "3 stars",
+    "4": "4 stars",
+    "5": "5 stars"
+  },
+  "ORGANIZATION_PAGE": {
+    "PAGE_NAME": "Organization",
+    "CHANGE_ORG": "Switch to selected organization",
+    "NAME": "Organization Name",
+    "ADDRESS": "Address",
+    "PHONE_NUMBER": "Phone",
+    "WEBSITE": "Website",
+    "CONTACT": "Contact",
+    "BUSINESS_FIELD": "Business field",
+    "ROLE_GROUP": "Role group",
+    "CLASSIFY": "Type",
+    "PERSONAL": "Personal",
+    "ENTERPRISE": "Enterprise"
+  },
+  "ROLE_PAGE": {
+    "PAGE_NAME": "Role",
+    "ten_nhom_quyen": "Permission group",
+    "ma_quyen": "Permission id",
+    "quyen": "Action",
+    "resource_type": "Resource type",
+    "nhom_quyen": "Roles",
+    "xoa_nhom_quyen": "Do you want to delete this permission group?",
+    "chon_nhom_quyen": "Select group permissions",
+    "chua_chon_user": "No users selected",
+    "xoa_nguoi_dung": "Do you want to delete this user?",
+    "tat_ca_khao_sat": "All surveys",
+    "SYSTEM_STATUS": "System status",
+    "JOINED_DATE": "Joined date"
+  },
+  "ROLE_ASSIGN_PAGE": {
+    "PAGE_NAME": "Permission",
+    "tat_ca_nhom_quyen": "All roles",
+    "TXT_NAME": "Full name",
+    "F_USERNAME": "Username"
+  },
+  "PROFILE_PAGE": {
+    "TB_USERNAME": "Username",
+    "TB_INDUSTRY": "Industry",
+    "TB_FIRSTNAME": "First name",
+    "TB_LASTNAME": "Last name",
+    "TB_PHONE": "Phone",
+    "TB_BIRTHDAY": "Birthday",
+    "TB_EMAIL": "Email",
+    "PACKS_NAME": "Service package",
+    "CB_STATUS_NEW": "New user",
+    "CB_STATUS_ACTIVE": "Active",
+    "CB_STATUS_TEMPORARYLOCKED": "Temporary locked",
+    "CB_STATUS_LOCKED": "Locked",
+
+    "AL_TENTRUYCAP": "Username is not empty!",
+    "AL_INDUSTRY": "Industry is not empty!",
+    "AL_HO": "First name is not empty!",
+    "AL_TEN": "Last name is not empty!",
+    "AL_NAME": "Name is not empty!",
+    "AL_EMAIL": "Email is not empty!",
+    "VALIDATE_EMAIL": "Validate email"
+  },
+  "QUOTATION_PAGE": {
+    "QUOTA_USERS": "User quantity",
+    "QUOTA_DEVICES": "Device quantity",
+    "DATE_START": "Start date",
+    "DATE_END": "End date"
+  },
+  "POS_NHANH_VN": {
+    "TARGET_SYSTEM": "POS nhanh.vn solution",
+    "HOOK_URL": "HOOK URL:",
+    "CUS_ID_KEY": "Customer ID key",
+    "CUS_NAME_KEY": "Customer name key",
+    "POS_KEY": "POS key",
+    "POS_ID": "POS ID",
+    "DEVICE_ID": "hearme Device id",
+    "BTN_ADD": "+ Add",
+    "BTN_DELETE_TOKEN": "Delete token",
+    "BTN_CREATE_TOKEN": "Create token",
+    "TOKEN_ID": "Token id",
+    "TOKEN": "Token",
+    "LIST_DATA": "List device id",
+    "NOTES": "Save this token for different integrations",
+    "DELETE_TOKEN_CONFIRM": "Do you want to delete this token?",
+    "CLICK_2_COPY": "Click here to copy token",
+    "AL_POS_ID_NOT_BLANK": "POS ID is not blank!",
+    "AL_DEVICE_ID_NOT_BLANK": "Hearme Device id is not blank!"
+  },
+  "THANKS_PAGE": {
+    "TYPES": {
+      "0": "Thank message",
+      "1": "Apology message", 
+      "3": "Welcome message",
+      "4": "Feedback invitation expired"
+    },
+    "FIELD_CONTENT": "Content",
+    "FIELD_AUTHOR": "Author",
+    "FIELD_TYPE": "Category"
+  },
+  "PLUGINS_PAGE": {
+    "PLUGINS_URL": "URL",
+    "FEEDBACK_PLUGINS": "Feedback plugins",
+    "REPORT_PLUGINS": "Report plugin"
+  }
+}

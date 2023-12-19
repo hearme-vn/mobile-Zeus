@@ -1,0 +1,98 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <div class="card">
+        <form class="form-horizontal" *ngIf="object && object.data">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="username" translate="PROFILE_PAGE.TB_USERNAME"></label>
+                  <input type="text" class="form-control" id="username" name="username" [(ngModel)]="object.data.username" disabled>
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="industry" translate="PROFILE_PAGE.TB_INDUSTRY"></label>
+                  <select class="form-control" id="industry" name="industry" [(ngModel)]="object.data.business_field">
+                    <option *ngFor="let b of business_fields" [value]="b.id">{{ b.vn }} / {{ b.en }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="first_name" translate="PROFILE_PAGE.TB_FIRSTNAME"></label>
+                  <input type="text" class="form-control" id="first_name" name="first_name" [(ngModel)]="object.data.first_name">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="last_name" translate="PROFILE_PAGE.TB_LASTNAME"></label>
+                  <input type="text" class="form-control" id="last_name" name="last_name" [(ngModel)]="object.data.last_name">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="phone" translate="PROFILE_PAGE.TB_PHONE"></label>
+                  <input type="tel" class="form-control" id="phone" name="phone" [(ngModel)]="object.data.phone">
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label translate="PROFILE_PAGE.TB_BIRTHDAY" for="birthday"></label>
+                  <input class="form-control" id="birthday" name="birthday" placeholder="date" type="date"
+                         [ngModel]="object.data.birthday | date:'yyyy-MM-dd'" (ngModelChange)="object.data.birthday = $event">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="email" translate="PROFILE_PAGE.TB_EMAIL"></label>
+                  <input type="email" class="form-control" id="email" name="email" [(ngModel)]="object.data.email" [disabled]="object.data.validated == 1">
+                </div>
+              </div>
+              <div class="col-sm-6 p-0">
+                <div class="form-group" style="height: 20px;">
+                  <div class="col-sm-12">
+                    <span translate="PROFILE_PAGE.PACKS_NAME"></span>:
+                    <span *ngIf="object.data.prepaid == 0" translate="ORGANIZATION_PAGE.ENTERPRISE"></span>
+                    <span *ngIf="object.data.prepaid == 1" translate="ORGANIZATION_PAGE.PERSONAL"></span>
+                  </div>
+                </div>
+                <div class="form-group" style="height: 20px;">
+                  <div class="col-sm-12">
+                    <span translate="APP.UI_STATUS"></span>:
+                    <span *ngIf="object.data.status == 0" translate="PROFILE_PAGE.CB_STATUS_NEW"></span>
+                    <span *ngIf="object.data.status == 1" translate="PROFILE_PAGE.CB_STATUS_ACTIVE"></span>
+                    <span *ngIf="object.data.status == 2" translate="PROFILE_PAGE.CB_STATUS_TEMPORARYLOCKED"></span>
+                    <span *ngIf="object.data.status == 3" translate="PROFILE_PAGE.CB_STATUS_LOCKED"></span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-sm btn-primary ml-0" (click)="object.update()">
+              <i class="fa fa-edit"></i> {{ 'APP.BUTTON_UPDATE' | translate }}
+            </button>
+            <button class="btn btn-sm btn-success ml-0" (click)="requestValidatingEmail()" *ngIf="object.data.validated==0">
+              <i class="fa fa-check-square-o"></i> {{ 'PROFILE_PAGE.VALIDATE_EMAIL' | translate }}
+              <span *ngIf="waiting_response" class="spinner-border spinner-border-sm mr-1"></span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div><!--/.col-->
+    <div class="col-sm-2"></div>
+  </div>
+</div>

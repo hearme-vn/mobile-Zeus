@@ -1,0 +1,102 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-sm btn-primary ml-0" (click)="openDialogForCreating()">
+        <i class="fa fa-file-o"></i> {{ 'APP.BUTTON_CREATE' | translate }}
+      </button>
+      <!-- <button class="btn btn-sm btn-primary" (click)="changeOrganization()">
+        <i class="fa fa-sign-out"></i> {{ 'ORGANIZATION_PAGE.CHANGE_ORG' | translate }}
+      </button> -->
+    </div>
+  </div>
+
+  <div class="col-12 pd-0">
+    <table class="table table-bordered table-striped table-sm">
+      <thead>
+      <tr>
+        <th class="text-center" width="60">{{ 'APP.UI_IDX_NUMBER' | translate }}</th>
+        <th>{{ 'THANKS_PAGE.FIELD_CONTENT' | translate }}</th>
+        <th>{{ 'THANKS_PAGE.FIELD_AUTHOR' | translate }}</th>
+        <th>{{ 'THANKS_PAGE.FIELD_TYPE' | translate }}</th>
+        <th class="sm-hide">{{ 'APP.UI_CREATED' | translate }}</th>
+        <th class="text-center" width="90px">#</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let obj of objects; index as $i">
+        <td class="text-center">{{ $i + 1 }}</td>
+        <td class="pointer" (click)="openDialogForUpdating(obj)">{{ obj.content | truncate: 150 : true }}</td>
+        <td class="pointer" (click)="openDialogForUpdating(obj)">{{ obj.author }}</td>
+        <td class="pointer" (click)="openDialogForUpdating(obj)">
+          <span>{{ 'THANKS_PAGE.TYPES.' + obj.category | translate }}</span>
+        </td>
+        <td class="sm-hide">{{ obj.created | date: 'medium' : i18n.tzStr : i18n.lang.local_id }}</td>
+        <td class="text-center">
+          <div class="pointer" (click)="deleteObject(obj.id)">
+            <button type="button" class="btn btn-danger btn-icon-icon btn-sm m-0 mr-1 ng-scope" >
+                <i class="fa fa-trash"></i>
+            </button>
+            <span class="sm-hide">{{ 'APP.BUTTON_DELETE' | translate }}</span>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<div bsModal #createObjectDialog="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document" *ngIf="object && object.data">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          {{(!object.data.id ? 'APP.DIALOG_CREATE' : 'APP.DIALOG_UPDATE') |translate}}
+          {{'SIDEBAR.THANKS_PAGE'|translate}}
+        </h4>
+        <button type="button" class="close" (click)="createObjectDialog.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row">
+          <!-- Language selection -->
+          <div class="col-md-6">
+            <label class="col-form-label">*{{'DEFAULT_LANGUAGE_PAGE.NAME'|translate}}</label>
+            <devicelanguage-select [disabled]="object.data.id" [(ngModel)]="object.data.lang_id" name="device_language" (change)="changeLanguage($event)"></devicelanguage-select>
+          </div>
+
+          <!-- Category -->
+          <div class="col-md-6">
+            <label class="col-form-label">*{{'THANKS_PAGE.FIELD_TYPE'|translate}}</label>
+            <select class="form-control" [disabled]="object.data.id" name="type" [(ngModel)]="object.data.category">
+              <option [ngValue]="undefined" [disabled]="true">{{ 'APP.SELECT' | translate }}</option>
+              <option *ngFor="let type of THANK_TYPE_LIST" [ngValue]="type">
+                {{ 'THANKS_PAGE.TYPES.' + type | translate }}
+              </option>
+            </select>      
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-12 col-form-label">*{{'THANKS_PAGE.FIELD_CONTENT'|translate}}</label>
+          <div class="col-md-12">
+            <textarea rows="3" class="form-control" [(ngModel)]="object.data.content"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-12 col-form-label" for="address">{{'THANKS_PAGE.FIELD_AUTHOR'|translate}}</label>
+          <div class="col-md-12">
+            <input type="text" class="form-control" id="address" name="address" [(ngModel)]="object.data.author">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="createObjectDialog.hide()"><i class="fa fa-close"></i> {{'APP.BUTTON_CLOSE'|translate}}</button>
+        <button *ngIf="!object.data.id" type="button" class="btn btn-primary btn-sm" (click)="createObject()"><i class="fa fa-edit"></i> {{'APP.BUTTON_CREATE'|translate}}</button>
+        <button *ngIf="object.data.id" type="button" class="btn btn-primary btn-sm" (click)="updateObject()"><i class="fa fa-edit"></i> {{'APP.BUTTON_UPDATE'|translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

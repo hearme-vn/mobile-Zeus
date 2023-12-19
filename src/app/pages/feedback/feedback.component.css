@@ -1,0 +1,80 @@
+.text-blue {
+  color: #321FDB;
+  font-weight: bold;
+  font-size: 14px;
+}
+.search-area .title {
+  line-height: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.search-area .btn-search {
+  text-align: right;
+}
+.search-area .btn-search button {
+  padding: 0;
+  margin: 0;
+  height: 30px;
+}
+.search-area .btn-search button i {
+  border: 2px solid #321FDB;
+  font-size: 12px;
+  padding: 2px;
+  margin-top: -4px;
+}
+
+.hr {
+  margin: 0px 15px 20px 15px;
+  max-width: calc(100% - 30px);
+}
+.card-body {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+/* 
+.btn-search {
+  height: 30px;
+  width: 120px;
+} */
+
+.feedback_table {
+  padding: 0px;
+}
+
+.rate-1 {
+  background-color: rgba(233,76,54,.15);  
+}
+
+.rate-2 {
+  background-color: rgba(233,76,54,.1);
+}
+
+.rate-3 {
+  background-color: rgba(232,127,4,.05);  
+}
+
+
+/* For feedback detail dialog */
+.modal-xl {
+  max-width: 90%;
+}
+
+.feedback_header {
+  background-color: #8c8f8c49;
+  margin: 0px 0px 1px 0px;
+}
+.col-type {
+  color: #321FDB;
+}
+.feedback_content {
+  margin: 0px;
+}
+
+feedback-content {
+  width: 100%;
+}
+
+.modal-footer {
+  flex-wrap: wrap;
+}

@@ -1,0 +1,13 @@
+.welcome_page {
+  background-color: rgb(29, 206, 108);
+  margin: 0px;
+}
+
+.welcome_page img {
+  max-width: 80vw;
+  max-height: 25%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);    
+}

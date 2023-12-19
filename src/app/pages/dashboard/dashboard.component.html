@@ -1,0 +1,102 @@
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-body">
+      <!-- Welcome section - Time filter options -->
+      <div class="row">
+        <div class="col-sm-9">
+          <table class="table dashboard">
+            <tr>
+              <td class="db-img"><img src="assets/img/dashboard/welcome.png"></td>
+              <td class="db-hello"><h3 class="m-0">{{'DASHBOARD.HELLO' | translate}}, {{loginName}}!</h3></td>
+            </tr>
+            <tr>
+              <td class="db-content pt-0 pb-0" colspan="2"><h5>{{'DASHBOARD.CONTENT' | translate}}</h5></td>
+            </tr>
+          </table>  
+        </div>
+        <div class="col-sm-3">
+          <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+            <label class="btn" [(ngModel)]="time_range" btnRadio="Week" id="option1" (click)="changeFilter()">{{'DASHBOARD.SEARCH_WEEK' | translate}}</label>
+            <label class="btn" [(ngModel)]="time_range" btnRadio="Month" id="option2" (click)="changeFilter()">{{'DASHBOARD.SEARCH_MONTH' | translate}}</label>
+            <label class="btn" [(ngModel)]="time_range" btnRadio="Year" id="option3" (click)="changeFilter()">{{'DASHBOARD.SEARCH_YEAR' | translate}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="hr"></div>
+
+      <!-- Statistics by feedback status -->
+      <div class="row mt-4">
+        <div class="col-12">
+          <h6 class="card-title mb-2">{{'DASHBOARD.GENERATE_CHART_TITLE' | translate}}</h6>
+        </div>
+        <div class="col-md-3 col-sm-12 gene-main">
+          <h6 class="card-title mb-3 green">{{'DASHBOARD.GENERATE_CHART_VALID' | translate}}</h6>
+          <div class="box" [style]="'--p:' + generateChart.total">
+            <div class="content_box">
+              {{generateChart.total}}%
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9 col-sm-12">
+          <div class="row">
+            <div class="col-sm-4">
+              <p class="title">{{'DASHBOARD.GENERATE_CHART_NEW' | translate}}</p>
+              <p class="content">{{generateChart.new_count}}</p>
+            </div>
+            <div class="col-sm-4">
+              <p class="title">{{'DASHBOARD.GENERATE_CHART_PROCESSING' | translate}}</p>
+              <p class="content">{{generateChart.processing}}</p>
+            </div>
+            <div class="col-sm-4">
+              <p class="title">{{'DASHBOARD.GENERATE_CHART_PROCESSED' | translate}}</p>
+              <p class="content">{{generateChart.processed}}</p>
+            </div>
+            <div class="col-sm-4">
+              <p class="title">{{'DASHBOARD.GENERATE_CHART_UNFINISHED' | translate}}</p>
+              <p class="content red">{{generateChart.unfinished}}</p>
+            </div>
+            <div class="col-sm-4">
+              <p class="title">{{'DASHBOARD.GENERATE_CHART_INVALID' | translate}}</p>
+              <p class="content red">{{generateChart.invalid}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <feedbackcount-bytime-report [style]="'margin-top:20px;'" [filter]="filterData"></feedbackcount-bytime-report>
+
+  <div class="row mt-4 mb-4">
+    <!-- Number of feedbacks by surveys -->
+    <feedbackcount-bysurvey-report class="col-sm-6" [style]="'width: 100%; margin-top:20px'" [filter]="filterData"></feedbackcount-bysurvey-report>
+
+    <!-- Feedback counts by groups -->
+    <feedbackcount-bygroup-report class="col-sm-6" [style]="'width: 100%; margin-top:20px'" [filter]="filterData"></feedbackcount-bygroup-report>
+
+    <!-- Feedback counts by devices -->
+    <feedbackcount-bydevice-report class="col-sm-6"  [style]="'margin-top:20px'" [filter]="filterData"></feedbackcount-bydevice-report>
+
+    <!-- Email counts by times -->
+    <emails-bytime-report class="col-sm-6" [style]="'margin-top:20px;'" [filter]="filterData"></emails-bytime-report>
+
+    <!-- Customer count by times -->
+    <customers-bytime-report class="col-sm-6" [style]="'margin-top:20px;'" [filter]="filterData"></customers-bytime-report>
+
+    <!-- Object counts -->
+    <div class="col-sm-3">
+      <hm-numberchart
+        [data]="objectChart.deviceCount"
+        [label]="'DASHBOARD.DEVICE_CHART_TITLE' | translate">
+      </hm-numberchart>
+    </div>
+    <div class="col-sm-3">
+      <hm-numberchart
+        [data]="objectChart.surveyCount"
+        [label]="'DASHBOARD.SURVEY_CHART_TITLE' | translate"
+        [cssClass]="'callout callout-info'">
+      </hm-numberchart>
+    </div>
+  </div>
+
+</div>

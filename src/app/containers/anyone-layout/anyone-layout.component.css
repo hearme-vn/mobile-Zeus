@@ -1,0 +1,14 @@
+
+/* Here for header styles */
+app-header {
+  @media (max-width: 767px) {
+    .navbar-brand {
+      display: block !important;
+    }
+  }    
+}
+
+.app-body {
+  margin-top: 55px;
+  margin-bottom: 55px;
+}

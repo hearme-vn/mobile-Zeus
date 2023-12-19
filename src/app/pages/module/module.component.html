@@ -1,0 +1,55 @@
+<div class="animated fadeIn mb-20">
+  <div class="row">
+    <div class="col-md-4">
+      <select class="form-control" [(ngModel)]="filtering_form.group_id" (change)="changeGroup()">
+        <option [ngValue]="''">{{ 'APP.CB_ALL_GROUP' | translate }}</option>
+        <option *ngFor="let item of group_list" [value]="item.id" ng-reflect-value="1" >{{ item.name | translate }}</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <select class="form-control" [(ngModel)]="filtering_form.device_id" (change)="changeDevice()" *ngIf="filtering_form.group_id">
+        <option [value]="''">{{ 'APP.CB_ALL_DEVICES' | translate }}</option>
+        <option *ngFor="let item of device_list" [value]="item.id" ng-reflect-value="1" >{{ item.name | translate }}</option>
+      </select>
+    </div>
+    <div class="col-md-1">&nbsp;</div>
+    <div class="col-md-3">
+      <devicelanguage-select name="device_language" (change)="changeFactorLanguage($event)"></devicelanguage-select>
+    </div>
+
+    <div class="col-md-6 pt-3">
+      <div class="card p-4 module-block">
+        <h4 class="card-title progress-bar-warning">{{ 'MODULE_PAGE.LB_MODULE_FEEDBACK' | translate }}</h4>
+
+        <div class="form-group">
+          <label>{{'APP.UI_TITLE'|translate}}</label>
+          <input *ngIf="objectFB.data && objectFB.data.lang_text_links && objectFB.data.lang_text_links[current_lang_code]"
+                 type="text" class="form-control" [(ngModel)]="objectFB.data.lang_text_links[current_lang_code].value">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 pt-3">
+      <div class="card p-4 module-block">
+        <h4 class="card-title">{{ 'MODULE_PAGE.LB_MODULE_COLLECTION' | translate }}</h4>
+
+        <div class="form-group">
+          <label>{{'APP.UI_TITLE'|translate}}</label>
+          <input *ngIf="objectCOL.data && objectCOL.data.lang_text_links && objectCOL.data.lang_text_links[current_lang_code]"
+                 type="text" class="form-control" [(ngModel)]="objectCOL.data.lang_text_links[current_lang_code].value">
+        </div>
+        <div class="form-group">
+          <label>{{'MODULE_PAGE.LB_COLLECTION_PARAM'|translate}}</label>
+          <input type="text" class="form-control" [(ngModel)]="objectCOL.data.params">
+        </div>
+        <div class="form-group">
+          <input id="col_check" type="checkbox" [(ngModel)]="objectCOL.data.col_check">
+          <label for="col_check">{{'MODULE_PAGE.CB_ACTIVE_COLLECTION'|translate}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-success btn-sm mt-3" (click)="proccess()"><i class="fa fa-edit"></i> {{'APP.BUTTON_UPDATE'|translate}}</button>
+</div>
+

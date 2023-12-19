@@ -1,0 +1,20 @@
+/* 
+.plugin_select {
+  padding-bottom: 20px;
+}
+ */
+
+ .report_frame {
+  width: 100%;
+  height: 100vh;
+  border: 0;
+}
+
+.modal-fullscreen {
+  width: 100%;
+  height: 100%;
+}
+
+.modal-fullscreen .modal-body {
+  padding: 0px;
+}

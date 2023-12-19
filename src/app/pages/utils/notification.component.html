@@ -1,0 +1,76 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-12">
+      <button type="button" class="btn btn-danger btn-sm ml-0" (click)="deleteObject(['*'])">
+        <i class="fa fa-remove"></i> {{ 'APP.BUTTON_DELETE_ALL' | translate }}
+      </button>
+    </div>
+  </div>
+
+  <div class="col-12 pd-0 infinite_scroll_container" infinite-scroll
+    [infiniteScrollDistance]="1"
+    [infiniteScrollUpDistance]="2" 
+    [infiniteScrollThrottle]="50"
+    (scrolled)="onScrollDown()">
+    <table class="table table-bordered table-striped table-sm">
+      <thead>
+        <tr>
+          <th>{{ 'APP.UI_IDX_NUMBER' | translate }}</th>
+          <th>{{ 'NOTIFY_PAGE.TYPE' | translate }}</th>
+          <th>{{ 'NOTIFY_PAGE.TITLE' | translate }}</th>
+          <th>{{ 'APP.UI_CREATED' | translate }}</th>
+          <th>#</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let obj of objects; index as $i" [class]="obj.status == 0 ? 'unread' : ''">
+          <td (click)="openDialogForUpdating(obj)">{{ $i + 1 }}</td>
+          <td (click)="openDialogForUpdating(obj)" class="notify-type">
+            <img src="assets/img/common/mail-v.png" *ngIf="obj.type == 0 && obj.status != 0">
+            <i class="fa fa-envelope-o" *ngIf="obj.type == 0 && obj.status == 0"></i>
+
+            <i class="cui-settings" *ngIf="obj.type == 1"></i>
+            <span class="badge badge-pill badge-danger" *ngIf="obj.status == 0">&nbsp;</span>
+          </td>
+          <td class="pointer" (click)="openDialogForUpdating(obj)">
+            <span *ngIf="obj.type == 0">{{ 'MENU.NOTIFY_CONTENT' | translate }}<br/></span>
+            {{ obj.title }}
+          </td>
+          <td class="pointer" (click)="openDialogForUpdating(obj)">{{ obj.created | date: 'd/M/yy, H:m a' }}</td>
+          <td>
+            <div class="pointer" (click)="deleteObject(obj.id)">
+              <button type="button" class="btn btn-danger btn-icon-icon btn-sm m-0 mr-1 ng-scope" >
+                  <i class="fa fa-trash"></i>
+              </button>
+              <span class="sm-hide">{{ 'APP.BUTTON_DELETE' | translate }}</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>  
+</div>
+
+
+<div bsModal #createObjectDialog="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document" *ngIf="object && object.data">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{ object.data.title }}</h4>
+        <button type="button" class="close" (click)="createObjectDialog.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row noti_content">
+          <div class="col-md-12">{{ object.data.content }}</div>
+          <div class="col-md-12" *ngIf="fbLink != null"><a [href]="fbLink">{{'NOTIFY_PAGE.BAD_FB' | translate}}</a></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger btn-sm" (click)="deleteObject([object.data.id])"><i class="cui-delete icons font-1xl mt-4"></i> {{'APP.BUTTON_DELETE'|translate}}</button>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="createObjectDialog.hide()"><i class="fa fa-close"></i> {{'APP.BUTTON_CLOSE'|translate}}</button>
+      </div>
+  </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

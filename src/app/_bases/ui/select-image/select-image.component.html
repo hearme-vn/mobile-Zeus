@@ -1,0 +1,41 @@
+<div bsModal #selectImageDialog="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{'COLLECTION_PAGE.SELECT_IMAGE' | translate}}</h4>
+        <button type="button" class="close" (click)="selectImageDialog.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12 pd-0">
+          <select class="form-control" [(ngModel)]="collection_id" (change)="changeCollection()">
+            <option value="" disabled selected>{{'COLLECTION_PAGE.SI_COLLECTION' | translate}}</option>
+            <option *ngFor="let coll of collections" [value]="coll.id" ng-reflect-value="1" >{{ coll.name | translate }}</option>
+          </select>
+        </div>
+        <div class="card mt-3">
+          <div class="card-body" *ngIf="!images || !images.length">
+            {{'COLLECTION_PAGE.EMPTY' | translate}}
+          </div>
+  
+          <div class="card-body" *ngIf="images && images.length">
+            <div class="row">
+              <div class="col-6 col-md-3 mb-2" *ngFor="let image of images">
+                <div class="item">
+                  <img class="img-thumbnail-list" *ngIf="image.fileName" [src]="app_service.Based_URLs.imgs + image.fileName"
+                  title="{{image.content}}" (click)="selectedImage(image.fileName)" />
+                  <span>{{image.content}}</span>
+                </div>
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="selectImageDialog.hide()"><i class="fa fa-close"></i> {{'APP.BUTTON_CLOSE'|translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+

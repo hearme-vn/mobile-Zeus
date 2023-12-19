@@ -1,0 +1,20 @@
+<div class="chart-wrapper" [style]="containerStyle">
+  <ng-container *ngIf="!numberChartOptions || !numberChartOptions.with_border" [ngTemplateOutlet]="chart_content"></ng-container>
+
+  <div class="card" *ngIf="numberChartOptions && numberChartOptions.with_border">
+    <div class="card-body">
+      <ng-container [ngTemplateOutlet]="chart_content"></ng-container>
+    </div>
+  </div>
+</div>
+
+<ng-template #chart_content >
+  <div>
+    <!-- <div class="{{ cssClass }}" style="border-left-color: {{ numberChartOptions?.line_color ?  numberChartOptions.line_color : '#4dbd74' }};"> -->
+    <div class="{{ cssClass }}">
+      <small class="text-muted" style="font-size: {{ numberChartOptions?.title_font_size }}px;">{{ chartLabel }}</small>
+      <br>
+      <strong class="h4" style="font-size: {{ numberChartOptions?.number_font_size }}px;">{{ data }}</strong>
+    </div>
+  </div>
+</ng-template>

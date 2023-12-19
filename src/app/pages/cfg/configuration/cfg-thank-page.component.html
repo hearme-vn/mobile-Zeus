@@ -1,0 +1,19 @@
+<div class="card p-4 module-block mb-0">
+  <h4 class="card-title progress-bar-warning">{{ 'CONFIG_PAGE.THANKS_PAGE' | translate }}</h4>
+
+  <div class="form-group">
+    <input id="thank_page" type="checkbox" class="mr-1" [(ngModel)]="form.thankpage_active">
+    <label for="thank_page">{{'CONFIG_PAGE.DISPLAY_THANK_PAGE'|translate}}</label>
+  </div>
+  <div class="form-group">
+    <label class="float-left col-form-label mr-2">{{'CONFIG_PAGE.STYLE'|translate}}:</label>
+    <select class="form-control col-6" [(ngModel)]="form.thankpage_style">
+      <option *ngFor="let item of THANK_STYLE" [value]="item.name">{{item.name}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>{{'CONFIG_PAGE.THANKPAGE_DELAY'|translate}}</label>
+    <label>({{'CONFIG_PAGE.THANKPAGE_DELAY_TIMEUNIT'|translate}})</label>
+    <input class="form-control" type="input" [(ngModel)]="form.thankpage_delay">
+  </div>
+</div>

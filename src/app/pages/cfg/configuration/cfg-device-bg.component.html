@@ -1,0 +1,15 @@
+<div class="card p-4 module-block mb-0">
+  <h4 class="card-title">{{ 'CONFIG_PAGE.DEVICE_BACKGROUND_IMAGE' | translate }}</h4>
+
+  <div class="form-group">
+    <input id="status" type="checkbox" class="mr-1" [(ngModel)]="form.device_bgr_img_status"/>
+    <label for="status">{{'APP.IS_ACTIVE'|translate}}</label>
+    <br/>
+    <div class="col-md-4 col-sm-12 p-0 mt-2 device_header">
+      <img id="bgrImg" [src]="form.device_bgr_img ? app_service.Based_URLs.imgs + form.device_bgr_img : 'assets/img/common/theme_background.png'"
+           class="btn p-0 m-0 mw-100 pointer" (click)="openDialogSelectBG()" />
+    </div>
+  </div>
+</div>
+
+<select-image #dlgSelectBackground (setImage)="setBackground($event)"></select-image>

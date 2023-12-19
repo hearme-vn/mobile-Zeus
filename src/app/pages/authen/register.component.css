@@ -1,0 +1,9 @@
+button.btn-success {
+    margin: 0.25rem 0;
+}
+
+@media screen and (max-width: 576px) {
+  .p-4 {
+    padding: 0px !important;
+  }  
+}

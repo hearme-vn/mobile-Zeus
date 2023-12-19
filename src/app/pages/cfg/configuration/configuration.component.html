@@ -1,0 +1,32 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-sm btn-success ml-0" (click)="proccess()">
+        <i class="fa fa-edit"></i> {{ 'APP.BUTTON_UPDATE' | translate }}
+      </button>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="isLoadConfig">
+    <div class="col-md-6 pb-3">
+      <cfg-device-bg #cfgDeviceBg></cfg-device-bg>
+    </div>
+
+    <div class="col-md-6 pb-3">
+      <cfg-device-header #cfgDeviceHeader></cfg-device-header>
+    </div>
+
+    <div class="col-md-6 pb-3">
+      <cfg-hook #cfgHook></cfg-hook>
+    </div>
+
+    <div class="col-md-6 pb-3">
+      <cfg-thank-page #cfgThankPage></cfg-thank-page>
+    </div>
+
+    <div class="col-md-6 pb-3">
+      <cfg-other #cfgOther [configs]="configs"></cfg-other>
+    </div>
+  </div>
+</div>
+

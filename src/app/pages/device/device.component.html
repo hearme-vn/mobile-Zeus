@@ -1,0 +1,278 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <form class="form-horizontal">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="name" class="col-sm-3 control-label">{{ 'DEVICE_PAGE.NAME' | translate }}</label>
+                  <div class="col-sm-9" >
+                    <input type="text" class="form-control" name="name" required placeholder="Enter keyword" [(ngModel)]="filtering_form.name">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="status" class="col-sm-3 control-label">{{ 'APP.UI_STATUS' | translate }}</label>
+                  <div class="col-sm-9">
+                    <select class="form-control" id="status" name="status" [(ngModel)]="filtering_form.status">
+                      <option [value]="-1">{{ 'APP.UI_STATUS_ALL' | translate }}</option>
+                      <option *ngFor="let status of status_list" [value]="status.value" ng-reflect-value="1" >{{ status.name_key | translate }}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="button" class="btn btn-sm btn-primary" (click)="search()">
+              <i class="fa fa-search"></i> {{ 'APP.FORM_SEARCH' | translate }}
+            </button>
+            <button class="btn btn-sm btn-primary" (click)="openDialogForCreating()">
+              <i class="fa fa-file-o"></i> {{ 'APP.FORM_CREATE' | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div><!--/.col-->
+  </div><!--/.row-->
+
+  <div class="col-12 pd-0 infinite_scroll_container" infinite-scroll
+    [infiniteScrollDistance]="1"
+    [infiniteScrollUpDistance]="2" 
+    [infiniteScrollThrottle]="50"
+    (scrolled)="onScrollDown()">
+    <table class="table table-bordered table-striped table-sm">
+      <thead>
+        <tr>
+          <th>{{ 'APP.UI_IDX_NUMBER' | translate }}</th>
+          <th>{{ 'DEVICE_PAGE.NAME' | translate }}</th>
+          <th class="sm-hide">{{ 'APP.DESCRIPTION' | translate }}</th>
+          <th class="sm-hide">{{ 'DEVICE_PAGE.CONNECTION' | translate }}</th>
+          <th>{{ 'DEVICE_PAGE.CHANNEL' | translate }}</th>
+          <th class="xs-hide">{{ 'APP.UI_STATUS' | translate }}</th>
+          <th class="xs-hide">{{ 'APP.UI_CREATED' | translate }}</th>
+          <th class="center_cell">#</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let obj of objects; index as $i" [class]="(obj.systemlock==1 || obj.status==2) ? 'rate-2' : ''" class="pointer">
+          <td (click)="openDialogForUpdating(obj)">{{ $i + 1 }}</td>
+          <td (click)="openDialogForUpdating(obj)">{{ obj.name }}</td>
+          <td class="sm-hide" (click)="openDialogForUpdating(obj)">{{ obj.description }}</td>
+          <td class="sm-hide" (click)="openDialogForUpdating(obj)">
+            <span *ngIf="obj.type==0 && obj.socket_status==0" class="badge badge-secondary">{{ 'DEVICE_PAGE.LB_DISCONNECTION' | translate }}</span>
+            <span *ngIf="obj.type==0 && obj.socket_status==1" class="badge badge-success">{{ 'DEVICE_PAGE.LB_CONNECTION' | translate }}</span>
+            <span *ngIf="obj.type==0 && obj.socket_status==2" class="badge badge-warning">{{ 'DEVICE_PAGE.LB_WAITFORSYNC' | translate }}</span>
+            <span *ngIf="obj.type!=0">--</span>
+          </td>
+          <td (click)="openDialogForUpdating(obj)">
+            <span>{{ object_type.LIST_DEVICE_TYPE_NAME[obj.type] | translate }}</span>
+          </td>
+          <td class="xs-hide" (click)="openDialogForUpdating(obj)">
+            <span *ngIf="obj.status==0" class="badge badge-warning">{{ 'APP.UI_STATUS_CREATED' | translate }}</span>
+            <span *ngIf="obj.status==1" class="badge badge-success">{{ 'APP.UI_STATUS_ACTIVE' | translate }}</span>
+            <span *ngIf="obj.status==2" class="badge badge-danger">{{ 'APP.UI_STATUS_INACTIVE' | translate }}</span>
+            <span *ngIf="obj.systemlock==1" class="badge badge-danger">{{ 'APP.UI_SYSTEM_STATUS_LOCK' | translate }}</span>
+          </td>
+          <td class="xs-hide" (click)="openDialogForUpdating(obj)">{{ obj.created | date: 'dd/MM/yyyy, HH:mm a' }}</td>
+          <td class="center_cell actions">
+            <div class="btn-group" dropdown>
+              <button type="button" class="btn p-0" dropdownToggle>
+                <i class="fa fa-ellipsis-v"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+                <a *ngIf="obj.type == 0" class="dropdown-item" (click)="openSecret(obj)">
+                  <i class="fa fa-key"></i>
+                  {{ 'DEVICE_PAGE.TB_RESETMATKHAUTHIETBI' | translate }}
+                </a>
+                <a *ngIf="obj.type == 1" class="dropdown-item" (click)="gotoSurveyServer(obj)">
+                  <i class="fa fa-map-marker"></i>
+                  {{ 'DEVICE_PAGE.LB_SURVEY_SERVER' | translate }}
+                </a>
+                <a *ngIf="obj.type == 0" class="dropdown-item" (click)="deviceSendEvent(obj.id, 'signout_device', 'MSG.AL_DEVICE_SIGNOUT')">
+                  <i class="fa fa-sign-out"></i>
+                  {{ 'GROUP_PAGE.LB_DEVICE_SIGNOUT' | translate }}
+                </a>
+                <a *ngIf="obj.type == 0" class="dropdown-item" (click)="deviceSendEvent(obj.id, 'close_device', 'MSG.AL_DEVICE_CLOSE')">
+                  <i class="fa fa-times"></i>
+                  {{ 'GROUP_PAGE.LB_DEVICE_CLOSE' | translate }}
+                </a>
+                <a *ngIf="obj.type == 0" class="dropdown-item" (click)="deviceSendEvent(obj.id, 'update_device', 'MSG.AL_DEVICE_SYNCHRONIZE')">
+                  <i class="fa fa-refresh"></i>
+                  {{ 'GROUP_PAGE.BT_SYNCHRONIZE_DATA' | translate }}
+                </a>
+                <a class="dropdown-item" (click)="deleteObject(obj.id)">
+                  <i class="fa fa-trash"></i>
+                  {{ 'APP.BUTTON_DELETE' | translate }}
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Create device dialog -->
+<div bsModal #createObjectDialog="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document" *ngIf="object && object.data">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          {{(!object.data.id ? 'APP.DIALOG_CREATE' : 'APP.DIALOG_UPDATE') |translate}}
+          {{'DEVICE_PAGE.PAGE_NAME'|translate}}
+        </h4>
+        <button type="button" class="close" (click)="createObjectDialog.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="form-group col-md-6" *ngIf="object.data.id">
+            <label>{{'DEVICE_PAGE.ID'|translate}}: </label>
+            <span  class="pointer" (click)="copyToClipboard(object.data.id)">
+              <em  class="text-suggestion" id="collection_id">{{ object.data.id }}</em>
+              &nbsp;<i class="fa fa-files-o"></i>&nbsp;
+            </span>
+          </div>
+          <div class="form-group col-md-6" *ngIf="object.data.id">
+            <label class="control-label">{{ 'APP.UI_CREATED' | translate }}: </label>
+            <span>{{ object.data.created | date: 'dd/MM/yyyy, HH:mm a'}}</span>            
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="name">{{'DEVICE_PAGE.NAME'|translate}} <code>(*)</code></label>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="object.data.name">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="type">{{'DEVICE_PAGE.CHANNEL'|translate}}</label>
+            <select class="form-control" id="type" name="type" [(ngModel)]="object.data.type" [disabled]="object.data.id">
+              <option *ngFor="let type of object_type.LIST_DEVICE_TYPE" [value]="type.key" ng-reflect-value="1" >{{ type.name | translate }}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="group">{{'DEVICE_PAGE.GROUP'|translate}}</label>
+            <select class="form-control" id="group" name="group" [(ngModel)]="object.data.grp_id">
+              <option [value]="undefined"> {{ 'APP.SELECT_GROUP' | translate }}</option>
+              <option *ngFor="let group of group_list" [value]="group.id" ng-reflect-value="1" >{{ group.name | translate }}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6" *ngIf="object.data.type==0">
+            <label for="name">{{'DEVICE_PAGE.TARGET'|translate}}</label>
+            <select class="form-control" id="sur_id" name="sur_id" [(ngModel)]="object.data.target_id">
+              <option [value]="undefined">{{'DEVICE_PAGE.LB_NO_FEEDBACK_OBJECT'|translate}}</option>
+              <option *ngFor="let target of target_list" [value]="target.id" ng-reflect-value="1" >{{ target.name | translate }}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-12">
+            <label for="description">{{'APP.DESCRIPTION'|translate}}</label>
+            <textarea name="description" id="description" class="form-control" rows="3" [(ngModel)]="object.data.description"></textarea>
+          </div>
+          <div class="form-group col-md-6" *ngIf="object.data.id">
+            <label class="control-label">{{'APP.UI_STATUS'|translate}}</label>
+            <div class="form-check form-check-inline options" id="inline-radios">
+              <input class="form-check-input" id="inlineRadio1" name="inline-radios" type="radio" [value]="1" [(ngModel)]="object.data.status">
+              <label class="form-check-label" for="inlineRadio1">{{'APP.UI_STATUS_ACTIVE'|translate}}</label>
+            </div>
+            <div class="form-check form-check-inline options">
+              <input class="form-check-input" id="inlineRadio2" name="inline-radios" type="radio" [value]="2" [(ngModel)]="object.data.status">
+              <label class="form-check-label" for="inlineRadio2">{{'APP.UI_STATUS_INACTIVE'|translate}}</label>
+            </div>
+          </div>
+          <div class="form-group col-md-6" *ngIf="object.data.id">
+            <label class="control-label">{{'APP.UI_SYSTEM_STATUS'|translate}}: </label>
+            <span class="badge badge-success" *ngIf="object.data.systemlock == 0" translate="APP.UI_STATUS_ACTIVE"></span>
+            <span class="badge badge-warning" *ngIf="object.data.systemlock == 1" translate="APP.UI_STATUS_INACTIVE"></span>
+          </div>
+          <div class="form-group col-md-6" *ngIf="object.data.id">
+            <label class="control-label">{{'DEVICE_PAGE.LOGIN_DATE'|translate}}: </label>
+            <span *ngIf="object.data.login_date">{{ object.data.login_date | date: 'dd/MM/yyyy, HH:mm a'}}</span>
+            <span *ngIf="!object.data.login_date">&nbsp;N/A</span>
+          </div>
+          <div class="form-group col-md-6" *ngIf="object.data.id">
+            <label class="control-label">{{'DEVICE_PAGE.LINKED_DATE'|translate}}: </label>
+            <span *ngIf="object.data.link_date">{{ object.data.link_date | date: 'dd/MM/yyyy, HH:mm a'}}</span>
+            <span *ngIf="!object.data.link_date">&nbsp;N/A</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="createObjectDialog.hide()"><i class="fa fa-close"></i> {{'APP.BUTTON_CLOSE'|translate}}</button>
+        <button *ngIf="!object.data.id" type="button" class="btn btn-primary btn-sm" (click)="createObject()"><i class="fa fa-edit"></i> {{'APP.BUTTON_CREATE'|translate}}</button>
+        <button *ngIf="object.data.id" type="button" class="btn btn-primary btn-sm" (click)="updateObject()"><i class="fa fa-edit"></i> {{'APP.BUTTON_UPDATE'|translate}}</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Dialog for Kiosk device - secreat code -->
+<div bsModal #secretDialog="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document" *ngIf="object && object.data && stringQrCode">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{'APP.TB_NOTIFY' | translate}}</h4>
+        <button type="button" class="close" (click)="secretDialog.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="form-group col-md-12">
+            {{'DEVICE_PAGE.ID'|translate}}: <span class="text-info">{{object.data.id}}</span>
+          </div>
+          <div class="form-group col-md-12">
+            {{'DEVICE_PAGE.SECRET'|translate}}: <span class="text-info">{{object.data.secret}}</span>
+          </div>
+          <div class="form-group col-md-12 text-center">
+            <qrcode [qrdata]="stringQrCode" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="secretDialog.hide()"><i class="fa fa-close"></i> {{'APP.BUTTON_CLOSE'|translate}}</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Dialog to display Web channel URL -->
+<div bsModal #surveyServerDialog="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document" *ngIf="object && object.data && object.data.surveyServer">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{'DEVICE_PAGE.LB_SURVEY_SERVER' | translate}}</h4>
+        <button type="button" class="close" (click)="surveyServerDialog.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div [class]="object.data.surveyServerShort ? 'col-md-8 p-0' : 'col-md-12 p-0'">
+            <div class="form-group col-md-12 wb-all">
+              {{'APP.URL'|translate}}: <a href="{{object.data.surveyServer}}" class="text-info" target="_blank">{{object.data.surveyServer}}</a>
+            </div>
+            <div class="form-group col-md-12 text-center">
+              <qrcode [qrdata]="object.data.surveyServer" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+            </div>
+          </div>
+          <div *ngIf="object.data.surveyServerShort" [class]="object.data.surveyServerShort ? 'col-md-4 p-0' : 'col-md-12 p-0'">
+            <div class="form-group col-md-12 wb-all">
+              <a href="{{object.data.surveyServerShort}}" class="text-info" target="_blank">{{object.data.surveyServerShort}}</a>
+            </div>
+            <div class="form-group col-md-12 text-center">
+              <qrcode [qrdata]="object.data.surveyServerShort" [errorCorrectionLevel]="'M'"></qrcode>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success btn-sm" (click)="enableShortUrl()"><i class="fa fa-close"></i> {{'APP.BT_SHORT_URL'|translate}}</button>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="surveyServerDialog.hide()"><i class="fa fa-close"></i> {{'APP.BUTTON_CLOSE'|translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

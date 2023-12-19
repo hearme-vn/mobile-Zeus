@@ -1,0 +1,63 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-1">
+      {{ 'REPORT_PLUGIN_PAGE.REPORT_LIST' | translate }}:
+    </div>
+    <div class="col-md-4">
+      <ng-select [items]="app_service.report_plugins" [multiple]="false" [(ngModel)]="selected_plugin"
+          placeholder="{{ 'APP.SELECT_REPORT_PLUGINS' | translate }}" bindLabel="name">
+
+          <ng-template ng-label-tmp let-item="item">
+          {{ item.name | truncate : 70 : true }}
+          </ng-template>
+
+          <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+          {{ item.name | truncate : 55 : true }}
+          </ng-template>
+      </ng-select>
+    </div>
+    <div class="col-md-7">
+      <button type="button" class="btn float-right" (click)="openReportDialog()" title="{{ 'REPORT_PLUGIN_PAGE.PRESENTATION_MODE' | translate}}">
+        <i class="fa fa-television fa-lg h4 pointer"></i>
+      </button>
+<!-- 
+      <button type="button" class="btn float-right" (click)="openReportDialog()" title="Expand report">
+        <i class="fa fa-arrows-alt fa-lg h6 pointer"></i>
+      </button>
+       -->
+    </div>
+  </div>
+
+  <div *ngIf="!selected_plugin">
+    <div class="card">
+      <div class="card-body">
+        {{ 'REPORT_PLUGIN_PAGE.SELECT_GUIDE' | translate }}
+      </div>
+    </div>
+  </div>    
+
+  <iframe  *ngIf="selected_plugin" [src]="getReportPluginURL(selected_plugin.url)" class="report_frame"></iframe>  
+</div>
+
+<div bsModal #reportDialog="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-fullscreen" role="document">
+    <div class="modal-content">
+      <div>
+        <button type="button" class="close" (click)="reportDialog.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12">
+            <iframe  *ngIf="selected_plugin" [src]="getReportPluginURL(selected_plugin.url)" class="report_frame"></iframe>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

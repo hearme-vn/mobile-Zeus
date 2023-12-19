@@ -1,0 +1,106 @@
+.text-blue {
+  color: #321FDB;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.card-body {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.btn-group {
+  background-color: #F8F9FB;
+  border-radius: 5px;
+}
+.btn-group .btn {
+  margin: 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn-group .btn.active {
+  background-color: rgba(4, 191, 116, 0.25);;
+}
+table.dashboard td {
+  border-top: none;
+}
+table.dashboard .db-img {
+  width: 56px;
+}
+
+.db-img img {
+  height: 50px;
+}
+
+table.dashboard .db-hello {
+  padding-left: 0;
+  vertical-align: middle;
+  font-weight: bold;
+}
+table.dashboard .db-hello h3 {
+  font-size: 24px !important;
+}
+table.dashboard .db-content h5 {
+  font-weight: normal;
+  margin-bottom: 0;
+  font-size: 16px;
+}
+h5.card-title {
+  font-size: 18px;
+}
+h6.card-title {
+  font-size: 16px;
+}
+.card-title.green {
+  color: #119E40;
+}
+.box {
+  --v:calc( ((18/5) * var(--p) - 90)*1deg);
+  width:120px;
+  height:120px;
+  display:table-cell;
+  border-radius:50%;
+  padding:4px;
+  vertical-align: middle;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  background:
+    linear-gradient(#DAF6EA, #DAF6EA) content-box,
+    linear-gradient(var(--v), #FFF     50%,transparent 0) 0/min(100%,(50 - var(--p))*100%),
+    linear-gradient(var(--v), transparent 50%,#19B885        0) 0/min(100%,(var(--p) - 50)*100%),
+    linear-gradient(to right, #FFF 50%,#19B885 0);
+}
+.gene-main {
+  width: 200px;
+  border-right: 1px solid #E1E6EB;
+  padding-bottom: 0;
+}
+.gene-content {
+  padding-top: 20px;
+  padding-bottom: 0;
+  padding-left: 60px;
+}
+.gene-content .col-sm-4 {
+  margin-top: 20px;
+}
+.gene-content p {
+  margin-bottom: 0;
+}
+.gene-content .title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 32px;
+}
+.gene-content .content {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+}
+.gene-content .content.red {
+  color: #FF6A68;
+}
+.callout small {
+  color: #23282c !important;
+  font-size: 16px;
+  font-weight: 600;
+}

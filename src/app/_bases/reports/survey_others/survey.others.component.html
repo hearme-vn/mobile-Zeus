@@ -1,0 +1,27 @@
+<!-- <hm-piechart #feedbacks_bysurvey 
+[style] = "styleData"
+[data]="chartData"
+[labels]="chartLabels">
+</hm-piechart> -->
+
+<div class="row">
+  <!-- Chart counting feedback by time line -->
+  <div class="col-md-6">
+    <hm-linechart 
+      [data]="count_by_time_datasets"
+      [labels]="time_labels"
+      [options]="lineChartOptions"
+      [hm_options]="hmoptions_feedbackcount_bytime">
+    </hm-linechart>
+  </div>
+
+  <!-- Chart for Number of feedbacks -->
+  <div class="col-md-4" *ngIf="report_data">
+    <hm-numberchart
+      [data]="report_data.total_feedbacks"
+      [label]="'REPORT.FEEDBACK_COUNT' | translate"
+      [options]="numberChartOptions">
+    </hm-numberchart>
+  </div>  
+  
+</div>
