@@ -1,5 +1,5 @@
 
-# mobile Zeus
+# mobile Zeus: Open-source Admin mobile app for CXM platform
 [![mobile Zeus](docs/imgs/feature.png)](https://hearme.vn)
 
 ## Description
@@ -13,9 +13,36 @@ The **mobile Zeus** shares the same powerful features as its counterpart, [**hea
 
 With these hearme open-source modules, you can swiftly assemble a complete CXM solution in just a few minutes. Experience the unparalleled flexibility and speed of customization. Join us in distributing innovative solutions to your local market with [hearme](https://hearme.vn).
 
+## Use cases
+
+**1. Unified Customer Feedback Collection Across Channels**
+
+- Scenario: You want to collect customer feedback seamlessly across various communication channels.
+- Enhancement: Our open-source CXM platform empowers you to implement custom logic for intercept processing, tailor the feedback collection process to your specific needs.
+
+**2. Custom Application Development for Feedback Collection**
+
+- Scenario: You have unique requirements and wish to develop your own applications for customer feedback collection.
+- Enhancement: The flexibility of our open-source CXM platform extends to empowering you to build your own applications for customer feedback collection. Leverage our modular and customizable framework to create apps tailored to your brand's specific requirements.
+
+**3. Becoming a CXM Provider with Your Trademark**
+
+- Scenario: You aspire to establish yourself as a CXM (Customer Experience Management) provider with a distinctive brand.
+
+- Enhancement: Transform your vision into reality by adopting our open-source modules. Incorporate them into your CXM platform and customize them with your own trademark. This empowers you to deliver a unique and branded CXM experience to your clients.
+
+- Benefits: By utilizing our open-source modules, you not only expedite the development process but also gain the flexibility to shape the platform according to your branding strategy. This positions you as a dynamic CXM provider with a unique identity in the market.
+
 ## hearme architechture
 ![hearme architectur](docs/imgs/hearme_components.png)
 
+## Related open-source modules
+
+- [hearme Zeus](https://github.com/hearme-vn/hearme-Zeus)
+- [mobile Zeus](https://github.com/hearme-vn/mobile-Zeus)
+- [hearme station](https://github.com/hearme-vn/hearme_station)
+- [cx mobile](https://github.com/hearme-vn/cx_mobile) 
+- and [cx desktop](https://github.com/hearme-vn/cx_desktop)
 
 ## Demonstration:
 - Manage CX system with your mobile Zeus: https://www.youtube.com/watch?v=e7KJPQUzvDc
@@ -143,12 +170,29 @@ npx cap open ios
 npx cap open android
 ```
 
-To modify configuration for building production, open file: angular.json then change values in 
+To modify configuration for dev, testing, building production, open file: src/environments/*.ts then change values 
 ```
-"configurations": {
-    "production": {
-    }
-}
+export const environment = {
+  production: true,
+
+.....
+
+  fbClientID: 	"xxxxxxx",
+  customer_wait_fb: 120,
+
+  /** For Firebase Notification */
+  firebase: {
+    apiKey: "xxxxxxxxxxx",
+    authDomain: "hearme-xxxxxxx.firebaseapp.com",
+    databaseURL: "https://hearme-xxxxxx.firebaseio.com",
+    projectId: "hearme-xxxxxxx",
+    storageBucket: "hearme-xxxxxxx.appspot.com",
+    messagingSenderId: "68942843xxxx0096",
+    appId: "xxxxxxx",
+    vapidKey: "xxxxxxxxxxxxxxxxxxx"
+  }
+};
+
 ```
 
 ## Setting for Android:
